@@ -13,14 +13,14 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-
+	
 </script>
 <script type="text/javascript">
 	/* $(function(){
 		$("#content").load("views/customerCenter.jsp");
 	}); */
-	
-	function moveCustomer(){
+
+	function moveCustomer() {
 		$("#content").load("views/customerCenter.jsp");
 		//document.getElementById("content").innerHTML = '<object type="text/html" data="views/customerCenter.jsp"></object>';
 	}
@@ -41,15 +41,22 @@
 .sidenav {
 	padding-top: 20px;
 	background-color: #f1f1f1;
+	/* #f1f1f1 */
 	height: 100%;
 }
-
+.side2{
+	background-color: #2c2c2c;
+}
+.side2 > p a{
+	color:white;
+}
 /* Set black background color, white text and some padding */
 footer {
-	background-color: #555;
+	background-color: #2c2c2c;
+	/* #555 */
 	color: white;
 	padding: 15px;
-	margin-top: 120px;
+	/* margin-top: 120px; */
 }
 
 #menu {
@@ -83,6 +90,10 @@ footer {
 	color: #fff !important;
 }
 
+#sidebar {
+	height: 100%;
+}
+
 #imageslide {
 	width: 100%;
 	margin-top: 20px;
@@ -105,7 +116,6 @@ footer {
 		height: auto;
 	}
 }
-
 </style>
 </head>
 <body>
@@ -142,33 +152,33 @@ footer {
 
 
 	<div class="container-fluid text-center">
-	<div class="row content"> 
-		<div class="col-sm-2 sidenav">
+		<div class="row content">
+			<div class="col-sm-2 sidenav side2">
 				<p>
-					<a href="#" onclick="moveCustomer();">고객센터</a>
+					<a href="#" onclick="moveCustomer();">FAQ</a>
 				</p>
 				<p>
-					<a href="#">Link</a>
+					<a href="#">공지사항</a>
 				</p>
 				<p>
-					<a href="#">Link</a>
+					<a href="#">시승기</a>
 				</p>
-		</div>
-		<div class="col-sm-8 text-left" id="content">
-			<!-- <h1>Welcome</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-					do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-					enim ad minim veniam, quis nostrud exercitation ullamco laboris
-					nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat
-					cupidatat non proident, sunt in culpa qui officia deserunt mollit
-					anim id est laborum consectetur adipiscing elit, sed do eiusmod
-					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-					minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-					aliquip ex ea commodo consequat.</p>
-				<hr>
-				<h3>Test</h3>
-				<p>Lorem ipsum...</p>
- -->
+				<p>
+					<a href="#">불량고객신고</a>
+				</p>
+				<p>
+					<a href="#">자유게시판</a>
+				</p>
+			</div>
+			<div class="col-sm-8 text-left" id="content">
+
+				<!-- 컨텐츠가 들어갈 자리 -->
+			</div>
+			<div class="col-sm-2 sidenav">
+				<!-- <div class="well"> -->
+					<!-- <p>ADS</p> -->
+					<img src="resources/gif/pop2.gif" width="100%;" height="90%;">
+				<!-- </div> -->
 			</div>
 		</div>
 	</div>

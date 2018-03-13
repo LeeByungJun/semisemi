@@ -14,15 +14,15 @@
 	src="../bootstrap/js/bootstrap.js"></script>
 </head>
 <body>
-<div class="container">
-	<table class="table table-striped">
+<div class="container" style="width:100%;">
+	<table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
 		<thread>
 		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>작성자</th>
-			<th>날짜</th>
-			<th>조회수</th>
+			<th style="background:#eeeeee; text-align:center;">번호</th>
+			<th style="background:#eeeeee; text-align:center;">제목</th>
+			<th style="background:#eeeeee; text-align:center;">작성자</th>
+			<th style="background:#eeeeee; text-align:center;">날짜</th>
+			<th style="background:#eeeeee; text-align:center;">조회수</th>
 		</tr>	
 		</thread>
 		<tbody>	
