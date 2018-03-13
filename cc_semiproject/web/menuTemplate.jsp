@@ -24,6 +24,10 @@
 		$("#content").load("views/customerCenter.jsp");
 		//document.getElementById("content").innerHTML = '<object type="text/html" data="views/customerCenter.jsp"></object>';
 	}
+	
+	/* function moveCarHugi(){
+		$("#content").load("DongGuk/views/reviewRent.jsp");
+	} */
 </script>
 <style>
 /* Remove the navbar's default margin-bottom and rounded borders */
@@ -136,7 +140,7 @@ footer {
 					<li><a href="#" onclick="moveCustomer();">단기렌트</a></li>
 					<!-- class="active" -->
 					<li><a href="#">장기렌트</a></li>
-					<li><a href="#">P2P</a></li>
+					<li><a href="DongGuk/views/p2pRent.jsp">P2P</a></li>
 					<li><a href="#">고객센터</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -161,7 +165,7 @@ footer {
 					<a href="#">공지사항</a>
 				</p>
 				<p>
-					<a href="#">시승기</a>
+					<a href="DongGuk/views/reviewRent.jsp">시승기</a>
 				</p>
 				<p>
 					<a href="#">불량고객신고</a>

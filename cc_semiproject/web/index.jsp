@@ -456,7 +456,7 @@ footer {
 					<li><a href="#">단기렌트</a></li>
 					<!-- class="active" -->
 					<li><a href="#">장기렌트</a></li>
-					<li><a href="#">P2P</a></li>
+					<li><a href="DongGuk/views/p2pRent.jsp">P2P</a></li>
 					<li><a href="menuTemplate.jsp">고객센터</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
