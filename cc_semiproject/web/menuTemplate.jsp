@@ -95,7 +95,7 @@ footer {
 }
 
 #sidebar {
-	height: 100%;
+	height: auto;
 }
 
 #imageslide {
@@ -139,7 +139,7 @@ footer {
 				<ul class="nav navbar-nav">
 					<li><a href="#" onclick="moveCustomer();">단기렌트</a></li>
 					<!-- class="active" -->
-					<li><a href="#">장기렌트</a></li>
+					<li><a href="byungjun/views/faq.jsp">장기렌트</a></li>
 					<li><a href="DongGuk/views/p2pRent.jsp">P2P</a></li>
 					<li><a href="#">고객센터</a></li>
 				</ul>
