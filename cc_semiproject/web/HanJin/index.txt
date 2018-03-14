@@ -1,1 +1,8 @@
+<<<<<<< HEAD
+ㅘ라라ㅏ라
+=======
 하하
+엄ㄴㅇㅁ넝어아
+ㅓㅏㅓㅏㅇ
+>>>>>>> branch 'master' of https://github.com/LeeByungJun/semisemi.git
+ㄷㅈㅈㄷ

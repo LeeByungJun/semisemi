@@ -442,7 +442,7 @@ footer {
 					<li><a href="#" role="button" data-toggle="modal"
 						data-target="#login-modal"><span
 							class="glyphicon glyphicon-log-in"></span> Login</a></li>
-					<li><a href="#" role="button"><span
+					<li><a href="YunHee/views/myPage.jsp" role="button"><span
 							class="glyphicon glyphicon-log-in"></span> 마이페이지</a></li>
 				</ul>
 			</div>
