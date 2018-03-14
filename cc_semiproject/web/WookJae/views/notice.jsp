@@ -12,6 +12,7 @@
 			<!-- header -->
 			<%@ include file="../include/header.jsp"%>
 		
+		
 			<!-- sidenav -->
 			<div class="container-fluid text-center">
 				<div class="row content">
@@ -21,7 +22,11 @@
 					<!-- main contents -->
 					<div class="col-sm-8 text-left">
 					
-					<div class="container" style="width:100%;">
+					<div class="container" style="width:100%; height:600%">
+						<h1 align="center" style="color:red;font-family:'고딕'"><b>공지사항</b></h1>
+					    <br>
+					    
+					    <h3><b>Notice</b></h3>
 						<table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
 							<thread>
 							<tr>
@@ -34,25 +39,75 @@
 							</thread>
 							<tbody>	
 							<tr>
-								<td>165</td>
-								<td>으앙</td>
-								<td>박보영</td>
-								<td>2018.03.12</td>
 								<td>1</td>
+								<td align="left"><a href="./notice_example1.jsp">2018년 3월 고객 설문 이벤트 당첨자 발표~~★</a></td>
+								<td>운영자</td>
+								<td>2018.03.21</td>
+								<td>202</td>
 							</tr>
 							</tbody>
 							<tbody>
 							<tr>
-								<td>181</td>
-								<td>하아</td>
-								<td>김수연</td>
+								<td>2</td>
+								<td></td>						
+								<td>운영자</td>
 								<td>2018.03.13</td>
 								<td>4</td>
 							</tr>
-							</tbody>
+							<tr>
+								<td>3</td>
+								<td></td>						
+								<td>운영자</td>
+								<td>2018.03.13</td>
+								<td>4</td>
+							</tr>
+							<tr>
+								<td>4</td>
+								<td></td>						
+								<td>운영자</td>
+								<td>2018.03.13</td>
+								<td>4</td>
+							</tr>							
+							<tr>
+								<td>5</td>
+								<td></td>						
+								<td>운영자</td>
+								<td>2018.03.13</td>
+								<td>4</td>
+							</tr>	
+							<tr>
+								<td>6</td>
+								<td></td>
+								<td>운영자</td>
+								<td>2018.03.13</td>
+								<td>4</td>
+							</tr>													
+							<tr>
+								<td>7</td>
+								<td></td>
+								<td>운영자</td>
+								<td>2018.03.13</td>
+								<td>4</td>
+							</tr>													
+							<tr>
+								<td>8</td>
+								<td align="left">회원등급에 따른 혜택안내!</td>
+								<td>운영자</td>
+								<td>2018.03.13</td>
+								<td>4</td>
+							</tr>
+							<tr>
+								<td>9</td>
+								<td align="left">※ C&C홈페이지 오픈!! 추첨을통하여 국산차 1일 이용권지급(Click) ※</td>
+								<td>운영자</td>
+								<td>2018.03.10</td>
+								<td>369</t>
+							</tr>			
+																																						
 						</table>
 						<hr>
-						<a class="btn btn-default pull-right" href="/cs/views/write.jsp">글쓰기</a>
+
+						<a class="btn btn-default pull-right" href="/cs/views/write.jsp">관리자글쓰기</a>
 						<div class="text-center">
 							<ul class="pagination">
 								<li><a href="#">1</a></li>
@@ -64,20 +119,7 @@
 						</div>
 					</div>					
 					
-					
-					
-						<!-- 컨텐츠를 넣으세요 -->
-						<!-- 컨텐츠를 넣으세요 -->
-						<!-- 컨텐츠를 넣으세요 -->
-						<!-- 컨텐츠를 넣으세요 -->
-						<!-- 컨텐츠를 넣으세요 -->
-						<!-- 컨텐츠를 넣으세요 -->
-						<!-- 컨텐츠를 넣으세요 -->
-						<!-- 컨텐츠를 넣으세요 -->
-						<!-- 컨텐츠를 넣으세요 -->
-						<!-- 컨텐츠를 넣으세요 -->
-						<!-- 컨텐츠를 넣으세요 -->
-					ㅇㅇㅇ
+
 					</div>
 					<div class="col-sm-2 sidenav">
 						<%@ include file="../include/add.jsp" %>
