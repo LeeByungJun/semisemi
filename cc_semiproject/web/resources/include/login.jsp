@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
 <title>로그인</title>
 <script type="text/javascript">
 	$(function() {
@@ -337,7 +337,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header" align="center">
-					<img class="img-circle" id="img_logo" src="../images/C&C Logo.jpg">
+					<img class="img-circle" id="img_logo" src="/cs/resources/images/C&C Logo.jpg">
 					<!-- src="http://bootsnipp.com/img/logo.jpg" -->
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">

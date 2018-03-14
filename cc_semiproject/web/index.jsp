@@ -13,7 +13,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(function() {
 
 		var $formLogin = $('#login-form');
@@ -201,7 +201,7 @@
 			}
 		});
 	});
-</script>
+</script> -->
 <style>
 /* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {
@@ -418,7 +418,7 @@ footer {
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
+	<!-- <nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -428,12 +428,12 @@ footer {
 				</button>
 				<a href="index.jsp"><img src="images/C&C Logo.jpg" alt="Logo"
 					width="120" height="50"></a>
-				<!-- class="navbar-brand" -->
+				class="navbar-brand"
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 					<li><a href="#">단기렌트</a></li>
-					<!-- class="active" -->
+					class="active"
 					<li><a href="#">장기렌트</a></li>
 					<li><a href="DongGuk/views/p2pRent.jsp">P2P</a></li>
 					<li><a href="menuTemplate.jsp">고객센터</a></li>
@@ -447,7 +447,8 @@ footer {
 				</ul>
 			</div>
 		</div>
-	</nav>
+	</nav> -->
+	<%@ include file="resources/include/header.jsp" %>
 
 	<div class="row content">
 		<div class="col-sm-8 text-left" id="imageslide">
@@ -493,158 +494,8 @@ footer {
 		</div>
 	</div>
 
-	<!-- BEGIN # MODAL LOGIN -->
-	<div class="modal fade" id="login-modal" tabindex="-1" role="dialog"
-		aria-labelledby="myModalLabel" aria-hidden="true"
-		style="display: none;">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header" align="center">
-					<img class="img-circle" id="img_logo" src="images/C&C Logo.jpg">
-					<!-- src="http://bootsnipp.com/img/logo.jpg" -->
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-					</button>
-				</div>
+	<%@ include file="resources/include/login.jsp" %>
 
-				<!-- Begin # DIV Form -->
-				<div id="div-forms">
-
-					<!-- Begin # Login Form -->
-					<form id="login-form" action="login" method="post">
-						<div class="modal-body">
-							<div id="div-login-msg">
-								<div id="icon-login-msg"
-									class="glyphicon glyphicon-chevron-right"></div>
-								<span id="text-login-msg">이메일과 비밀번호를 입력하세요</span>
-							</div>
-							<input id="login_username" name="useremail" class="form-control" type="email"
-								placeholder="E-mail" required> 
-							<input id="login_password" name="userpwd" class="form-control" type="password"
-								placeholder="Password" required>
-							<div class="checkbox">
-								<label> <input type="checkbox"> 아이디 기억
-								</label>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<div>
-								<!-- <button type="submit" class="btn btn-primary btn-lg btn-block"
-									id="loginSuccess">로그인</button> -->
-								<input type="submit" class="btn btn-primary btn-lg btn-block"
-									id="loginSuccess" value="로그인">
-							</div>
-							<div>
-								<button id="login_lost_btn" type="button" class="btn btn-link">비밀번호
-									찾기</button>
-								<button id="login_register_btn" type="button"
-									class="btn btn-link">회원가입</button>
-							</div>
-						</div>
-					</form>
-					<!-- End # Login Form -->
-
-					<!-- Begin | Lost Password Form -->
-					<form id="lost-form" style="display: none;">
-						<div class="modal-body">
-							<div id="div-lost-msg">
-								<div id="icon-lost-msg"
-									class="glyphicon glyphicon-chevron-right"></div>
-								<span id="text-lost-msg">이메일을 입력하세요</span>
-							</div>
-							<input id="lost_email" class="form-control" type="text"
-								placeholder="E-Mail (type ERROR for error effect)" required>
-						</div>
-						<div class="modal-footer">
-							<div>
-								<button type="submit" class="btn btn-primary btn-lg btn-block">보내기</button>
-							</div>
-							<div>
-								<button id="lost_login_btn" type="button" class="btn btn-link">로그인
-								</button>
-								<button id="lost_register_btn" type="button"
-									class="btn btn-link">회원가입</button>
-							</div>
-						</div>
-					</form>
-					<!-- End | Lost Password Form -->
-					<!-- Begin | Register Form -->
-					<form id="register-form" style="display: none;">
-						<div class="modal-body">
-							<div id="div-register-msg">
-								<div id="icon-register-msg"
-									class="glyphicon glyphicon-chevron-right"></div>
-								<span id="text-register-msg">계정등록</span>
-							</div>
-							<input id="register_email" class="form-control" type="email"
-								placeholder="이메일" required>
-							<button class="btn btn-primary btn-lg btn-block" style="width:100px; margin-top:10px;
-								text-align:center; margin-left:100px;">인증</button>
-							<input id="register_email_confirm" class="form-control"
-								type="text" placeholder="인증번호" required> <input
-								id="register_username" class="form-control" type="text"
-								placeholder="이름 " required>
-							<!-- <input id="register_password" class="form-control" type="password"
-								placeholder="비밀번호" required>
-							<input id="register_password2" class="form-control" type="password"
-								placeholder="비밀번호 재입력" required> -->
-							<input type="password" class="form-control" name="password1"
-								id="password1" placeholder="New Password" autocomplete="off">
-							<div class="row">
-								<div class="col-sm-6">
-									<span id="8char" class="glyphicon glyphicon-remove"
-										style="color: #FF0004;"></span> 8자리이상<br> <span
-										id="ucase" class="glyphicon glyphicon-remove"
-										style="color: #FF0004;"></span> 대문자한개이상
-								</div>
-								<div class="col-sm-6">
-									<span id="lcase" class="glyphicon glyphicon-remove"
-										style="color: #FF0004;"></span> 소문자한개이상<br> <span
-										id="num" class="glyphicon glyphicon-remove"
-										style="color: #FF0004;"></span> 숫자한개이상
-								</div>
-							</div>
-							<input type="password" class="form-control" name="password2"
-								id="password2" placeholder="Repeat Password" autocomplete="off">
-							<div class="row">
-								<div class="col-sm-12">
-									<span id="pwmatch" class="glyphicon glyphicon-remove"
-										style="color: #FF0004;"></span> Passwords Match
-								</div>
-							</div>
-							<input id="register_birthday" class="form-control" type="date"
-								placeholder="생년월일" required> <input id="register_phone"
-								class="form-control" type="text" placeholder="전화번호" required>
-							<input id="register_address" class="form-control" type="text"
-								placeholder="주소" required>
-						</div>
-						<div class="modal-footer">
-							<div>
-								<button type="submit" class="btn btn-primary btn-lg btn-block">회원가입</button>
-							</div>
-							<div>
-								<button id="register_login_btn" type="button"
-									class="btn btn-link">로그인</button>
-								<button id="register_lost_btn" type="button"
-									class="btn btn-link">비밀번호 찾기</button>
-							</div>
-						</div>
-					</form>
-					<!-- End | Register Form -->
-				</div>
-				<!-- End # DIV Form -->
-
-			</div>
-		</div>
-	</div>
-	<!-- END # MODAL LOGIN -->
-
-	<footer class="container-fluid text-center">
-		<p>
-			상호명 : C&C 렌터카 대표자 : 홍길동 주소 : 서울시 강남구 역삼동 대표자 전화번호 : 02-1234-1234<br>
-			여기엔 무엇을 써야 하는가?
-		</p>
-	</footer>
+	<%@ include file="resources/include/footer.jsp" %>
 </body>
 </html>
