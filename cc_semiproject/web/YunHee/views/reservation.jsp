@@ -51,6 +51,12 @@
 				<th>차명</th>
 				<th>대여금액</th>
 				<th>결제여부</th>
+				<td>12345678</td>
+				<td>7일</td>
+				<td>테헤란로점</td>
+				<td>Sonata</td>
+				<td>500,000원</td>
+				<td>Y</td>
 			</tr>
 		</table>
 	</form>
