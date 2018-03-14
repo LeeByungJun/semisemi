@@ -162,7 +162,7 @@ footer {
 					<a href="#" onclick="moveCustomer();">FAQ</a>
 				</p>
 				<p>
-					<a href="#">공지사항</a>
+					<a href="WookJae/views/notice.jsp">공지사항</a>
 				</p>
 				<p>
 					<a href="DongGuk/views/reviewRent.jsp">시승기</a>
