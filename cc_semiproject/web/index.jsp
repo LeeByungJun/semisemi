@@ -12,6 +12,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
 <script type="text/javascript">
 	$(function() {
 
@@ -417,28 +418,6 @@ footer {
 </style>
 </head>
 <body>
-	<%-- <div id="menu" class="head">
-		<nav id="utilMenu">
-			<ul>
-				<li><a href="#" role="button" data-toggle="modal"
-					data-target="#login-modal"> <!-- class="btn btn-primary btn-lg" -->
-						<%
-							//로그인을 하지 않았으면 = 세션이 없으면
-							//if(){
-						%> 로그인 <%
-							//}else{
-						%> <!-- 로그아웃 --> <%
- 	//}
- %>
-				</a></li>
-				<li><a href="#">회원가입</a></li>
-				<li><a href="#">아이디찾기</a></li>
-				<li><a href="#">비밀번호찾기</a></li>
-				<li><a href="#">마이페이지</a></li>
-			</ul>
-		</nav>
-	</div> --%>
-
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
