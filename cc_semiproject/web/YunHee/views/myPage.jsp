@@ -9,7 +9,6 @@
 </head>
 <!-- header -->
 <%@ include file="../include/header.jsp"%>
-
 <!-- sidenav -->
 <div class="container-fluid text-center">
 	<div class="row content">
