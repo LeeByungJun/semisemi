@@ -67,7 +67,11 @@
 								<p>
 									안녕하세요!! C&C 렌트카 &nbsp;입니다. 안녕하세요123&nbsp;&nbsp;국내 대형세단의 자존심 제네시스 G80&nbsp;렌트 후기입니다&nbsp;&nbsp;
 									
-								</p>						
+								</p>	
+								
+								<p>
+								가자가자가자가즈아
+								</p>					
 							</li>
 						</ul>	
 						<div class="paging-area">
