@@ -22,7 +22,7 @@
 			<!-- main contents -->
 			<div class="col-sm-8 text-left" align="center">
 			<h1 align="center" style="color:drakblue;font-family:'고딕'"><b>공지사항</b></h1>
-			<br>&nbsp;
+			<br>
 			<h3><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Notice</b></h3>				
 			<div id="bd1" align="center" style="width:450;">
 			<table width="550" border="1px solid green"> 
