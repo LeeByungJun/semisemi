@@ -1,4 +1,4 @@
-package mvc_notice.member.controller;
+package member.controller;
 
 public class JDBCTemplate {
 

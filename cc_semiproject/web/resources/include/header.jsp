@@ -15,15 +15,15 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a href="index.jsp"><img src="../images/C&C Logo.jpg" alt="Logo"
+				<a href="index.jsp"><img src="/cs/resources/images/C&C Logo.jpg" alt="Logo"
 					width="120" height="50"></a>
 				<!-- class="navbar-brand" -->
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li><a href="#">단기렌트</a></li>
+					<li><a href="HanJin/noMemberReservation.jsp">단기렌트</a></li>
 					<!-- class="active" -->
-					<li><a href="#">장기렌트</a></li>
+					<li><a href="HanJin/longReservation.jsp">장기렌트</a></li>
 					<li><a href="DongGuk/views/p2pRent.jsp">P2P</a></li>
 					<li><a href="menuTemplate.jsp">고객센터</a></li>
 				</ul>
