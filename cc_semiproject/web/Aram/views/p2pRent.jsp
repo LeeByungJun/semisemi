@@ -224,7 +224,7 @@ span.onclick = function() {
 	<!--  <h2 align= center>페이지넘기기 </h2> --> 
 
 	<nav>
-	  <ul class="pagination pagination-lg">
+	  <ul class="pagination pagination-right">
 	
 	    <li><a href='javascript:alert("첫 페이지 입니다.")'><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
 	    <li><a href="#">1</a></li>
@@ -245,6 +245,9 @@ span.onclick = function() {
 			</div>
 		</div>
 	</div>
+
 	<%@include file="../../include/footer.jsp"%>
+	
+	
 </body>
 </html>
