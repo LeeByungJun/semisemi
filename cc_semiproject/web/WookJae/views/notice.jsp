@@ -11,9 +11,7 @@
 		<body>
 			<!-- header -->
 			<%@ include file="../include/header.jsp"%>
-		
-		
-			<!-- sidenav -->
+					<!-- sidenav -->
 			<div class="container-fluid text-center">
 				<div class="row content">
 					<div class="col-sm-2 sidenav"><!-- side2 -->
@@ -23,9 +21,8 @@
 					<div class="col-sm-8 text-left">
 					
 					<div class="container" style="width:100%; height:600%">
-						<h1 align="center" style="color:red;font-family:'고딕'"><b>공지사항</b></h1>
+						<h1 align="center" style="color:black;font-family:'고딕'"><b>공지사항</b></h1>
 					    <br>
-					    
 					    <h3><b>Notice</b></h3>
 						<table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
 							<thread>

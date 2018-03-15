@@ -16,6 +16,7 @@
 	
 </script>
 <script type="text/javascript">
+
 	/* $(function(){
 		$("#content").load("views/customerCenter.jsp");
 	}); */

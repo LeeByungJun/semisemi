@@ -23,7 +23,7 @@
 					<div class="col-sm-8 text-left">
 					
 					<div class="container" style="width:100%; height:600%">
-						<h1 align="center" style="color:red;font-family:'고딕'"><b>불량고객 신고</b></h1>
+						<h1 align="center" style="font-family:'고딕'"><b>불량고객 신고</b></h1>
 					
 						<table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
 							<thread>
