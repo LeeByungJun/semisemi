@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="container" style="width:100%;">
-	<table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
+	<table class="table table-striped" style="text-align:center; border:1;">
 		<thread>
 		<tr>
 			<th style="background:#eeeeee; text-align:center;">번호</th>
