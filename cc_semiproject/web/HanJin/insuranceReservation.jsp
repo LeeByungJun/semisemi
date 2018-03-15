@@ -128,7 +128,8 @@ footer {
 </style>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
+	<%@ include file="../resources/include/header.jsp" %>
+	<!-- <nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -138,12 +139,12 @@ footer {
 				</button>
 				<a href="index.jsp"><img src="images/C&C Logo.jpg" alt="Logo"
 					width="120" height="50"></a>
-				<!-- class="navbar-brand" -->
+				class="navbar-brand"
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 					<li><a href="views/Hanjin/shortReservation.jsp">단기렌트</a></li>
-					<!-- class="active" -->
+					class="active"
 					<li><a href="views/Hanjin/longReservation.jsp">장기렌트</a></li>
 					<li><a href="#">P2P</a></li>
 					<li><a href="#">고객센터</a></li>
@@ -157,7 +158,7 @@ footer {
 				</ul>
 			</div>
 		</div>
-	</nav>
+	</nav> -->
 
 
 	<div class="container-fluid text-center">
@@ -230,12 +231,13 @@ footer {
 		
 		</div>
 	</div>
-
-	<footer class="container-fluid text-center">
+	<%@ include file="../resources/include/login.jsp" %>
+	<%@ include file="../resources/include/footer.jsp" %>
+	<!-- <footer class="container-fluid text-center">
 		<p>
 			상호명 : C&C 렌터카 대표자 : 홍길동 주소 : 서울시 강남구 역삼동 대표자 전화번호 : 02-1234-1234<br>
 			여기엔 무엇을 써야 하는가?
 		</p>
-	</footer>
+	</footer> -->
 </body>
 </html>
