@@ -6,11 +6,12 @@
 <meta charset="UTF-8">
 <title>차트연습</title>
 <!-- stylesheet -->
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css" />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css" /> -->
+<link rel="stylesheet" href="c3.min.css">
 <!-- javascript -->
 <script src="https://d3js.org/d3.v3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script> -->
+<script type="text/javascript" src="c3.min.js"></script>
 <script type="text/javascript">
 var areachart = c3.generate({
 	bindto : "#areachart",
@@ -19,7 +20,7 @@ var areachart = c3.generate({
 				[ 'data2', 130, 100, 140, 200, 150, 50 ] ],
 		types : {
 			data1 : 'area-spline',
-			data2 : 'area-spline1'
+			data2 : 'area-spline'
 		}
 	}
 });

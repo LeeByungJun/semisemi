@@ -100,9 +100,14 @@
 				</div>
 				<hr>
 				<div class="ctitle">
-					회원 제도 &nbsp;&nbsp;<a href="#">회원가입 이전에 사용한 실적도 포인트 적립이 가능한가요?</a>
+					회원 제도 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">회원가입 이전에 사용한 실적도 포인트 적립이 가능한가요?</a>
 				</div>
-			
+				<hr>
+				<div class="ctitle">
+					회원 제도 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">여긴 무엇을 넣어야 될까요?</a>
+				</div>
+				<hr>
+				
 			</div>
 			<div class="col-sm-2 sidenav">
 				<%@ include file="../../resources/include/add.jsp" %>
