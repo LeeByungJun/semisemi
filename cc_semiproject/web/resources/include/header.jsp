@@ -26,6 +26,7 @@
 					<li><a href="/cs/HanJin/longReservation.jsp">장기렌트</a></li>
 					<li><a href="/cs/DongGuk/views/p2pRent.jsp">P2P</a></li>
 					<li><a href="menuTemplate.jsp">고객센터</a></li>
+					<li><a href="#">커뮤니티</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#" role="button" data-toggle="modal"

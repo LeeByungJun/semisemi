@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>메일</title>
+<style type="text/css">
+body {
+	font-family: 'Apple SD Gothic Neo', arial, sans-serif;
+	font-size: 14px;
+}
+</style>
+</head>
+<body>
+	<form action="/cs/msender">
+
+		<table>
+
+			<tr>
+				<td>보내는사람</td>
+				<td><input type="text" name="from_email"></td>
+			</tr>
+
+			<tr>
+				<td>받는사람</td>
+				<td><input type="text" name="to_email"></td>
+			</tr>
+
+			<tr>
+				<td>제목</td>
+				<td><input type="text" name="subtitle"></td>
+			</tr>
+
+			<tr>
+				<td>내용</td>
+				<td><input type="text" name="content"></td>
+			</tr>
+
+		</table>
+
+		<input type="submit" value="보내기">
+
+	</form>
+</body>
+</html>

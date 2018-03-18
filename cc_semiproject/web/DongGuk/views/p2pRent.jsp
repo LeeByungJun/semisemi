@@ -18,7 +18,7 @@
 					<hr>
 					<div class="content" id="review">
 						<ul class="row review">
-
+	
 							<li class="col-sm-3">						
 								<div class="thumb">
 									<img src="/cs/DongGuk/resources/img/review/benzs350.jpg" border="0" style="width:100%">							
