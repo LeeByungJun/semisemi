@@ -29,9 +29,16 @@ public class NoticeListServlet extends HttpServlet {
 		List<Notice> noticeList = new NoticeService().selectList();
 		
 		response.setContextType("text/html; charset=utf-8");
-		
-		
-		
+		RequestDispatcher view = null;
+		if(noticeList.size()>0) {
+			view = request.getRequestDispatcher("WookJae/views/notice.jsp");
+			request.setAttribute("noticeList",noticeList);
+			view.foward(request,response);	
+		}else {
+			view = request.getRequestDispatcher("WookJae/views/noticeError.jsp");
+			request.setAttribute("message","조회된 공지 정보가 없습니다..");
+			view.foward(request,response);
+		}
 		
 	}
 
