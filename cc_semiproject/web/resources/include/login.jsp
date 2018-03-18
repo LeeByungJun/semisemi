@@ -460,7 +460,7 @@
 						</div>
 						<div class="modal-footer">
 							<div>
-								<button type="submit" class="btn btn-primary btn-lg btn-block">조회</button>
+								<button type="submit" class="btn btn-primary btn-lg btn-block">찾기</button>
 							</div>
 							<div>
 								<button id="lost_id_login_btn" type="button" class="btn btn-link">로그인
