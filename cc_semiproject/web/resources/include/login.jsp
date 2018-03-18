@@ -12,6 +12,9 @@
 		var $formLost = $('#lost-form');
 		var $formRegister = $('#register-form');
 		var $divForms = $('#div-forms');
+		
+		var $formidLost = $('#lost-id-form');
+		
 		var $modalAnimateTime = 300;
 		var $msgAnimateTime = 150;
 		var $msgShowTime = 2000;
@@ -74,6 +77,22 @@
 								}
 								return false;
 								break;
+							case "lost-id-form":
+								var $rg_username = $('#lost_id_name').val();
+								var $rg_userbirth = $('#lost_id_birth').val();
+								if ($rg_username == "ERROR") {
+									msgChange($('#div-lost-msg'),
+											$('#icon-lost-msg'),
+											$('#text-lost-msg'), "error",
+											"glyphicon-remove", "Send error");
+								}else{
+									msgChange($('#div-lost-msg'),
+											$('#icon-lost-msg'),
+											$('#text-lost-msg'), "id를 여기에",
+											"glyphicon-ok", "Send OK");
+								}
+								return false;
+								break;
 							default:
 								return false;
 							}
@@ -97,6 +116,22 @@
 		});
 		$('#register_lost_btn').click(function() {
 			modalAnimate($formRegister, $formLost);
+		});
+		
+		$('#login_id_lost_btn').click(function(){
+			modalAnimate($formLogin, $formidLost);
+		});
+		/* $('#login_id_lost_btn').click(function(){
+			modalAnimate($formLost, $formidLost);
+		}); */
+		$('#lost_id_login_btn').click(function(){
+			modalAnimate($formidLost, $formLogin);
+		});
+		/* $('#lost_id_lost_btn').click(function({
+			modalAnimate($formidLost, $formLost);
+		}); */
+		$('#lost_id_register_btn').click(function(){
+			modalAnimate($formidLost, $formRegister);
 		});
 
 		function modalAnimate($oldForm, $newForm) {
@@ -373,6 +408,8 @@
 									id="loginSuccess" value="로그인">
 							</div>
 							<div>
+								<button id="login_id_lost_btn" type="button" class="btn btn-link">아이디
+									찾기</button>
 								<button id="login_lost_btn" type="button" class="btn btn-link">비밀번호
 									찾기</button>
 								<button id="login_register_btn" type="button"
@@ -390,7 +427,7 @@
 									class="glyphicon glyphicon-chevron-right"></div>
 								<span id="text-lost-msg">이메일을 입력하세요</span>
 							</div>
-							<input id="lost_email" class="form-control" type="text"
+							<input id="lost_email" class="form-control" type="email"
 								placeholder="E-Mail (type ERROR for error effect)" required>
 						</div>
 						<div class="modal-footer">
@@ -400,12 +437,42 @@
 							<div>
 								<button id="lost_login_btn" type="button" class="btn btn-link">로그인
 								</button>
-								<button id="lost_register_btn" type="button"
-									class="btn btn-link">회원가입</button>
+								<!-- <button id="login_id_lost_btn" type="button" class="btn btn-link">아이디
+									찾기</button> -->
+								<!-- <button id="lost_register_btn" type="button"
+									class="btn btn-link">회원가입</button> -->
 							</div>
 						</div>
 					</form>
 					<!-- End | Lost Password Form -->
+					<!-- Begin | Lost ID Form -->
+					<form id="lost-id-form" style="display: none;">
+						<div class="modal-body">
+							<div id="div-lost-msg">
+								<div id="icon-lost-msg"
+									class="glyphicon glyphicon-chevron-right"></div>
+								<span id="text-lost-msg">이름과 생년월일을 입력하세요</span>
+							</div>
+							<input id="lost_id_name" class="form-control" type="text"
+								placeholder="이름" required>
+							<input id="lost_id_birth" class="form-control" type="date"
+								placeholder="생년월일" required>
+						</div>
+						<div class="modal-footer">
+							<div>
+								<button type="submit" class="btn btn-primary btn-lg btn-block">찾기</button>
+							</div>
+							<div>
+								<button id="lost_id_login_btn" type="button" class="btn btn-link">로그인
+								</button>
+								<!-- <button id="lost_id_lost_btn" type="button" class="btn btn-link">비밀번호
+									찾기</button> -->
+								<!-- <button id="lost_id_register_btn" type="button"
+									class="btn btn-link">회원가입</button> -->
+							</div>
+						</div>
+					</form>
+					<!-- End | Lost Id Form -->
 					<!-- Begin | Register Form -->
 					<form id="register-form" style="display: none;">
 						<div class="modal-body">
@@ -463,8 +530,10 @@
 							<div>
 								<button id="register_login_btn" type="button"
 									class="btn btn-link">로그인</button>
+								<!-- <button id="login_id_lost_btn" type="button" class="btn btn-link">아이디
+									찾기</button>
 								<button id="register_lost_btn" type="button"
-									class="btn btn-link">비밀번호 찾기</button>
+									class="btn btn-link">비밀번호 찾기</button> -->
 							</div>
 						</div>
 					</form>

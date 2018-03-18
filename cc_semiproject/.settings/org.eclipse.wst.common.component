@@ -2,7 +2,6 @@
     <wb-module deploy-name="cc_semiproject">
         <wb-resource deploy-path="/" source-path="/web" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/views"/>
         <property name="context-root" value="cs"/>
         <property name="java-output-path" value="/cc_semiproject/build/classes"/>
     </wb-module>

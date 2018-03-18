@@ -1,21 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-		
-				<p>
-					<a href="#">FAQ</a>
-				</p>
 				<p>
 					<a href="#">공지사항</a>
-				</p>
-				<p>
-					<a href="#">시승기</a>
 				</p>
 				<p>
 					<a href="#">불량고객신고</a>
 				</p>
 				<p>
-					<a href="#">자유게시판</a>
+					<a href="/cs/byungjun/views/faq.jsp">FAQ</a>
+				</p>
+				<p>
+					<a href="/cs/byungjun/views/question.jsp">질문하기</a>
 				</p>
 	
 			

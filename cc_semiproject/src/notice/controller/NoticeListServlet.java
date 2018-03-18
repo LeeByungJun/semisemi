@@ -1,11 +1,16 @@
-package notice.model.controller;
+package notice.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import notice.model.service.NoticeService;
+import notice.model.vo.Notice;
 
 /**
  * Servlet implementation class NoticeListServlet
@@ -26,6 +31,7 @@ public class NoticeListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<<<<<<< HEAD
 		List<Notice> noticeList = new NoticeService().selectList();
 		
 		response.setContextType("text/html; charset=utf-8");
@@ -39,6 +45,13 @@ public class NoticeListServlet extends HttpServlet {
 			request.setAttribute("message","조회된 공지 정보가 없습니다..");
 			view.foward(request,response);
 		}
+=======
+		//List<Notice> noticeList = new NoticeService().selectList();
+
+		response.setContentType("text/html; charset=utf-8");
+		
+		
+>>>>>>> branch 'master' of https://github.com/LeeByungJun/semisemi.git
 		
 	}
 
