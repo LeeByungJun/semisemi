@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<% String num = String.valueOf(request.getAttribute("num")); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -228,6 +229,57 @@
 			}
 		});
 	});
+
+	function checked(){
+		var email = $('#register_email').val();
+		var email_confirm = $('#register_email_confirm').val();
+		var name = $('#register_username').val();
+		var password1 = $('#password1').val();
+		var password2 = $('#password2').val();
+		var birthday = $('#register_birthday').val();
+		var address = $('#register_address').val();
+		var phone = $('#register_phone').val();
+		//회원가입 유효성 체크
+		//이메일 체크
+		    // 4글자 이상(\w = [a-zA-Z0-9_], [\w-\.]) @가 나오고
+            // 1글자 이상(주소). 글자 가 1~3번 반복됨
+		var re = /^[\w]{4,}@[\w]+(\.[\w-]+){1,3}$/;
+		if(!re.test(email)){
+			alert("이메일을 다시 입력해주세요.");
+			return false;
+		}
+		//패스워드 체크
+		var ucase = new RegExp("[A-Z]+");
+		var lcase = new RegExp("[a-z]+");
+		var num = new RegExp("[0-9]+");
+		if(!ucase.test(password1) && !lcase.test(password1) && !num.test(password1)){
+			alert("비밀번호를 다시 확인해주세요.");
+			return false;
+		}
+		//인증번호 일치 검사
+		/* if(email_confirm != num){
+			alert("인증번호가 일치하지 않습니다.");
+			return false;
+		} */
+		if(email_confirm != <%=num%>){
+			alert("인증번호가 일치하지 않습니다.");
+			return false;
+		}
+		
+		//이름검사
+		    // 2글자 이상, 한글만
+		var re = /^[가-힝]{2,}$/;
+		if(!re.test(name)){
+			alert("이름을 다시 입력해주세요.");
+			return false;
+		}
+	}
+	
+	function goEmail(){
+		location.href = "/cs/msender?email=" + $('#register_email').val();
+		//alert(num);
+		return false;
+	}
 </script>
 <style>
 /* 로그인 모달폼 */
@@ -384,7 +436,7 @@
 				<div id="div-forms">
 
 					<!-- Begin # Login Form -->
-					<form id="login-form" action="login" method="post">
+					<form id="login-form" action="/cs/login" method="post">
 						<div class="modal-body">
 							<div id="div-login-msg">
 								<div id="icon-login-msg"
@@ -474,26 +526,31 @@
 					</form>
 					<!-- End | Lost Id Form -->
 					<!-- Begin | Register Form -->
-					<form id="register-form" style="display: none;">
+					<form id="register-form" method="post" action="/cs/enroll" 
+						style="display: none;" onsubmit="return checked();">
 						<div class="modal-body">
 							<div id="div-register-msg">
 								<div id="icon-register-msg"
 									class="glyphicon glyphicon-chevron-right"></div>
 								<span id="text-register-msg">계정등록</span>
 							</div>
-							<input id="register_email" class="form-control" type="email"
+							<input id="register_email" name="useremail" class="form-control" type="email"
 								placeholder="이메일" required>
-							<button class="btn btn-primary btn-lg btn-block" style="width:100px; margin-top:10px;
-								text-align:center; margin-left:100px;">인증</button>
+							<!-- <button class="btn btn-primary btn-lg btn-block" style="width:100px; margin-top:10px;
+								text-align:center; margin-left:100px;">인증</button> -->
+							<input type="button" class="btn btn-primary btn-lg btn-block" style="width:100px; margin-top:10px;
+								text-align:center; margin-left:100px;" value="인증" onclick="goEmail();">
+							<!-- <a href="/cs/msender">인증</a> -->
 							<input id="register_email_confirm" class="form-control"
-								type="text" placeholder="인증번호" required> <input
-								id="register_username" class="form-control" type="text"
+								type="text" placeholder="인증번호" required> 
+							<input
+								id="register_username" name="username" class="form-control" type="text"
 								placeholder="이름 " required>
 							<!-- <input id="register_password" class="form-control" type="password"
 								placeholder="비밀번호" required>
 							<input id="register_password2" class="form-control" type="password"
 								placeholder="비밀번호 재입력" required> -->
-							<input type="password" class="form-control" name="password1"
+							<input type="password" name="userpwd" class="form-control" name="password1"
 								id="password1" placeholder="New Password" autocomplete="off">
 							<div class="row">
 								<div class="col-sm-6">
@@ -509,7 +566,7 @@
 										style="color: #FF0004;"></span> 숫자한개이상
 								</div>
 							</div>
-							<input type="password" class="form-control" name="password2"
+							<input type="password" class="form-control"
 								id="password2" placeholder="Repeat Password" autocomplete="off">
 							<div class="row">
 								<div class="col-sm-12">
@@ -517,10 +574,11 @@
 										style="color: #FF0004;"></span> Passwords Match
 								</div>
 							</div>
-							<input id="register_birthday" class="form-control" type="date"
-								placeholder="생년월일" required> <input id="register_phone"
-								class="form-control" type="text" placeholder="전화번호" required>
-							<input id="register_address" class="form-control" type="text"
+							<input id="register_birthday" name="userbirthday" class="form-control" type="date"
+								placeholder="생년월일" required> 
+							<input id="register_phone"
+								class="form-control" name="userphone" type="text" placeholder="전화번호" required>
+							<input id="register_address" name="useraddress" class="form-control" type="text"
 								placeholder="주소" required>
 						</div>
 						<div class="modal-footer">
