@@ -1,7 +1,7 @@
 package notice.controller;
 
-import java.io.IOException;
-import java.util.List;
+/*import java.io.IOException;
+import java.util.List;*/
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,7 +48,7 @@ public class NoticeListServlet extends HttpServlet {
 
 		//List<Notice> noticeList = new NoticeService().selectList();
 
-		response.setContentType("text/html; charset=utf-8");
+		//response.setContentType("text/html; charset=utf-8");
 		
 		
 	}
