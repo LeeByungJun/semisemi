@@ -42,8 +42,8 @@ public class mailSender extends HttpServlet {
 			throws ServletException, IOException {
 		// 이메일
 		request.setCharacterEncoding("utf-8");
-		String to_email = request.getParameter("email");//to_email
-		System.out.println(to_email);
+		String to_email = request.getParameter("email1");//to_email
+		System.out.println("to_email = " + to_email);
 		Properties p = new Properties();
 		p.put("mail.smtp.user", "pjlee9212@gmail.com");
 		p.put("mail.smtp.host", "smtp.gmail.com");
@@ -89,9 +89,11 @@ public class mailSender extends HttpServlet {
 		}
 		
 		response.setContentType("text/html; charset=utf-8");
-		RequestDispatcher view = request.getRequestDispatcher("resources/include/login.jsp"); //view를 정하자
+		/*RequestDispatcher view = request.getRequestDispatcher("byungjun/views/childEmail.jsp"); //view를 정하자
 		request.setAttribute("num", sb);
-		view.forward(request, response);
+		view.forward(request, response);*/
+		
+		response.sendRedirect("byungjun/views/childEmail.jsp?num=" + sb);
 
 	}
 

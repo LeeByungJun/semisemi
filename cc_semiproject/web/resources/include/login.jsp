@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String num = String.valueOf(request.getAttribute("num")); %>
+<% 
+String num = String.valueOf(request.getAttribute("num")); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -261,8 +263,9 @@
 			alert("인증번호가 일치하지 않습니다.");
 			return false;
 		} */
-		if(email_confirm != <%=num%>){
-			alert("인증번호가 일치하지 않습니다.");
+		var eemail = $('#eemail').val();
+		if(email_confirm != eemail){
+			alert("인증번호가 일치하지 않습니다." + eemail);
 			return false;
 		}
 		
@@ -275,10 +278,21 @@
 		}
 	}
 	
-	function goEmail(){
+	/* function goEmail(){
 		location.href = "/cs/msender?email=" + $('#register_email').val();
 		//alert(num);
 		return false;
+	} */
+	function openView(){
+		// 새창에 대한 세팅(옵션)
+        //var settings ='toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=400,width=400,left=0,top=0';
+        // 자식창을 열고 자식창의 window 객체를 windowObj 변수에 저장
+        alert($('#register_email').val());
+        windowObj = window.open("/cs/byungjun/views/childEmail.jsp","자식창","width=400,height=400");
+ 
+        // 자식창의 childText라는 id를 가진 태그 요소의 값에 부모창의 값을 넣음
+        windowObj.document.getElementById("email").value = $('#register_email').val();
+        
 	}
 </script>
 <style>
@@ -539,7 +553,7 @@
 							<!-- <button class="btn btn-primary btn-lg btn-block" style="width:100px; margin-top:10px;
 								text-align:center; margin-left:100px;">인증</button> -->
 							<input type="button" class="btn btn-primary btn-lg btn-block" style="width:100px; margin-top:10px;
-								text-align:center; margin-left:100px;" value="인증" onclick="goEmail();">
+								text-align:center; margin-left:100px;" value="인증" onclick="openView();">
 							<!-- <a href="/cs/msender">인증</a> -->
 							<input id="register_email_confirm" class="form-control"
 								type="text" placeholder="인증번호" required> 
@@ -596,6 +610,7 @@
 						</div>
 					</form>
 					<!-- End | Register Form -->
+					<div id="eemail"></div>
 				</div>
 				<!-- End # DIV Form -->
 
