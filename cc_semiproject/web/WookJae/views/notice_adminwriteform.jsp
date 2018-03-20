@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="notice.model.vo.Notice,java.util.*"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +17,9 @@
 <style type="text/css">
 	table {
 		text-align:center;
+	}
+	body { 
+		background:darkgray;
 	}
 </style>
 </head>
@@ -66,7 +71,7 @@
 
         <tr>
 
-          <td>글쓴이 : <%-- <%= 로그인한 유저의값을 고정으로함->관리자 %> --%> </td>
+          <td>글쓴이 : </td>
 
           <td>${id}</td>
 
