@@ -7,23 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import function.EncryptPassword;
-import member.model.service.MemberService;
 import member.model.vo.Member;
 
-import static function.EncryptPassword.*;
-
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class EnrollServlet
  */
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/enroll")
+public class EnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public EnrollServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,22 +28,27 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//회원가입
 		request.setCharacterEncoding("utf-8");
 		
-		String email = (String)request.getParameter("useremail");
-		String pwd = (String)request.getParameter("userpwd");
-		
-		//System.out.println(email + " " + pwd);
-		//service에 연결하고 결과 받아서 보여주고
-		Member loginUser = new MemberService().selectLogin(email,EncryptPassword.encryptSHA256(pwd));
-		
-		response.setContentType("text/html; charset=utf-8");
-		
-		if(loginUser != null) {
-			//성공 session생성
-		}else {
-			//실패 페이지로~
-		}
+		//데이터 받기
+		Member member = new Member();
+		/*member.setEmail();
+		member.setPassword();
+		member.setName();
+		member.setBirthday();
+		member.setPhone();
+		member.setAddress();*/
+		/*private int mem_num;
+		private String email;
+		private String password;
+		private String name;
+		private int birthday;
+		private String phone;
+		private String address;
+		private int count;
+		private String cansell;
+		private String rank;*/
 	}
 
 	/**

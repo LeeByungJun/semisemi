@@ -33,6 +33,9 @@
 		text-align:center;
 		width:200px;
 	}
+	#b1,#b2,#b3,#b4,#b5,#b6{
+		border-radius: 10px;
+	}
 </style>
 </head>
 <body>
@@ -46,29 +49,38 @@
 				<%@ include file="../../resources/include/sidenav.jsp"%>
 			</div>
 			<!-- main contents -->
+			<!-- section class button_section, btn class=btn btn-info -->
 			<div class="col-sm-8 text-left">
 				<!-- 컨텐츠를 넣으세요 -->
 				<div id="title">FAQ</div>
 				<div id="tb">
-					<table border="1">
+					<!-- <table>
 						<tr>
-							<td><button>자주찾는질문</button></td>
-							<td><button>사이트이용</button></td>
-							<td><button>회원제도</button></td>
+							<td><button class="btn btn-info">자주찾는질문</button></td>
+							<td><button class="btn btn-info">사이트이용</button></td>
+							<td><button class="btn btn-info">회원제도</button></td>
 						</tr>
 						<tr>
-							<td><button>윤</button></td>
-							<td><button>식</button></td>
-							<td><button>당</button></td>
+							<td><button class="btn btn-info">윤</button></td>
+							<td><button class="btn btn-info">식</button></td>
+							<td><button class="btn btn-info">당</button></td>
 						</tr>
-					</table>
+					</table> -->
+					<button class="btn btn-info" id="b3">자주찾는질문</button>
+					<button class="btn btn-info" id="b1">사이트이용</button>
+					<button class="btn btn-info" id="b2">회원제도</button>
+						
+					<button class="btn btn-info" id="b4">윤</button>
+					<button class="btn btn-info" id="b5">식</button>
+					<button class="btn btn-info" id="b6">당</button>
+						
 				</div>
 				<div id="all"> 
 					전체
 				</div>
 				<hr style="border-color: red; margin-top:5px;">
 				<div class="ctitle">
-					자주 찾는 질문 &nbsp;&nbsp;<a href="#" onclick="displayC1();">사고 고장 발생시 어떻하면 되나요?</a> 
+					자주 찾는 질문 &nbsp;&nbsp;<a href="#" id="a1" onclick="display1(this.id);">사고 고장 발생시 어떻하면 되나요?</a> 
 				</div>
 				<div class="contents" id="c1" style="display:none;">
 					사고, 고장이 발생하셨습니까? 당황하지 마시고,1544-1600로 전화 주세요. 1번 사고, 고장 접수를 누르세요<br>
@@ -76,13 +88,22 @@
 					 차량에 문제가 있을 경우 당황하지 마시고 언제라도 컨텍센터로 연락주시기 바랍니다. 바로 해결해 드리겠습니다.
 				</div>
 				<script type="text/javascript">
-					function displayC1(){
+					/* function displayC1(){
 						var obj = document.getElementById('c1');
 						if(obj.style.display == "none"){
 							obj.style.display = "inline";
 						}else{
-							/* obj.css("display","none"); */
+							obj.css("display","none");
 							obj.style.display = "none";
+						}
+					} 
+					*/
+					function display1(id){
+						
+						switch(id){
+						case "a1":
+							$("#c1").toggle('1');
+							break;
 						}
 					}
 				</script>
