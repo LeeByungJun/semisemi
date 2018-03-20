@@ -22,6 +22,10 @@
 					
 					<div class="container" style="width:100%; height:600%">
 						<h1 align="center" style="color:black;font-family:'고딕'"><b>공지사항</b></h1>
+						
+						
+						<!-- 만약 로그인 아이디가 관리자(admin이라면 글쓰기 버튼을 활성화시켜라 -->
+						
 					    <br>
 					    <h3><b>Notice</b></h3>
 					    <form action="/nlist" method="post"> 
@@ -106,7 +110,7 @@
 						</form>
 						<hr>
 
-						<a class="btn btn-default pull-right" href="/cs/views/write.jsp">관리자글쓰기</a>
+						<a class="btn btn-default pull-right" href="notice_adminwriteform.jsp">관리자글쓰기</a>
 						<div class="text-center">
 							<ul class="pagination">
 								<li><a href="#">1</a></li>
