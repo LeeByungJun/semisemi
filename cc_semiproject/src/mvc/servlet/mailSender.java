@@ -19,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class mailSender
@@ -83,18 +84,22 @@ public class mailSender extends HttpServlet {
 			msg.setContent("인증번호 : " + sb, "text/html;charset=utf-8");
 
 			Transport.send(msg);
+			
+			
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		response.setContentType("text/html; charset=utf-8");
-		/*RequestDispatcher view = request.getRequestDispatcher("byungjun/views/childEmail.jsp"); //view를 정하자
+		/*response.setContentType("text/html; charset=utf-8");
+		RequestDispatcher view = request.getRequestDispatcher("byungjun/views/childEmail.jsp"); //view를 정하자
 		request.setAttribute("num", sb);
-		view.forward(request, response);*/
+		view.forward(request, response);
 		
-		response.sendRedirect("byungjun/views/childEmail.jsp?num=" + sb);
-
+		response.sendRedirect("byungjun/views/childEmail.jsp?num=" + sb);*/
+		HttpSession session1 = request.getSession();
+		session1.setAttribute("num", sb);
+		response.sendRedirect("resources/include/login.jsp");
 	}
 
 	private static class SMTPAuthenticator extends javax.mail.Authenticator {

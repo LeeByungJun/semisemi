@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
-String num = String.valueOf(request.getAttribute("num")); 
+	//String num = session1.getAttribute("emailnum");
 %>
 <!DOCTYPE html>
 <html>
@@ -288,8 +288,8 @@ String num = String.valueOf(request.getAttribute("num"));
         //var settings ='toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=400,width=400,left=0,top=0';
         // 자식창을 열고 자식창의 window 객체를 windowObj 변수에 저장
         alert($('#register_email').val());
-        windowObj = window.open("/cs/byungjun/views/childEmail.jsp","자식창","width=400,height=400");
- 
+        windowObj = window.open("/cs/byungjun/views/childEmail.jsp","자식창","width=300,height=300");
+ 		
         // 자식창의 childText라는 id를 가진 태그 요소의 값에 부모창의 값을 넣음
         windowObj.document.getElementById("email").value = $('#register_email').val();
         
