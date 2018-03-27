@@ -6,19 +6,19 @@ public class Member {
 	private String email;
 	private String password;
 	private String name;
-	private int birthday;
+	private String birthday;
 	private String phone;
 	private String address;
 	private int count;
 	private String cansell;
-	private String rank;
+	private String g_code;
 	
 	public Member() {
 		
 	}
 
-	public Member(int mem_num, String email, String password, String name, int birthday, String phone, String address,
-			int count, String cansell, String rank) {
+	public Member(int mem_num, String email, String password, String name, String birthday, String phone, String address,
+			int count, String cansell, String g_code) {
 		super();
 		this.mem_num = mem_num;
 		this.email = email;
@@ -29,7 +29,7 @@ public class Member {
 		this.address = address;
 		this.count = count;
 		this.cansell = cansell;
-		this.rank = rank;
+		this.g_code = g_code;
 	}
 
 	public int getMem_num() {
@@ -64,11 +64,11 @@ public class Member {
 		this.name = name;
 	}
 
-	public int getBirthday() {
+	public String getBirthday() {
 		return birthday;
 	}
 
-	public void setBirthday(int birthday) {
+	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
 
@@ -104,12 +104,12 @@ public class Member {
 		this.cansell = cansell;
 	}
 
-	public String getRank() {
-		return rank;
+	public String getG_Code() {
+		return g_code;
 	}
 
-	public void setRank(String rank) {
-		this.rank = rank;
+	public void setG_Code(String g_code) {
+		this.g_code = g_code;
 	}
 	
 	@Override
@@ -118,7 +118,7 @@ public class Member {
 		return this.mem_num + ", " + this.email + ", " + this.password + ", "
 				+ this.name + ", " + this.birthday + ", " + this.phone + ", "
 				+ this.address + ", " + this.count + ", " + this.cansell + ", "
-				+ this.rank;
+				+ this.g_code;
 	}
 	
 }

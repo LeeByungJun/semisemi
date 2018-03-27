@@ -1,29 +1,29 @@
-package member.controller;
+package faq.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Date;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import member.model.service.MemberService;
-import member.model.vo.Member;
+import faq.model.service.FaqService;
+import faq.model.vo.Faq;
 
 /**
- * Servlet implementation class EnrollServlet
+ * Servlet implementation class FaqSearchListServlet
  */
-@WebServlet("/enroll")
-public class EnrollServlet extends HttpServlet {
+@WebServlet("/fslist")
+public class FaqSearchListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EnrollServlet() {
+    public FaqSearchListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,29 +32,26 @@ public class EnrollServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//회원가입
+		//faq 검색용 컨트롤러
 		request.setCharacterEncoding("utf-8");
 		
-		//데이터 받기
-		Member member = new Member();
-		member.setEmail(request.getParameter("email"));
-		member.setPassword(request.getParameter("password"));
-		member.setName(request.getParameter("name"));
-		member.setBirthday(request.getParameter("birthday"));
-		member.setPhone(request.getParameter("phone"));
-		member.setAddress(request.getParameter("address"));
+		String category = request.getParameter("category");
 		
-		System.out.println(member.toString());
+		ArrayList<Faq> list = new FaqService().selectSearchList(category);
 		
-		//서비스로 넘기기
-		int result = new MemberService().insertMember(member);
-		
-		response.setContentType("text/html; charset=utf-8"); 
-		PrintWriter out = response.getWriter();
-		if(result > 0) {
-			out.write("회원가입 성공");
+		response.setContentType("text/html; charset=utf-8");
+		if(list.size() > 0) {
+			RequestDispatcher view = request.getRequestDispatcher("byungjun/views/faq.jsp");
+			request.setAttribute("list", list);
+			request.setAttribute("currentPage", 0);
+			request.setAttribute("maxPage", 0);
+			request.setAttribute("startPage", 0);
+			request.setAttribute("endPage", 0);
+			request.setAttribute("listCount", 0);
+			view.forward(request, response);
 		}else {
-			out.write("회원가입 실패");
+			//조회할 값이 없습니다.
+			response.sendRedirect("index.jsp");
 		}
 	}
 

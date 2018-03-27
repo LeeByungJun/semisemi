@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="member.model.vo.Member" %>
+<% Member loginUser = (Member)session.getAttribute("loginUser"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,11 +31,23 @@
 					<li><a href="#">커뮤니티</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#" role="button" data-toggle="modal"
-						data-target="#login-modal"><span
-							class="glyphicon glyphicon-log-in"></span> Login</a></li>
-					<li><a href="#" role="button"><span
-							class="glyphicon glyphicon-log-in"></span> 마이페이지</a></li>
+					<% if(loginUser == null){ %>
+						<li>
+							<a href="#" role="button" data-toggle="modal"
+								data-target="#login-modal"><span
+									class="glyphicon glyphicon-log-in"></span> Login</a>					
+						</li>
+						<!-- <li><a href="#" role="button"><span
+								class="glyphicon glyphicon-log-in"></span> 마이페이지</a></li> -->
+					<% }else{ %>
+						<li><a><%= loginUser.getName() %>님 환영합니다</a></li>
+						<li>
+						<a href="/cs/logout" role="button"><span
+								class="glyphicon glyphicon-log-out"></span> Logout</a>					
+						</li>
+						<li><a href="#" role="button"><span
+								class="glyphicon glyphicon-log-in"></span> 마이페이지</a></li>
+					<% } %>
 				</ul>
 			</div>
 		</div>

@@ -8,25 +8,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import function.EncryptPassword;
 import member.model.service.MemberService;
-import member.model.vo.Member;
-
-import static function.EncryptPassword.*;
 
 /**
- * Servlet implementation class LoginServlet
+ * Servlet implementation class FindIdServlet
  */
-@WebServlet("/login")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/fid")
+public class FindIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public FindIdServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,34 +30,22 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//아이디 찾기용 서블릿 컨트롤러
 		request.setCharacterEncoding("utf-8");
 		
-		String email = (String)request.getParameter("useremail");
-		String pwd = (String)request.getParameter("userpwd");
+		String username = request.getParameter("username");
+		String userbirth = request.getParameter("userbirth");
 		
-		//System.out.println(email + ", " + pwd);
-		
-		//System.out.println(email + " " + pwd);
-		//service에 연결하고 결과 받아서 보여주고
-		Member loginUser = new MemberService().selectLogin(email,pwd);
-		
-		//System.out.println(loginUser.toString());
+		String userid = new MemberService().selectFindId(username,userbirth);
 		
 		response.setContentType("text/html; charset=utf-8");
-		
-		if(loginUser != null) {
-			//성공 session생성
-			HttpSession session = request.getSession();
-			session.setAttribute("loginUser", loginUser);
-			/*response.sendRedirect("index.jsp");*/
-			PrintWriter out = response.getWriter();
-			out.append("로그인 성공");
+		PrintWriter out = response.getWriter();
+		if(userid != null) {
+			//성공
+			out.write(userid);
 		}else {
-			//실패 페이지로~
-			//로그인에 실패하였습니다.. 메시지-> ajax로 처리하자
-			//System.out.println("실패");
-			PrintWriter out = response.getWriter();
-			out.append("로그인에 실패하였습니다.");
+			//실패
+			out.write("조회 실패");
 		}
 	}
 

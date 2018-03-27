@@ -10,10 +10,10 @@ public class JDBCTemplate {
 	public static Connection getConnection() {
 		Connection conn = null;
 		try {
-			Class.forName("oracle.jdbc.dirver.OracleDriver");
-			String url="";
-			String user="";
-			String pwd="";
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			String url="jdbc:oracle:thin:@localhost:1521:xe";
+			String user="semi";
+			String pwd="semi";
 			conn = DriverManager.getConnection(url,user,pwd);
 			conn.setAutoCommit(false);	
 		}catch(Exception e) {

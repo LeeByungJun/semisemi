@@ -8,10 +8,10 @@
 					<a href="/cs/WookJae/views/badcustomer.jsp">불량고객신고</a>
 				</p>
 				<p>
-					<a href="/cs/byungjun/views/faq.jsp">FAQ</a>
+					<a href="/cs/flist?page=1">FAQ</a>
 				</p>
 				<p>
-					<a href="/cs/byungjun/views/question.jsp">질문하기</a>
+					<a href="/cs/byungjun/views/question.jsp">문의하기</a>
 				</p>
 	
 			

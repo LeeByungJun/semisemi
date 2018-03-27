@@ -10,7 +10,6 @@
 <title>로그인</title>
 <script type="text/javascript">
 	$(function() {
-
 		var $formLogin = $('#login-form');
 		var $formLost = $('#lost-form');
 		var $formRegister = $('#register-form');
@@ -231,68 +230,184 @@
 			}
 		});
 	});
-
-	function checked(){
-		var email = $('#register_email').val();
-		var email_confirm = $('#register_email_confirm').val();
-		var name = $('#register_username').val();
-		var password1 = $('#password1').val();
-		var password2 = $('#password2').val();
-		var birthday = $('#register_birthday').val();
-		var address = $('#register_address').val();
-		var phone = $('#register_phone').val();
-		//회원가입 유효성 체크
-		//이메일 체크
-		    // 4글자 이상(\w = [a-zA-Z0-9_], [\w-\.]) @가 나오고
-            // 1글자 이상(주소). 글자 가 1~3번 반복됨
-		var re = /^[\w]{4,}@[\w]+(\.[\w-]+){1,3}$/;
-		if(!re.test(email)){
-			alert("이메일을 다시 입력해주세요.");
-			return false;
-		}
-		//패스워드 체크
-		var ucase = new RegExp("[A-Z]+");
-		var lcase = new RegExp("[a-z]+");
-		var num = new RegExp("[0-9]+");
-		if(!ucase.test(password1) && !lcase.test(password1) && !num.test(password1)){
-			alert("비밀번호를 다시 확인해주세요.");
-			return false;
-		}
-		//인증번호 일치 검사
-		/* if(email_confirm != num){
-			alert("인증번호가 일치하지 않습니다.");
-			return false;
-		} */
-		var eemail = $('#eemail').val();
-		if(email_confirm != eemail){
-			alert("인증번호가 일치하지 않습니다." + eemail);
-			return false;
-		}
 		
-		//이름검사
-		    // 2글자 이상, 한글만
-		var re = /^[가-힝]{2,}$/;
-		if(!re.test(name)){
-			alert("이름을 다시 입력해주세요.");
-			return false;
+		
+		
+	valueCheck = false;
+	emailConfirm = null;
+
+	function checkEnroll(){
+		if(emailConfirm != false){
+			var email = $('#register_email').val();
+			var email_confirm = $('#register_email_confirm').val();
+			var name = $('#register_username').val();
+			var password1 = $('#password1').val();
+			var password2 = $('#password2').val();
+			var birthday = $('#register_birthday').val();
+			var address = $('#register_address').val();
+			var phone = $('#register_phone').val();
+			//회원가입 유효성 체크
+			//이메일 체크
+			    // 4글자 이상(\w = [a-zA-Z0-9_], [\w-\.]) @가 나오고
+	            // 1글자 이상(주소). 글자 가 1~3번 반복됨
+			var re = /^[\w]{4,}@[\w]+(\.[\w-]+){1,3}$/;
+			//비밀번호
+			var ucase = new RegExp("[A-Z]+");
+			var lcase = new RegExp("[a-z]+");
+			var num = new RegExp("[0-9]+");
+			//이름 2글자 이상, 한글만
+			var re = /^[가-힝]{2,}$/;
+			
+			/* if(!re.test(email)){
+				alert("이메일을 다시 입력해주세요.");
+				return false;
+			}else  */if(!ucase.test(password1) || !lcase.test(password1) || !num.test(password1)){
+				//패스워드 체크
+				alert("비밀번호를 다시 확인해주세요.");
+				return false;
+			}else if(!ucase.test(password2) || !lcase.test(password2) || !num.test(password2)){
+				alert("비밀번호를 다시 확인해주세요.");
+				return false;
+			}else if(password1 != password2){ 
+				alert("비밀번호가 일치하지 않습니다.");
+				return false;
+			}else if(!re.test(name)){			
+				//이름검사
+				alert("이름을 다시 입력해주세요.");
+				return false;
+			}else{
+				//alert("성공");
+				$.ajax({
+					url:"/cs/enroll",
+					data:{
+						email: email,
+						name: name,
+						password: password1,
+						birthday: birthday,
+						address: address,
+						phone: phone
+					},
+					type:"post",
+					success:function(data){
+						if(data == '회원가입 성공'){
+							alert(data);
+							$('#login-modal').modal("hide");
+							location.href = "/cs/index.jsp";
+						}else{
+							alert(data);
+						}
+					}
+				});
+			}
+			
+		}else{
+			return false;	
 		}
 	}
 	
-	/* function goEmail(){
-		location.href = "/cs/msender?email=" + $('#register_email').val();
-		//alert(num);
-		return false;
-	} */
-	function openView(){
+	function goEmail(){
 		// 새창에 대한 세팅(옵션)
         //var settings ='toolbar=0,directories=0,status=no,menubar=0,scrollbars=auto,resizable=no,height=400,width=400,left=0,top=0';
         // 자식창을 열고 자식창의 window 객체를 windowObj 변수에 저장
-        alert($('#register_email').val());
-        windowObj = window.open("/cs/byungjun/views/childEmail.jsp","자식창","width=300,height=300");
+        /* alert($('#register_email').val());
+        windowObj = window.open("/cs/byungjun/views/childEmail.jsp","자식창","width=300,height=300"); */
  		
         // 자식창의 childText라는 id를 가진 태그 요소의 값에 부모창의 값을 넣음
-        windowObj.document.getElementById("email").value = $('#register_email').val();
+        /* windowObj.document.getElementById("email").value = $('#register_email').val(); */
+        var email = $('#register_email').val();
+        var re = /^[\w]{4,}@[\w]+(\.[\w-]+){1,3}$/;
+        if(!re.test(email)){
+			alert("이메일을 다시 입력해주세요.");
+        }else{
         
+	        $.ajax({
+	        	url:"/cs/msender",
+	        	data:{email:$('#register_email').val()},
+	        	type:"post",
+	        	success:function(data){
+	        		if(data != null){
+	        			alert("발송성공! 인증번호를 입력하세요.");
+	        			$('#register_email').attr('readonly','readonly');
+	        			emailConfirm = data;
+	        			valueCheck = true;
+	        			console.log(emailConfirm);
+	        		}else{
+	        			alert("이메일을 확인하고 버튼을 다시 눌러주세요.");
+	        		}
+	        		
+	        	}
+	        });
+        
+        }
+	}
+	
+	function checkEmail(){
+		var confirm = $('#register_email_confirm').val();
+		if(confirm == emailConfirm){
+			valueCheck = true;
+			alert("인증번호가 일치합니다!");
+			$('#confirmBtn').attr('disabled','disabled');
+		}else{
+			alert("인증번호가 일치하지 않습니다.");
+			valueCheck = false;
+		}
+	}
+	
+	function fnLogin(){
+		$.ajax({
+			url:"/cs/login",
+			data:{
+				useremail:$('#login_username').val(),
+				userpwd:$('#login_password').val()
+			},
+			type:"post",
+			success:function(data){
+				alert(data);
+				if(data == "로그인 성공"){
+					$('#login-modal').modal("hide");
+					location.href = "/cs/index.jsp";
+				}
+			}
+		});
+	}
+	
+	/* 아이디찾기 */
+	function findId(){
+		var name = $('#lost_id_name').val();
+		var birth = $('#lost_id_birth').val();
+		
+		$.ajax({
+			url:"/cs/fid",
+			data:{
+				username: name,
+				userbirth: birth
+			},
+			type:"post",
+			success:function(data){
+				if(data == '조회 실패'){
+					alert("이메일 조회 실패.. 정보를 다시 확인하세요!");
+				}else{
+					alert("당신의 이메일 : " + data);
+				}
+			}
+		});
+	}
+	
+	/* 비밀번호 재설정 */
+	function fnPwd(){
+		var email = $('#lost_email').val();
+		
+		//임시비밀번호를 이메일로 보내고, 보낸 임시비밀번호로 멤버 정보 갱신 후 유저에게 로그인 유도
+		$.ajax({
+			url:"/cs/mpsender",
+			data:{
+				useremail: email
+			},
+			type:"get",
+			success:function(data){
+				alert(data);
+			}
+		});
 	}
 </script>
 <style>
@@ -470,14 +585,16 @@
 							<div>
 								<!-- <button type="submit" class="btn btn-primary btn-lg btn-block"
 									id="loginSuccess">로그인</button> -->
-								<input type="submit" class="btn btn-primary btn-lg btn-block"
-									id="loginSuccess" value="로그인">
+								<!-- <input type="submit" class="btn btn-primary btn-lg btn-block"
+									id="loginSuccess" value="로그인"> -->
+								<input type="button" class="btn btn-primary btn-lg btn-block"
+									id="loginSuccess" value="로그인" onclick="fnLogin();">
 							</div>
 							<div>
 								<button id="login_id_lost_btn" type="button" class="btn btn-link">아이디
 									찾기</button>
 								<button id="login_lost_btn" type="button" class="btn btn-link">비밀번호
-									찾기</button>
+									재설정</button>
 								<button id="login_register_btn" type="button"
 									class="btn btn-link">회원가입</button>
 							</div>
@@ -486,7 +603,7 @@
 					<!-- End # Login Form -->
 
 					<!-- Begin | Lost Password Form -->
-					<form id="lost-form" style="display: none;">
+					<form id="lost-form" method="post" action="/cs/msender" style="display: none;">
 						<div class="modal-body">
 							<div id="div-lost-msg">
 								<div id="icon-lost-msg"
@@ -494,11 +611,11 @@
 								<span id="text-lost-msg">이메일을 입력하세요</span>
 							</div>
 							<input id="lost_email" class="form-control" type="email"
-								placeholder="E-Mail (type ERROR for error effect)" required>
+								placeholder="E-Mail" required>
 						</div>
 						<div class="modal-footer">
 							<div>
-								<button type="submit" class="btn btn-primary btn-lg btn-block">보내기</button>
+								<input type="button" class="btn btn-primary btn-lg btn-block" value="보내기" onclick="fnPwd();">
 							</div>
 							<div>
 								<button id="lost_login_btn" type="button" class="btn btn-link">로그인
@@ -526,7 +643,7 @@
 						</div>
 						<div class="modal-footer">
 							<div>
-								<button type="submit" class="btn btn-primary btn-lg btn-block">찾기</button>
+								<button type="button" class="btn btn-primary btn-lg btn-block" onclick="findId();">찾기</button>
 							</div>
 							<div>
 								<button id="lost_id_login_btn" type="button" class="btn btn-link">로그인
@@ -540,8 +657,8 @@
 					</form>
 					<!-- End | Lost Id Form -->
 					<!-- Begin | Register Form -->
-					<form id="register-form" method="post" action="/cs/enroll" 
-						style="display: none;" onsubmit="return checked();">
+					<form id="register-form" method="post" action="" 
+						style="display: none;"> <!-- /cs/enroll  onsubmit="return checked();" -->
 						<div class="modal-body">
 							<div id="div-register-msg">
 								<div id="icon-register-msg"
@@ -552,11 +669,15 @@
 								placeholder="이메일" required>
 							<!-- <button class="btn btn-primary btn-lg btn-block" style="width:100px; margin-top:10px;
 								text-align:center; margin-left:100px;">인증</button> -->
-							<input type="button" class="btn btn-primary btn-lg btn-block" style="width:100px; margin-top:10px;
-								text-align:center; margin-left:100px;" value="인증" onclick="openView();">
+							<input type="button" class="btn btn-primary btn-lg btn-block" style="margin-top:10px;
+								text-align:center;" value="번호발송" onclick="goEmail();">
 							<!-- <a href="/cs/msender">인증</a> -->
 							<input id="register_email_confirm" class="form-control"
 								type="text" placeholder="인증번호" required> 
+							<input type="button" id="confirmBtn" class="btn btn-primary btn-lg btn-block" style="margin-top:10px;
+								text-align:center;" value="인증하기" onclick="checkEmail();">
+							<!-- width:100px; margin-top:10px;
+								text-align:center; margin-left:100px; -->
 							<input
 								id="register_username" name="username" class="form-control" type="text"
 								placeholder="이름 " required>
@@ -597,7 +718,8 @@
 						</div>
 						<div class="modal-footer">
 							<div>
-								<button type="submit" class="btn btn-primary btn-lg btn-block">회원가입</button>
+								<input type="button" class="btn btn-primary btn-lg btn-block" value="회원가입" onclick="checkEnroll();">
+								<!-- onclick="fnEnroll();" -->
 							</div>
 							<div>
 								<button id="register_login_btn" type="button"

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String num = (String)(request.getAttribute("num")); %>
+<% 
+	String num = (String)(request.getAttribute("num")); 
+	//세션으로 회원가입 처리 해보자
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +48,7 @@
 	        fsubmit.submit(); */
 	        
 	        window.close();
-		});
+		});이거 필요없는 파일이야 ajax로할꺼라 아
 	}); --%>
 	
 </script>
