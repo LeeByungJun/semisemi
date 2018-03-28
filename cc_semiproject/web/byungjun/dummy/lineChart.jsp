@@ -7,56 +7,49 @@
 <title>차트연습</title>
 <!-- stylesheet -->
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css" /> -->
-<link rel="stylesheet" href="c3.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css"/>
+<!-- <link rel="stylesheet" href="c3.min.css"> -->
 <!-- javascript -->
-<script src="https://d3js.org/d3.v3.min.js"></script>
+<!-- <script src="https://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="c3.min.js"></script> -->
+
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script> -->
-<script type="text/javascript" src="c3.min.js"></script>
-<script type="text/javascript">
-var areachart = c3.generate({
-	bindto : "#areachart",
-	data : {
-		columns : [ [ 'data1', 300, 350, 300, 190, 50, 25 ],
-				[ 'data2', 130, 100, 140, 200, 150, 50 ] ],
-		types : {
-			data1 : 'area-spline',
-			data2 : 'area-spline'
-		}
-	}
-});
-	/* var chart = c3.generate({
-	    data: {
-	        columns: [
-	            ['data1', 30, 200, 100, 400, 150, 250],
-	            ['data2', 50, 20, 10, 40, 15, 25]
-	        ]
-	    }
-	});
-
-	setTimeout(function () {
-	    chart.load({
-	        columns: [
-	            ['data1', 230, 190, 300, 500, 300, 400]
-	        ]
-	    });
-	}, 1000);
-	setTimeout(function () {
-	    chart.load({
-	        columns: [
-	            ['data3', 130, 150, 200, 300, 200, 100]
-	        ]
-	    });
-	}, 1500);
-
-	setTimeout(function () {
-	    chart.unload({
-	        ids: 'data1'
-	    });
-	}, 2000); */
-</script>
 </head>
 <body>
-	<div id="areachart"></div>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+	<div id="areachart" style="width:700px; height:300px;"></div>
 	<div>ㅇㅇ</div>
+	<script>
+		var areachart = c3.generate({
+			bindto : "#areachart",
+			/* data : {
+				columns : [ 
+						[ '총 접속자 수', 300, 350, 300, 190, 50, 25 ],
+						[ '로그인한 유저 수', 130, 100, 140, 200, 150, 50 ] 
+				]
+				
+			} */
+			data: {
+				x: 'x',
+				columns: [
+					['x', '2018-03-28', '2018-03-29', '2018-03-30', '2018-03-31', '2018-04-01'],
+					['방문자 수', 31, 48, 22, 77, 62]
+				],
+				type:'line',
+				colors: {
+					'데이터': '#F39C12'
+				}
+			},
+			axis : {
+			x : {
+					type : 'timeseries',
+					tick: {
+							format: '%Y-%m-%d' /* %H:%M:%S */
+					}
+				}
+			}
+		});
+	</script>
 </body>
 </html>
