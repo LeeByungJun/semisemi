@@ -278,23 +278,21 @@
 			}else{
 				//alert("성공");
 				$.ajax({
-					url:"/cs/enroll",
+					url:"/cs/enroll.me",
 					data:{
 						email: email,
 						name: name,
-						password: password1,
+						userpwd: password1,
 						birthday: birthday,
 						address: address,
 						phone: phone
 					},
 					type:"post",
 					success:function(data){
+						alert(data);
 						if(data == '회원가입 성공'){
-							alert(data);
 							$('#login-modal').modal("hide");
 							location.href = "/cs/index.jsp";
-						}else{
-							alert(data);
 						}
 					}
 				});
@@ -319,7 +317,7 @@
         if(!re.test(email)){
 			alert("이메일을 다시 입력해주세요.");
         }else{
-        
+        	
 	        $.ajax({
 	        	url:"/cs/msender",
 	        	data:{email:$('#register_email').val()},
@@ -355,7 +353,7 @@
 	
 	function fnLogin(){
 		$.ajax({
-			url:"/cs/login",
+			url:"/cs/login.me",
 			data:{
 				useremail:$('#login_username').val(),
 				userpwd:$('#login_password').val()
@@ -565,7 +563,7 @@
 				<div id="div-forms">
 
 					<!-- Begin # Login Form -->
-					<form id="login-form" action="/cs/login" method="post">
+					<form id="login-form" action="/cs/login.me" method="post">
 						<div class="modal-body">
 							<div id="div-login-msg">
 								<div id="icon-login-msg"

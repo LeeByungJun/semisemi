@@ -19,10 +19,10 @@ import static function.EncryptPassword.*;
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/login")
+@WebServlet("/login.me")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+    private static int count = 0;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -39,6 +39,7 @@ public class LoginServlet extends HttpServlet {
 		
 		String email = (String)request.getParameter("useremail");
 		String pwd = (String)request.getParameter("userpwd");
+		System.out.println("pwd : " + pwd);
 		
 		//System.out.println(email + ", " + pwd);
 		
@@ -54,6 +55,8 @@ public class LoginServlet extends HttpServlet {
 			//성공 session생성
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
+			count++;
+			System.out.println("접속한 유저 수 : " + count);
 			/*response.sendRedirect("index.jsp");*/
 			PrintWriter out = response.getWriter();
 			out.append("로그인 성공");

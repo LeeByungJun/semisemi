@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import member.model.service.MemberService;
+import static function.EncryptPassword.*;
 
 /**
  * Servlet implementation class MailPwdServlet
@@ -89,14 +90,15 @@ public class MailPwdServlet extends HttpServlet {
 			msg.setContent("임시 비밀번호 : " + sb, "text/html;charset=utf-8");
 
 			Transport.send(msg);
-
+			
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+		System.out.println("sb.toString() : " + sb.toString());
 		//유저 정보 업데이트
-		int result = new MemberService().updateMemberPwd(to_email,sb);
+		int result = new MemberService().updateMemberPwd(to_email,getSha512(sb.toString()));
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		if(result > 0) {

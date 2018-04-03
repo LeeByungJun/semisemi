@@ -16,7 +16,7 @@ import member.model.vo.Member;
 /**
  * Servlet implementation class EnrollServlet
  */
-@WebServlet("/enroll")
+@WebServlet("/enroll.me")
 public class EnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,7 +38,7 @@ public class EnrollServlet extends HttpServlet {
 		//데이터 받기
 		Member member = new Member();
 		member.setEmail(request.getParameter("email"));
-		member.setPassword(request.getParameter("password"));
+		member.setPassword(request.getParameter("userpwd"));
 		member.setName(request.getParameter("name"));
 		member.setBirthday(request.getParameter("birthday"));
 		member.setPhone(request.getParameter("phone"));

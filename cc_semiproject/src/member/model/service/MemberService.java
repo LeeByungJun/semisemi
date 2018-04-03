@@ -50,10 +50,10 @@ public class MemberService {
 		return userid;
 	}
 
-	public int updateMemberPwd(String to_email, StringBuffer sb) {
+	public int updateMemberPwd(String to_email, String sb) {
 		//임시 비밀번호로 유저 정보 갱신
 		Connection conn = getConnection();
-		int result = new MemberDao().updateMemberPwd(conn,to_email,sb.toString());
+		int result = new MemberDao().updateMemberPwd(conn,to_email,sb);
 		if(result > 0) {
 			commit(conn);
 		}else {
