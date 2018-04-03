@@ -57,7 +57,7 @@
 								class="glyphicon glyphicon-log-out"></span> Logout</a>					
 						</li>
 						<li><a href="#" role="button"><span
-								class="glyphicon glyphicon-log-in"></span> 마이페이지</a></li>
+								class="glyphicon glyphicon-user"></span> MyPage</a></li>
 					<% } %>
 				</ul>
 			</div>

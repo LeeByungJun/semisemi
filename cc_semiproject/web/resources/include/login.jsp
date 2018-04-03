@@ -360,10 +360,14 @@
 			},
 			type:"post",
 			success:function(data){
-				alert(data);
-				if(data == "로그인 성공"){
+				if(data != "로그인에 실패하였습니다"){
+				 	alert("로그인 성공!");
 					$('#login-modal').modal("hide");
-					location.href = "/cs/index.jsp";
+					if(data != "pjlee92@naver.com"){
+						location.href = "/cs/index.jsp";
+					}else{
+						location.href = "/cs/byungjun/views/adminMain.jsp";
+					}
 				}
 			}
 		});

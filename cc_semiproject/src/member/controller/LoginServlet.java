@@ -59,13 +59,22 @@ public class LoginServlet extends HttpServlet {
 			System.out.println("접속한 유저 수 : " + count);
 			/*response.sendRedirect("index.jsp");*/
 			PrintWriter out = response.getWriter();
-			out.append("로그인 성공");
+			out.append(loginUser.getEmail());
+		/*}else if(loginUser != null && !loginUser.getEmail().equals("pjlee92@naver.com")){
+			//성공 session생성 -> 관리자페이지로
+			HttpSession session = request.getSession();
+			session.setAttribute("loginUser", loginUser);
+			count++;
+			System.out.println("접속한 유저 수 : " + count);
+			response.sendRedirect("index.jsp");
+			PrintWriter out = response.getWriter();
+			out.append("로그인 성공");*/
 		}else {
 			//실패 페이지로~
 			//로그인에 실패하였습니다.. 메시지-> ajax로 처리하자
 			//System.out.println("실패");
 			PrintWriter out = response.getWriter();
-			out.append("로그인에 실패하였습니다.");
+			out.append("로그인에 실패하였습니다");
 		}
 	}
 

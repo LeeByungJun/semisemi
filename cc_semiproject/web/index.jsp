@@ -10,6 +10,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+<!-- 차트용 스타일시트 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css"/>
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
@@ -417,42 +421,19 @@ footer {
 .form-control {
 	border-radius: 0px;
 }
+#divMain{
+	
+}
 </style>
 </head>
 <body>
-	<!-- <nav class="navbar navbar-inverse">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target="#myNavbar">
-					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
-				</button>
-				<a href="index.jsp"><img src="images/C&C Logo.jpg" alt="Logo"
-					width="120" height="50"></a>
-				class="navbar-brand"
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
-					<li><a href="#">단기렌트</a></li>
-					class="active"
-					<li><a href="#">장기렌트</a></li>
-					<li><a href="DongGuk/views/p2pRent.jsp">P2P</a></li>
-					<li><a href="menuTemplate.jsp">고객센터</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#" role="button" data-toggle="modal"
-						data-target="#login-modal"><span
-							class="glyphicon glyphicon-log-in"></span> Login</a></li>
-					<li><a href="YunHee/views/myPage.jsp" role="button"><span
-							class="glyphicon glyphicon-log-in"></span> 마이페이지</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav> -->
+	<!-- 차트용 스크립트 -->
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+	 
 	<%@ include file="resources/include/header.jsp" %>
 
-	<div class="row content">
+	<div class="row content" id="divMain">
 		<div class="col-sm-8 text-left" id="imageslide">
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
@@ -495,6 +476,69 @@ footer {
 			</div>
 		</div>
 	</div>
+	<div id="areachart" style="width:45%; height:300px; margin-top:150px; float:left;"></div>
+	<div id="areachart1" style="width:45%; height:300px; margin-top:150px; float:left;"></div>
+	<script>
+		var areachart = c3.generate({
+			bindto : "#areachart",
+			/* data : {
+				columns : [ 
+						[ '총 접속자 수', 300, 350, 300, 190, 50, 25 ],
+						[ '로그인한 유저 수', 130, 100, 140, 200, 150, 50 ] 
+				]
+				
+			} */
+			data: {
+				x: 'x',
+				columns: [
+					['x', '2018-04-03', '2018-04-04', '2018-04-05', '2018-04-06', '2018-04-07','2018-04-08'],
+					['방문자 수', 31, 48, 22, 77, 62, 11]
+				],
+				type:'line',
+				colors: {
+					'데이터': '#F39C12'
+				}
+			},
+			axis : {
+			x : {
+					type : 'timeseries',
+					tick: {
+							format: '%Y-%m-%d' /* %H:%M:%S */
+					}
+				}
+			}
+		});
+		
+		var areachart1 = c3.generate({
+			bindto : "#areachart1",
+			/* data : {
+				columns : [ 
+						[ '총 접속자 수', 300, 350, 300, 190, 50, 25 ],
+						[ '로그인한 유저 수', 130, 100, 140, 200, 150, 50 ] 
+				]
+				
+			} */
+			data: {
+				x: 'x',
+				columns: [
+					['x', '2018-04-03', '2018-04-04', '2018-04-05', '2018-04-06', '2018-04-07','2018-04-08'],
+					['예약 횟수', 7, 19, 21, 38, 12, 47]
+				],
+				type:'line',
+				colors: {
+					'데이터': '#F39C12'
+				}
+			},
+			axis : {
+			x : {
+					type : 'timeseries',
+					tick: {
+							format: '%Y-%m-%d' /* %H:%M:%S */
+					}
+				}
+			}
+		});
+	</script>
 
 	<%@ include file="resources/include/login.jsp" %>
 

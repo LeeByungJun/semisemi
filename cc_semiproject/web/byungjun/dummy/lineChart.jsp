@@ -19,7 +19,6 @@
 	<script src="https://d3js.org/d3.v3.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
 	<div id="areachart" style="width:700px; height:300px;"></div>
-	<div>ㅇㅇ</div>
 	<script>
 		var areachart = c3.generate({
 			bindto : "#areachart",
