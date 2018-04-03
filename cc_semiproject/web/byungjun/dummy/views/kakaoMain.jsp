@@ -253,13 +253,13 @@ article, aside, footer, header, hgroup, main, nav, section {
 						});
 
 		function payment(agent) {
-			var windowReference = window.open('', 'payment_popup', 'width=426,height=510,toolbar=no,location=no');
+			var windowReference = window.open('kakaoDetail.jsp', 'payment_popup', 'width=426,height=510,toolbar=no,location=no');
 
-			/* var request = $.ajax({
+			var request = $.ajax({
 				url : '/payment/' + agent + '/ready',
 				method : 'GET',
 				dataType : 'json'
-			}); */
+			});
 
 			request.done(function(data) {
 				if (agent === 'web') {
