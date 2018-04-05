@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.util.*, visit.model.vo.Visit" %>
+<% int todayVisit = ((Integer)session.getAttribute("todayVisit")).intValue(); %>
+<% ArrayList<Visit> totalVisit = (ArrayList<Visit>)session.getAttribute("totalVisit"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +39,18 @@
 				<div id="areachart1" align="center"
 					style="width: 70%; height: 300px; margin-left:270px;"></div>
 				<script>
+				
+				<%-- <% for(Visit v:totalVisit){ %> --%>
+				<%-- <% if(i == totalVisit.size()){ %>
+					<%= totalVisit.get(i).getVisitDate() %>
+				<% }else{ %> --%>
+					<%-- <%= v.getVisitDate() %>, --%>
+					/* new java.util.Date() */
+				<%-- <% } %> --%>
+				<%-- <% } %>  --%>
+				<%-- date1 = <%= totalVisit.get(0).getVisitDate() %>;
+				date2 = <%= totalVisit.get(1).getVisitDate() %>; --%>
+				
 					var areachart = c3.generate({
 						bindto : "#areachart",
 						/* data : {
@@ -47,23 +63,40 @@
 						data : {
 							x : 'x',
 							columns : [
-									[ 'x', '2018-04-03', '2018-04-04',
-											'2018-04-05', '2018-04-06',
-											'2018-04-07', '2018-04-08' ],
-									[ '방문자 수', 31, 48, 22, 77, 62, 11 ] ],
-							type : 'line',
-							colors : {
-								'데이터' : '#F39C12'
-							}
+									[ 'x', 
+										<% for(Visit v:totalVisit){ %>
+										<%-- <% if(i == totalVisit.size()){ %>
+											<%= totalVisit.get(i).getVisitDate() %>
+										<% }else{ %> --%>
+											<%= "'" + v.getVisitDate() + "'" %>, 
+											/* new java.util.Date() */
+										<% } %>
+										<%-- <% } %>  --%>
+										
+									],
+									[ '방문자 수', 
+										<% for(int i=0;i<totalVisit.size();i++){ %>
+											<%-- <% if(i == totalVisit.size()){ %>
+												<%= totalVisit.get(i).getVisitCount() %>
+											<% }else{ %> --%>
+												<%= totalVisit.get(i).getVisitCount() %>,
+											<%-- <% } %> --%>
+										<% } %>
+									] 
+								],
+							type : 'line'
+							/* colors : {
+								'데이터' : '#F39C12' //C12
+							} */
 						},
-						axis : {
+					  axis : {
 							x : {
 								type : 'timeseries',
 								tick : {
-									format : '%Y-%m-%d' /* %H:%M:%S */
+									format : '%y-%m-%d' //%H:%M:%S
 								}
 							}
-						}
+						} 
 					});
 
 					var areachart1 = c3.generate({
@@ -74,13 +107,14 @@
 									[ '로그인한 유저 수', 130, 100, 140, 200, 150, 50 ] 
 							]
 							
-						} */
+						}  */
 						data : {
 							x : 'x',
 							columns : [
-									[ 'x', '2018-04-03', '2018-04-04',
+									[ 'x', '2018-04-04',
 											'2018-04-05', '2018-04-06',
-											'2018-04-07', '2018-04-08' ],
+											'2018-04-07', '2018-04-08',
+											'2018-04-09'],
 									[ '예약 횟수', 7, 19, 21, 38, 12, 47 ] ],
 							type : 'line',
 							colors : {
@@ -91,7 +125,7 @@
 							x : {
 								type : 'timeseries',
 								tick : {
-									format : '%Y-%m-%d' /* %H:%M:%S */
+									format : '%Y-%m-%d' //%H:%M:%S
 								}
 							}
 						}
@@ -99,6 +133,11 @@
 				</script>
 
 			</div>
+			<br>
+			오늘 방문자 수 : <%= todayVisit %> 명<br>
+			누적 방문자 수 : <%= totalVisit.toString() %> 명
+			console.log(<%= totalVisit.toString() %>);
+			<br><br>
 			<%-- <div class="col-sm-2 sidenav">
 				<%@ include file="../../resources/include/add.jsp" %>
 			</div> --%>

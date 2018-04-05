@@ -2,6 +2,7 @@ package member.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpSession;
 import function.EncryptPassword;
 import member.model.service.MemberService;
 import member.model.vo.Member;
+import visit.model.service.VisitService;
+import visit.model.vo.Visit;
 
 import static function.EncryptPassword.*;
 
@@ -39,15 +42,9 @@ public class LoginServlet extends HttpServlet {
 		
 		String email = (String)request.getParameter("useremail");
 		String pwd = (String)request.getParameter("userpwd");
-		System.out.println("pwd : " + pwd);
 		
-		//System.out.println(email + ", " + pwd);
-		
-		//System.out.println(email + " " + pwd);
 		//service에 연결하고 결과 받아서 보여주고
 		Member loginUser = new MemberService().selectLogin(email,pwd);
-		
-		//System.out.println(loginUser.toString());
 		
 		response.setContentType("text/html; charset=utf-8");
 		
@@ -55,24 +52,29 @@ public class LoginServlet extends HttpServlet {
 			//성공 session생성
 			HttpSession session = request.getSession();
 			session.setAttribute("loginUser", loginUser);
-			count++;
-			System.out.println("접속한 유저 수 : " + count);
+			
+			//인원 수 증가 쿼리 동작 -> 서비스 호출 -> dao 호출 고고싱
+	    	new VisitService().setVisitCount();
+	    	
+	    	//차트용 데이터 뽑아오기
+	    	ArrayList<Visit> totalCount = new VisitService().totalCount();
+	    	for(Visit v:totalCount) {
+	    		System.out.println(v.toString());
+	    	}
+	    	session.setAttribute("totalVisit", totalCount);
+	    	
+	    	//오늘 방문 인원 수 구하기
+	    	int todayCount = new VisitService().todayCount();
+	    	System.out.println("todayCount = " + todayCount);
+	    	
+	    	session.setAttribute("todayVisit", todayCount);
+	    	
+			/*count++;
+			System.out.println("접속한 유저 수 : " + count);*/
 			/*response.sendRedirect("index.jsp");*/
 			PrintWriter out = response.getWriter();
 			out.append(loginUser.getEmail());
-		/*}else if(loginUser != null && !loginUser.getEmail().equals("pjlee92@naver.com")){
-			//성공 session생성 -> 관리자페이지로
-			HttpSession session = request.getSession();
-			session.setAttribute("loginUser", loginUser);
-			count++;
-			System.out.println("접속한 유저 수 : " + count);
-			response.sendRedirect("index.jsp");
-			PrintWriter out = response.getWriter();
-			out.append("로그인 성공");*/
 		}else {
-			//실패 페이지로~
-			//로그인에 실패하였습니다.. 메시지-> ajax로 처리하자
-			//System.out.println("실패");
 			PrintWriter out = response.getWriter();
 			out.append("로그인에 실패하였습니다");
 		}
