@@ -2,10 +2,10 @@
     pageEncoding="UTF-8"%>
 
 				<p>
-					<a href="/cs/WookJae/views/notice.jsp">공지사항</a>
+					<a href="/cs/nlist?page=1">공지사항</a>
 				</p>
 				<p>
-					<a href="/cs/WookJae/views/badcustomer.jsp">불량고객신고</a>
+					<a href="#">불량고객신고</a>
 				</p>
 				<p>
 					<a href="/cs/flist?page=1">FAQ</a>

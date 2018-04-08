@@ -23,9 +23,9 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li><a href="memberManagement.jsp">회원관리</a></li>
+					<li><a href="/cs/adminmi">회원관리</a></li>
 					<!-- class="active" -->
-					<li><a href="writeFormManagement.jsp">게시글관리</a></li>
+					<li><a href="/cs/byungjun/views/writeFormManagement.jsp">게시글관리</a></li>
 					<li><a href="statistics.jsp">통계</a></li>
 					<li><a href="reserStatus.jsp">예약현황보기</a></li>
 				</ul>

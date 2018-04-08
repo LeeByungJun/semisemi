@@ -6,7 +6,7 @@
 					<a href="#">FAQ</a>
 				</p>
 				<p>
-					<a href="../views/notice.jsp">공지사항</a>
+					<a href="/cs/nlist">공지사항</a>
 				</p>
 				<p>
 					<a href="#">시승기</a>

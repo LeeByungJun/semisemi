@@ -15,8 +15,7 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a href="index.jsp"><img src="../images/C&C Logo.jpg" alt="Logo"
-					width="120" height="50"></a>
+				<a href="index.jsp"><img src="/cs/WookJae/images/C&C Logo.jpg" alt="Logo" width="120" height="50"></a>
 				<!-- class="navbar-brand" -->
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">

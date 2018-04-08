@@ -36,7 +36,7 @@
 			<!-- main contents -->
 			<div class="col-sm-8 text-left">
 				<!-- 컨텐츠를 넣으세요 -->
-				<h1 align="center" style="margin-left: 300px;">등급별 예약 현황</h1>
+				<h1 style="margin-left: 100px;">등급별 예약 현황</h1>
 				<fieldset>
 					<legend id="gold">골드</legend>
 					<table border="1" cellspacing="0">

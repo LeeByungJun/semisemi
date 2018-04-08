@@ -3,8 +3,12 @@ package member.model.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 import member.model.vo.Member;
+import member.model.vo.MemberAdmin;
+
 import static common.JDBCTemplate.*;
 
 public class MemberDao {
@@ -141,5 +145,102 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return result;
+	}
+	
+	//관리자 회원관리용 메소드
+	public ArrayList<MemberAdmin> selectAllMember(Connection conn) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		ArrayList<MemberAdmin> all = new ArrayList<MemberAdmin>();
+		String query = "select mem_num,email,name,phone,address,count,cansell,g_rank"
+				+ " from member m,grade g where m.G_CODE = g.G_CODE";
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				MemberAdmin m = new MemberAdmin();			
+				m.setMem_num(rs.getInt("mem_num"));
+				m.setEmail(rs.getString("email"));
+				m.setName(rs.getString("name"));
+				m.setPhone(rs.getString("phone"));
+				m.setAddress(rs.getString("address"));
+				m.setCount(rs.getInt("count"));
+				m.setCansell(rs.getString("cansell"));
+				m.setG_Rank(rs.getString("g_rank"));
+				
+				all.add(m);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(stmt);
+		}
+		return all;
+	}
+
+	public ArrayList<MemberAdmin> selectCSMember(Connection conn) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		ArrayList<MemberAdmin> cansell = new ArrayList<MemberAdmin>();
+		String query = "select mem_num,email,name,phone,address,count,cansell,g_rank"
+				+ " from member m,grade g where m.G_CODE = g.G_CODE and cansell = 'Y'";
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				MemberAdmin m = new MemberAdmin();			
+				m.setMem_num(rs.getInt("mem_num"));
+				m.setEmail(rs.getString("email"));
+				m.setName(rs.getString("name"));
+				m.setPhone(rs.getString("phone"));
+				m.setAddress(rs.getString("address"));
+				m.setCount(rs.getInt("count"));
+				m.setCansell(rs.getString("cansell"));
+				m.setG_Rank(rs.getString("g_rank"));
+				
+				cansell.add(m);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(stmt);
+		}
+		return cansell;
+	}
+
+	public ArrayList<MemberAdmin> selectCountMember(Connection conn) {
+		Statement stmt = null;
+		ResultSet rs = null;
+		ArrayList<MemberAdmin> count = new ArrayList<MemberAdmin>();
+		String query = "select mem_num,email,name,phone,address,count,cansell,g_rank"
+				+ " from member m,grade g where m.G_CODE = g.G_CODE and count >= 1";
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				MemberAdmin m = new MemberAdmin();			
+				m.setMem_num(rs.getInt("mem_num"));
+				m.setEmail(rs.getString("email"));
+				m.setName(rs.getString("name"));
+				m.setPhone(rs.getString("phone"));
+				m.setAddress(rs.getString("address"));
+				m.setCount(rs.getInt("count"));
+				m.setCansell(rs.getString("cansell"));
+				m.setG_Rank(rs.getString("g_rank"));
+				
+				count.add(m);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(stmt);
+		}
+		return count;
 	}
 }

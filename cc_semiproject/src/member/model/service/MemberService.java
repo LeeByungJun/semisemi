@@ -2,9 +2,12 @@ package member.model.service;
 
 import member.model.dao.MemberDao;
 import member.model.vo.Member;
+import member.model.vo.MemberAdmin;
+
 import static common.JDBCTemplate.*;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 public class MemberService {
 	public MemberService() {
@@ -61,5 +64,27 @@ public class MemberService {
 		}
 		close(conn);
 		return result;
+	}
+
+	//관리자 페이지용 메소드들
+	public ArrayList<MemberAdmin> selectAllMember() {
+		Connection conn = getConnection();
+		ArrayList<MemberAdmin> all = new MemberDao().selectAllMember(conn);
+		close(conn);
+		return all;
+	}
+
+	public ArrayList<MemberAdmin> selectCSMember() {
+		Connection conn = getConnection();
+		ArrayList<MemberAdmin> cansell = new MemberDao().selectCSMember(conn);
+		close(conn);
+		return cansell;
+	}
+
+	public ArrayList<MemberAdmin> selectCountMember() {
+		Connection conn = getConnection();
+		ArrayList<MemberAdmin> count = new MemberDao().selectCountMember(conn);
+		close(conn);
+		return count;
 	}
 }
