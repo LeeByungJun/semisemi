@@ -1,103 +1,179 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="member.model.vo.Member, grade.model.vo.Grade" %>
+<% 
+	//Member member = (Member)session.getAttribute("loginUser"); 
+	Member member1 = (Member)request.getAttribute("member");
+	Grade grade = (Grade)request.getAttribute("grade");
+%>
 <!DOCTYPE html>
 <html>
 <head>
-<metacharset= "UTF-8">
+<meta charset= "UTF-8">
 <title>MyPage</title>
 <%@ include file="../include/meta.jsp"%>
+<script type="text/javascript">
+function updateClient(){
+	var name = $('#name').val();
+	var grade = $('#grade').val();
+	var birthday = $('#birthday').val();	
+	var email = $('#email').val();
+	var phone = $('#phone').val();
+	var address = $('#address').val();
+	var userpwd1 = $('#userpwd').val();
+	var userpwd2 = $('#userpwd2').val();
+	
+	var ucase = new RegExp("[A-Z]+");
+	var lcase = new RegExp("[a-z]+");
+	var num = new RegExp("[0-9]+");
+	if(!ucase.test(userpwd1) || !lcase.test(userpwd1) || !num.test(userpwd1)){
+		//패스워드 체크
+		alert("비밀번호를 다시 확인해주세요.");
+		
+	}else if(!ucase.test(userpwd2) || !lcase.test(userpwd2) || !num.test(userpwd2)){
+		alert("비밀번호를 다시 확인해주세요.");
+		
+	}else if(userpwd1 != userpwd2){ 
+		alert("비밀번호가 일치하지 않습니다.");
+		
+	/* if (userpwd != userpwd2) {
+		alert("비밀번호가 일치하지 않습니다");
+        //return false; */
+	} else {
+		$.ajax({
+    		url : "/cs/mupdate.me",
+    		data : {
+    			num: $('#num').val(),
+    			name : name,
+    			grade : grade,
+    			birthday : birthday,
+    			phone : phone,
+    			address : address,
+    			email : email,
+    			userpwd : userpwd1
+    			},
+    		type : "post",
+    		success : function(data) {
+    			if (data != null) {
+    				alert("회원정보 수정 성공");
+                    location.href = "/cs/index.jsp";
+    			} else {
+                	alert("회원정보 수정 실패");
+                }
+    		}
+    	});
+	}
+}
+/* function pwdcheck() {
+	var userpwd = $('#userpwd').val();
+	var userpwd2 = $('#userpwd2').val();
+	
+	if (userpwd != userpwd2) {
+		alert("비밀번호가 일치하지 않습니다");
+		return false;
+	} else {
+		return true;
+	}
+} */
+/* $(function(){
+	$(#update).click({
+		var phone = $('#phone').val();
+		var address = $('#address').val();
+		var email = $('#email').val();
+		var name = $('#name').val();
+		var birthday = $('#birthday').val();
+	});
+	
+	$.ajax({
+		url : "/cs/mupdate",
+		data : {
+			name : name,
+			birthday : birthday,
+			phone : phone,
+			address : address,
+			email : email,
+			userpwd : $('#userpwd').val()
+			},
+		type : "post",
+		success : function(data) {
+			if(data != null){
+                console.log(data);
+             }else{
+                alert("회원정보 수정 실패");
+             }
+		}
+	});
+}); */
+</script>
 </head>
-<!-- header -->
-<%@ include file="../include/header.jsp"%>
-<!-- sidenav -->
-<div class="container-fluid text-center">
-	<div class="row content">
-		<div class="col-sm-2 sidenav">
-			<!-- side2 -->
-			<%@ include file="../include/sidenav.jsp"%>
-		</div>
-		<!-- main contents -->
-		<div class="col-sm-8 text-left">
-			<!-- 컨텐츠를 넣으세요 -->
-			<!-- 컨텐츠를 넣으세요 -->
-			<!-- 컨텐츠를 넣으세요 -->
-			<!-- 컨텐츠를 넣으세요 -->
-			<!-- 컨텐츠를 넣으세요 -->
-			<!-- 컨텐츠를 넣으세요 -->
-			<!-- 컨텐츠를 넣으세요 -->
-			<!-- 컨텐츠를 넣으세요 -->
-			<!-- 컨텐츠를 넣으세요 -->
-			<!-- 컨텐츠를 넣으세요 -->
-			<!-- 컨텐츠를 넣으세요 -->
-			ㅇㅇㅇ
-		</div>
-		<div class="col-sm-2 sidenav">
-			<%@ include file="../include/add.jsp"%>
+<body>
+	<!-- header -->
+	<%@ include file="../../resources/include/header.jsp"%>
+	<!-- sidenav -->
+	<div class="container-fluid text-center">
+		<div class="row content">
+			<div class="col-sm-2 sidenav">
+				<!-- side2 -->
+				<%@ include file="../include/sidenav.jsp"%>
+			</div>
+			<!-- main contents -->
+			<div class="col-sm-8 text-left">
+
+				<H2 align="center"><b>마이 페이지&nbsp;&nbsp;&nbsp;&nbsp;</b></H2>
+				<br>
+				<form>
+					<input type="hidden" id="num" value="<%= member1.getMem_num() %>">
+					<table class="table">
+						<tr>
+							<th style="text-align:right;">이름&nbsp;&nbsp;&nbsp;</th>
+							<td><input type="text" id="name" name="name" value="<%= member1.getName() %>" readonly></td>
+						</tr>
+						<tr>
+							<th style="text-align:right;">등급&nbsp;&nbsp;&nbsp;</th>
+							<td><input type="text" id="grade" name="grade" value="<%= grade.getG_rank() %>" readonly></td>
+						</tr>
+						<tr>
+							<th style="text-align:right;">생년월일&nbsp;&nbsp;&nbsp;</th>
+							<td><input type="text" id="birthday"  name="birthday" value="<%= member1.getBirthday() %>" readonly></td>
+						</tr>
+						<tr>
+							<th style="text-align:right;">휴대폰번호&nbsp;&nbsp;&nbsp;</th>
+							<td><input type="text"  id="phone" name="phone" value="<%= member1.getPhone() %>"></td>
+						</tr>
+						<tr>
+							<th style="text-align:right;">주소&nbsp;&nbsp;&nbsp;</th>
+							<td><input type="text" id="address" name="address" value="<%= member1.getAddress() %>"></td>
+						</tr>
+						<tr>
+							<th style="text-align:right;">이메일&nbsp;&nbsp;&nbsp;</th>
+							<td><input type="text" id="email" name="email" value="<%= member1.getEmail() %>" readonly></td>
+						</tr>
+						<tr>
+							<th style="text-align:right;">비밀번호&nbsp;&nbsp;&nbsp;</th>
+							<td><input type="password" name="userpwd" id="userpwd" value="<%= member1.getPassword() %>"></td>
+						</tr>
+						<tr>
+							<th style="text-align:right;">비밀번호확인&nbsp;&nbsp;&nbsp;</th>
+							<td><input type="password" name="userpwd2" id="userpwd2" required></td><!-- required -->
+						</tr>
+						<tr height="40">
+							<th style="text-align:center;" colspan="2">
+							<input type="button" id="update" value="수정하기" onclick="updateClient();"> &nbsp;
+							<a href="/cs/mdelete?mem_num=<%= member1.getMem_num() %>">탈퇴하기</a> &nbsp;
+							<a href="/cs/index.jsp">시작페이지로</a></th>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div class="col-sm-2 sidenav">
+				<%@ include file="../../resources/include/add.jsp"%>
+			</div>
 		</div>
 	</div>
-</div>
-<!-- login 관련 modal -->
-<%@ include file="../include/login.jsp"%>
+	<!-- login 관련 modal -->
+	<%@ include file="../../resources/include/login.jsp"%>
 
-<!-- footer -->
-<%@ include file="../include/footer.jsp"%>
-<H1>마이 페이지</H1>
-<br>
-<form action="/cs/myPage" method="post">
-	<table width="650" align="center">
-		<tr>
-			<th align="right">성명&nbsp;&nbsp;&nbsp;</th>
-			<td>한윤희</td>
-		</tr>
-		<tr>
-			<th align="right">생년월일&nbsp;&nbsp;&nbsp;</th>
-			<td><input type="hidden" name="BIRTHDAY_1" value="1986" /> <input
-				type="hidden" name="BIRTHDAY_2" value="09" /> <input type="hidden"
-				name="BIRTHDAY_3" value="14" /> 1986 년 09 월 14 일 <span class="ml20">
-					<input type="hidden" name="GENDER" class="radio" title="성별"
-					value="F" /> 여자
-			</span></td>
-		</tr>
-		<tr>
-			<th align="right">휴대폰번호&nbsp;&nbsp;&nbsp;</th>
-			<td><span class="formatIn"><select id="mobileNumber"
-					class="w80" name="HP1"></select> <input type="text" name="HP2_1"
-					class="itext w50 eng" maxlength="4" value="1111" /> <span
-					class="ml5">-</span> <input type="text" name="HP2_2"
-					class="itext w50 ml5 eng" maxlength="4" value="1111" /> </span></td>
-		</tr>
-		<tr>
-			<th align="right">주소&nbsp;&nbsp;&nbsp;</th>
-			<td><span class="formatIn"> <input type="text"
-					name="HOMEZIP_1" class="itext w50 eng" maxlength="3"
-					readonly="readonly" value="111" /> <span class="ml5">-</span> <input
-					type="text" name="HOMEZIP_2" class="itext w50 ml5 eng"
-					maxlength="3" readonly="readonly" value="111" /> <a
-					href="#zipCode" class="btnTbl01 ml5">우편번호검색</a></span>
-				<p class="formatIn tblp">
-					<input type="text" name="HOMEADDR1" maxLength="50"
-						class="itext w200 kor" value="서울시  " /> <input type="text"
-						name="HOMEADDR2" maxLength="50" class="itext w200 kor"
-						value="111-11번지 111동 111호" />
-				</p></td>
-		</tr>
-		<tr>
-			<th align="right">이메일&nbsp;&nbsp;&nbsp;</th>
-			<td>rainbow86h@naver.com</td>
-		</tr>
-		<tr height="40">
-			<th align="right">비밀번호&nbsp;&nbsp;&nbsp;</th>
-			<td><input type="password" name="userpwd" id="upwd1"></td>
-		</tr>
-		<tr height="40">
-			<th align="right">비밀번호확인&nbsp;&nbsp;&nbsp;</th>
-			<td><input type="password" id="upwd2" onblur="checkPwd();"></td>
-		</tr>
-		<tr height="40">
-			<th width="150" colspan="2"><input type="submit" value="수정하기">
-				&nbsp; <input type="submit" value="삭제하기"></th>
-		</tr>
-	</table>
-</form>
+	<!-- footer -->
+	<%@ include file="../../resources/include/footer.jsp"%>
 </body>
 </html>

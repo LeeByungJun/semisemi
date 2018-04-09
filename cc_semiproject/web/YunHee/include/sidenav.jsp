@@ -1,23 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ page import="member.model.vo.Member" %>
+<% Member member = (Member)session.getAttribute("loginUser"); %>
 		
 				<p>
-					<a href="#">FAQ</a>
+					<a href="/cs/mypage?email=<%= member.getEmail() %>">마이 페이지</a>
 				</p>
 				<p>
-					<a href="#">공지사항</a>
+					<a href="/cs/YunHee/views/reservation.jsp">예약 및 이용내역</a>
 				</p>
 				<p>
-					<a href="#">시승기</a>
+					<a href="/cs/gview">회원 등급 보기</a>
 				</p>
-				<p>
-					<a href="#">불량고객신고</a>
-				</p>
-				<p>
-					<a href="#">자유게시판</a>
-				</p>
-	
 			
 			<!-- <div class="col-sm-2 sidenav">
 				<div class="well">

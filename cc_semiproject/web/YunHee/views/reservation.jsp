@@ -5,68 +5,63 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Reservation</title>
+<%@ include file="../include/meta.jsp"%>
 </head>
 <body>
-	<nav class="navbar navbar-inverse">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target="#myNavbar">
-				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a href="index.jsp"><img src="images/C&C Logo.jpg" alt="Logo"
-				width="120" height="50"></a>
-			<!-- class="navbar-brand" -->
-		</div>
-		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav">
-				<li><a href="#">단기렌트</a></li>
-				<!-- class="active" -->
-				<li><a href="#">장기렌트</a></li>
-				<li><a href="DongGuk/views/p2pRent.jsp">P2P</a></li>
-				<li><a href="menuTemplate.jsp">고객센터</a></li>
-			</ul>
-			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#" role="button" data-toggle="modal"
-					data-target="#login-modal"><span
-						class="glyphicon glyphicon-log-in"></span> Login</a></li>
-				<li><a href="YunHee/views/myPage.jsp" role="button"><span
-						class="glyphicon glyphicon-log-in"></span> 마이페이지</a></li>
-			</ul>
+	<!-- header -->
+	<%@ include file="../../resources/include/header.jsp"%>
+	<!-- sidenav -->
+	<div class="container-fluid text-center">
+		<div class="row content">
+			<div class="col-sm-2 sidenav">
+				<!-- side2 -->
+				<%@ include file="../include/sidenav.jsp"%>
+			</div>
+			<!-- main contents -->
+			<div class="col-sm-8 text-left">
+				<h2>예약 및 이용내역</h2>
+				<br>
+				<form action="/cs/reservation" method="post">
+					<table class="table">
+						<tr align="center">
+							<th style="text-align:center;">예약번호</th>
+							<th style="text-align:center;">대여기간</th>
+							<th style="text-align:center;">대여지점</th>
+							<th style="text-align:center;">차명</th>
+							<th style="text-align:center;">대여금액</th>
+							<th style="text-align:center;">결제여부</th>
+							<th style="text-align:center;">보험 가입여부</th>
+						</tr>
+						<tr>
+							<td align="center">1</td>
+							<td align="center">7일</td>
+							<td align="center">테헤란로점</td>
+							<td align="center">소나타</td>
+							<td align="center">500,000원</td>
+							<td align="center">Y</td>
+							<td align="center">N</td>
+						</tr>
+						<tr>
+							<td align="center">2</td>
+							<td align="center">1일</td>
+							<td align="center">강남점</td>
+							<td align="center">스타렉스</td>
+							<td align="center">100,000원</td>
+							<td align="center">N</td>
+							<td align="center">Y</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div class="col-sm-2 sidenav">
+				<%@ include file="../../resources/include/add.jsp"%>
+			</div>
 		</div>
 	</div>
-	</nav>
+	<!-- login 관련 modal -->
+	<%@ include file="../../resources/include/login.jsp"%>
 
-
-	<h1>예약 및 이용내역</h1>
-	<br>
-	<form action="/cs/reservation" method="post">
-		<table width="650" align="center">
-			<tr>
-				<th>예약번호</th>
-				<th>대여기간</th>
-				<th>대여지점</th>
-				<th>반납지점</th>
-				<th>차명</th>
-				<th>대여금액</th>
-				<th>결제여부</th>
-				<td>12345678</td>
-				<td>7일</td>
-				<td>테헤란로점</td>
-				<td>Sonata</td>
-				<td>500,000원</td>
-				<td>Y</td>
-			</tr>
-		</table>
-	</form>
-	<hr style="clear: both;">
-	<br>
-	<footer class="container-fluid text-center">
-	<p>
-		상호명 : C&C 렌터카 대표자 : 홍길동 주소 : 서울시 강남구 역삼동 대표자 전화번호 : 02-1234-1234<br>
-		여기엔 무엇을 써야 하는가?
-	</p>
-	</footer>
+	<!-- footer -->
+	<%@ include file="../../resources/include/footer.jsp"%>
 </body>
 </html>

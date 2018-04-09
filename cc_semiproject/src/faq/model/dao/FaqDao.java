@@ -98,4 +98,96 @@ public class FaqDao {
 		}
 		return list;
 	}
+
+	//관리자 faq 게시글 상세보기용 메소드
+	public Faq adminFaqDetail(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "select * from faq where f_no = ?";
+		Faq f = null;
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				f = new Faq();
+				f.setF_no(no);
+				f.setF_category(rs.getString("f_category"));
+				f.setF_title(rs.getString("f_title"));
+				f.setF_contents(rs.getString("f_contents"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return f;
+	}
+	
+	//관리자가 FAQ 게시글 삭제했을 시 사용하는 메소드
+	public int adminFaqDelete(Connection conn, int no) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from faq where f_no = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, no);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	//관리자가 FAQ 게시글 수정했을 시 사용하는 메소드
+	public int adminFaqUpdate(Connection conn, Faq f) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update faq set f_title = ?,f_contents=? where f_no = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, f.getF_title());
+			pstmt.setString(2, f.getF_contents());
+			pstmt.setInt(3, f.getF_no());
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int adminFaqInsert(Connection conn, String category, String title, String contents) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "insert into faq values ((select max(f_no)+1 from faq),?,?,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, category);
+			pstmt.setString(2, title);
+			pstmt.setString(3, contents);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }

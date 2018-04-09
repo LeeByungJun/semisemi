@@ -147,6 +147,85 @@ public class MemberDao {
 		return result;
 	}
 	
+	//윤희 누나꺼 메소드 grade
+	public int updatetMember(Connection con, Member member) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		System.out.println(member.getPhone());
+		System.out.println(member.getAddress());
+		System.out.println(member.getPassword());
+		System.out.println(member.getMem_num());
+		
+		String query = "update member set phone = ?, address = ?, password = ? where mem_num = ?";
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, member.getPhone());
+			pstmt.setString(2, member.getAddress());
+			pstmt.setString(3, member.getPassword());
+			pstmt.setInt(4, member.getMem_num());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteMember(Connection con, String m_num) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "delete from member where mem_num = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, m_num);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public Member mypageSelect(Connection con, String email) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String query = "select * from member where email = ?";
+		Member member = new Member();
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, email);
+			rs=pstmt.executeQuery();
+			if(rs.next()) {
+				//member = new Member();
+				member.setMem_num(rs.getInt("mem_num"));
+				member.setEmail(email);
+				member.setPassword(rs.getString("password"));
+				member.setName(rs.getString("name"));
+				member.setBirthday(rs.getString("birthday"));
+				member.setPhone(rs.getString("phone"));
+				member.setAddress(rs.getString("address"));
+				member.setCount(rs.getInt("count"));
+				member.setCansell(rs.getString("cansell"));
+				member.setG_Code(rs.getString("g_code"));
+				System.out.println(member);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return member;
+	}
+	
 	//관리자 회원관리용 메소드
 	public ArrayList<MemberAdmin> selectAllMember(Connection conn) {
 		Statement stmt = null;
@@ -242,5 +321,25 @@ public class MemberDao {
 			close(stmt);
 		}
 		return count;
+	}
+
+	public int adminDelMember(Connection conn, String email) {
+		//관리자 회원 삭제 처리용 메소드
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from member where email = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, email);
+			
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
 	}
 }

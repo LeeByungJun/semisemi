@@ -44,6 +44,16 @@
 		text-align:center;
 	}
 </style>
+<script type="text/javascript">
+	function delMember(email){
+		var bool = confirm("이메일이 " + email + "인 회원을 정말 삭제하시겠습니까?");
+		if(bool){
+			location.href="/cs/admindel?email="+email;
+		}else{
+			alert("탈퇴처리를 보류하셨습니다.");
+		}
+	}
+</script>
 </head>
 <body>
 	<%@ include file="adminHeader.jsp" %>
@@ -91,7 +101,7 @@
 										<tr>
 											<td class="thth1">
 												<% if(count.get(i).getCount() >= 3){ %>
-													<a href="/cs/admindel?email=<%= count.get(i).getEmail() %>"><%= count.get(i).getEmail() %></a>
+													<button onclick="delMember('<%= count.get(i).getEmail() %>')" style="background:red;"><%= count.get(i).getEmail() %></button>
 												<% }else{ %>
 													<%= count.get(i).getEmail() %>
 												<% } %>

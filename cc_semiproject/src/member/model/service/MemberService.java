@@ -65,6 +65,40 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	
+	
+	//grade용 윤희누나 꺼 메소드
+	public int updateMember(Member member) {
+		Connection con = getConnection();
+		int result = new MemberDao().updatetMember(con, member);
+		if(result > 0)
+			commit(con);
+		else
+			rollback(con);
+		close(con);
+		return result;
+	}
+
+	public int deleteMember(String m_num) {
+		Connection con = getConnection();
+		int result = new MemberDao().deleteMember(con, m_num);
+		if(result > 0)
+			commit(con);
+		else
+			rollback(con);
+		close(con);
+		return result;
+	}
+
+	public Member mypageSelect(String email) {
+		Connection con= getConnection();
+		Member member = new MemberDao().mypageSelect(con,email);
+		close(con);
+		return member;
+	}
+	
+	
+	
 
 	//관리자 페이지용 메소드들
 	public ArrayList<MemberAdmin> selectAllMember() {
@@ -86,5 +120,18 @@ public class MemberService {
 		ArrayList<MemberAdmin> count = new MemberDao().selectCountMember(conn);
 		close(conn);
 		return count;
+	}
+	
+	//관리자 회원탈퇴 처리용 메소드
+	public int adminDelMember(String email) {
+		Connection conn = getConnection();
+		int result = new MemberDao().adminDelMember(conn,email);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 }

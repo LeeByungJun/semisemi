@@ -56,7 +56,7 @@
 						<a href="/cs/logout" role="button"><span
 								class="glyphicon glyphicon-log-out"></span> Logout</a>					
 						</li>
-						<li><a href="#" role="button"><span
+						<li><a href="/cs/mypage?email=<%= loginUser.getEmail() %>" role="button"><span
 								class="glyphicon glyphicon-user"></span> MyPage</a></li>
 					<% } %>
 				</ul>

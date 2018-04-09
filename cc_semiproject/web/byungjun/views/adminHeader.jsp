@@ -25,9 +25,9 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/cs/adminmi">회원관리</a></li>
 					<!-- class="active" -->
-					<li><a href="/cs/byungjun/views/writeFormManagement.jsp">게시글관리</a></li>
-					<li><a href="statistics.jsp">통계</a></li>
-					<li><a href="reserStatus.jsp">예약현황보기</a></li>
+					<li><a href="/cs/boardmanage?page=1">게시글관리</a></li>
+					<li><a href="/cs/byungjun/views/statistics.jsp">통계</a></li>
+					<li><a href="/cs/byungjun/views/reserStatus.jsp">예약현황보기</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<% if(loginUser == null){ %>
