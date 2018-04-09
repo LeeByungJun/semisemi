@@ -15,7 +15,7 @@ public class MemberDao {
 	public MemberDao() {
 		
 	}
-
+	
 	public Member selectLogin(Connection conn, String email, String pwd) {
 		// TODO Auto-generated method stub
 		Member loginUser = null;
@@ -153,7 +153,7 @@ public class MemberDao {
 		ResultSet rs = null;
 		ArrayList<MemberAdmin> all = new ArrayList<MemberAdmin>();
 		String query = "select mem_num,email,name,phone,address,count,cansell,g_rank"
-				+ " from member m,grade g where m.G_CODE = g.G_CODE";
+				+ " from member m,grade g where m.G_CODE = g.G_CODE order by g_rank";
 		
 		try {
 			stmt = conn.createStatement();
@@ -217,7 +217,7 @@ public class MemberDao {
 		ResultSet rs = null;
 		ArrayList<MemberAdmin> count = new ArrayList<MemberAdmin>();
 		String query = "select mem_num,email,name,phone,address,count,cansell,g_rank"
-				+ " from member m,grade g where m.G_CODE = g.G_CODE and count >= 1";
+				+ " from member m,grade g where m.G_CODE = g.G_CODE and count >= 1 order by count desc";
 		
 		try {
 			stmt = conn.createStatement();

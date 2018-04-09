@@ -91,7 +91,7 @@
 										<tr>
 											<td class="thth1">
 												<% if(count.get(i).getCount() >= 3){ %>
-													<a href="#"><%= count.get(i).getEmail() %></a>
+													<a href="/cs/admindel?email=<%= count.get(i).getEmail() %>"><%= count.get(i).getEmail() %></a>
 												<% }else{ %>
 													<%= count.get(i).getEmail() %>
 												<% } %>
