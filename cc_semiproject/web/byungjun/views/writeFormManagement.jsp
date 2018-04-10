@@ -92,33 +92,33 @@
 								<!-- 페이징 처리 -->
 								<div style="text-align:center;">
 									<% if(currentPage <= 1){ %>
-										[맨처음]&nbsp;
+										<< &nbsp;
 									<% }else{ %>
-										<a href="/cs/boardmanage?page=1">[맨처음]</a>
+										<a href="/cs/boardmanage?page=1"><<</a>&nbsp;
 									<% } %>
-									<% if((currentPage-10) < startPage && (currentPage-10) > 1){ %>
-										<a href="/cs/boardmanage?page=<%= startPage - 10 %>">[prev]</a>
+									<% if(currentPage > startPage){ %>
+										<a href="/cs/boardmanage?page=<%= currentPage-1 %>"><</a>&nbsp;
 									<% }else{ %>
-										[prev]&nbsp;
+										<&nbsp;
 									<% } %>
 									<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
 									<% for(int p = startPage; p<=endPage; p++){ 
 										if(p == currentPage){%>
-											<font color="red" size="4"><b>[<%= p %>]</b></font>
+											<font color="red" size="4"><b><%= p %></b></font>&nbsp;
 										<%}else{ %>
-											<a href="/cs/boardmanage?page=<%= p %>"><%= p %></a>
+											<a href="/cs/boardmanage?page=<%= p %>"><%= p %></a>&nbsp;
 									<% }} %>
 									
-									<% if((currentPage+10) > endPage && (currentPage+10) < maxPage){ %>
-										<a href="/cs/boardmanage?page=<%= endPage + 10 %>">[next]</a>
+									<% if(currentPage != endPage){ %>
+										<a href="/cs/boardmanage?page=<%= currentPage+1 %>">></a>&nbsp;
 									<% }else{ %>
-										[next]&nbsp;
+										>&nbsp;
 									<% } %>
 									
 									<% if(currentPage >= maxPage){ %>
-										[맨끝]&nbsp;
+										>>&nbsp;
 									<% }else{ %>
-										<a href="/cs/boardmanage?page=<%= maxPage %>">[맨끝]</a>
+										<a href="/cs/boardmanage?page=<%= maxPage %>">>></a>
 									<% } %>
 								</div>
 								<% } %>

@@ -71,6 +71,31 @@ public class FaqDao {
 		}
 		return list;
 	}
+	
+	public ArrayList<Faq> categoryGroupBy(Connection conn) {
+		//카테고리 그룹화용 메소드
+		Statement stmt = null;
+		ResultSet rs = null;
+		String query = "select f_category from faq group by f_category";
+		ArrayList<Faq> list = new ArrayList<Faq>();
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				Faq f = new Faq();
+				f.setF_category(rs.getString(1));
+				
+				list.add(f);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(stmt);
+		}
+		return list;
+	}
 
 	public ArrayList<Faq> selectSearchList(Connection conn, String category) {
 		PreparedStatement pstmt = null;
@@ -190,4 +215,5 @@ public class FaqDao {
 		}
 		return result;
 	}
+
 }

@@ -21,7 +21,9 @@ public class MemberDao {
 		Member loginUser = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = "select * from member where email = ? and password = ?";
+		String query = "select mem_num,email,password,name,birthday,"
+				+ "phone,address,count,cansell,m.g_code,g_rank from member m,grade g"
+				+ " where m.g_code = g.g_code and email = ? and password = ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, email);
@@ -40,6 +42,7 @@ public class MemberDao {
 				loginUser.setCount(rs.getInt("count"));
 				loginUser.setCansell(rs.getString("cansell"));
 				loginUser.setG_Code(rs.getString("g_code"));
+				loginUser.setG_Rank(rs.getString("g_rank"));
 			}
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -195,7 +198,9 @@ public class MemberDao {
 	public Member mypageSelect(Connection con, String email) {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String query = "select * from member where email = ?";
+		String query = "select mem_num,email,password,name,birthday,"
+				+ "phone,address,count,cansell,m.g_code,g_rank from member m,grade g"
+				+ " where m.g_code = g.g_code and email = ?";
 		Member member = new Member();
 		
 		try {
@@ -214,7 +219,8 @@ public class MemberDao {
 				member.setCount(rs.getInt("count"));
 				member.setCansell(rs.getString("cansell"));
 				member.setG_Code(rs.getString("g_code"));
-				System.out.println(member);
+				member.setG_Rank(rs.getString("g_rank"));
+				System.out.println("member : " + member.toString());
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

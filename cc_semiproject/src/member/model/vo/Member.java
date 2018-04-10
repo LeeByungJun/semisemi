@@ -12,13 +12,14 @@ public class Member {
 	private int count;
 	private String cansell;
 	private String g_code;
+	private String g_rank;
 	
 	public Member() {
 		
 	}
 
 	public Member(int mem_num, String email, String password, String name, String birthday, String phone, String address,
-			int count, String cansell, String g_code) {
+			int count, String cansell, String g_code, String g_rank) {
 		super();
 		this.mem_num = mem_num;
 		this.email = email;
@@ -30,6 +31,7 @@ public class Member {
 		this.count = count;
 		this.cansell = cansell;
 		this.g_code = g_code;
+		this.g_rank = g_rank;
 	}
 
 	public int getMem_num() {
@@ -103,13 +105,21 @@ public class Member {
 	public void setCansell(String cansell) {
 		this.cansell = cansell;
 	}
-
+	
 	public String getG_Code() {
 		return g_code;
 	}
 
 	public void setG_Code(String g_code) {
 		this.g_code = g_code;
+	}
+
+	public String getG_Rank() {
+		return g_rank;
+	}
+
+	public void setG_Rank(String g_rank) {
+		this.g_rank = g_rank;
 	}
 	
 	@Override
@@ -118,7 +128,7 @@ public class Member {
 		return this.mem_num + ", " + this.email + ", " + this.password + ", "
 				+ this.name + ", " + this.birthday + ", " + this.phone + ", "
 				+ this.address + ", " + this.count + ", " + this.cansell + ", "
-				+ this.g_code;
+				+ this.g_code + ", " + this.g_rank;
 	}
 	
 }

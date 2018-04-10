@@ -26,6 +26,14 @@ public class FaqService {
 		close(conn);
 		return list;
 	}
+	
+	public ArrayList<Faq> categoryGroupBy() {
+		//카테고리 뽑아오기용 메소드
+		Connection conn = getConnection();
+		ArrayList<Faq> list = new FaqDao().categoryGroupBy(conn);
+		close(conn);
+		return list;
+	}
 
 	public ArrayList<Faq> selectSearchList(String category) {
 		Connection conn = getConnection();
@@ -80,4 +88,5 @@ public class FaqService {
 		close(conn);
 		return result;
 	}
+
 }

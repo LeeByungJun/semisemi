@@ -63,7 +63,7 @@ public class mailSender extends HttpServlet {
 		p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		p.put("mail.smtp.socketFactory.fallback", "false");
 
-		Authenticator auth = new SMTPAuthenticator("pjlee9212", "asdf1020!");
+		Authenticator auth = new SMTPAuthenticator("pjlee9212", "Asdf1020?");
 
 		Session session = Session.getInstance(p, auth);
 

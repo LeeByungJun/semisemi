@@ -41,6 +41,19 @@ public class FaqListServlet extends HttpServlet {
 		if (request.getParameter("page") != null) {
 			currentPage = Integer.parseInt(request.getParameter("page"));
 		}
+		
+		//이게 왜 필요한가?
+		int currentCategory = 0;
+	    if (request.getParameter("category") != null) {
+	       currentCategory = Integer.parseInt(request.getParameter("category"));
+	    }
+	    
+	    String categoryName = null;
+	    if(request.getParameter("categoryName") != null) {
+	    	categoryName = request.getParameter("categoryName");
+	    }
+	    
+	    System.out.println("faqListSERVLET categoryName = " + categoryName);
 
 		// 한 페이지당 출력할 목록 갯수 지정
 		int limit = 6;
@@ -50,8 +63,16 @@ public class FaqListServlet extends HttpServlet {
 		int listCount = fservice.getListCount();
 		//System.out.println("총 게시글 수 : " + listCount);
 		// 현재 페이지에 출력할 목록 조회
-		ArrayList<Faq> list = fservice.selectList(currentPage, limit);
-		System.out.println(list);
+		ArrayList<Faq> list = null;
+		if(categoryName == null) {
+			list = fservice.selectList(currentPage, limit);
+		}else {
+			list = fservice.selectSearchList(categoryName);
+		}
+		//System.out.println(list);
+		
+		//카테고리 목록 가져오기 용 arraylist
+		ArrayList<Faq> categoryList = fservice.categoryGroupBy();
 
 		// 총 페이지 수 계산 : 목록이 1개일 때 1페이지로 처리
 		int maxPage = (int) ((double) listCount / limit + 0.9);
@@ -65,18 +86,32 @@ public class FaqListServlet extends HttpServlet {
 
 		response.setContentType("text/html; charset=utf-8");
 		RequestDispatcher view = null;
-		if (list.size() > 0) {
+		if (list.size() > 0 && categoryName == null) {
 			view = request.getRequestDispatcher("byungjun/views/faq.jsp");
 			request.setAttribute("list", list);
+			request.setAttribute("category", currentCategory);
+			request.setAttribute("categoryGroup", categoryList);
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("maxPage", maxPage);
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("listCount", listCount);
 			view.forward(request, response);
+		} else if(list.size() > 0 && categoryName != null) {
+			view = request.getRequestDispatcher("byungjun/views/faq.jsp");
+			request.setAttribute("list", list);
+			request.setAttribute("category", currentCategory);
+			request.setAttribute("categoryGroup", categoryList);
+			request.setAttribute("currentPage", 0);
+			request.setAttribute("maxPage", 0);
+			request.setAttribute("startPage", 0);
+			request.setAttribute("endPage", 0);
+			request.setAttribute("listCount", 0);
+			view.forward(request, response);
 		} else {
 			response.sendRedirect("index.jsp");
 		}
+		
 	}
 
 	/**

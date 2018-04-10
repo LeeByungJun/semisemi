@@ -58,14 +58,14 @@ public class LoginServlet extends HttpServlet {
 	    	
 	    	//차트용 데이터 뽑아오기
 	    	ArrayList<Visit> totalCount = new VisitService().totalCount();
-	    	for(Visit v:totalCount) {
+	    	/*for(Visit v:totalCount) {
 	    		System.out.println(v.toString());
-	    	}
+	    	}*/
 	    	session.setAttribute("totalVisit", totalCount);
 	    	
 	    	//오늘 방문 인원 수 구하기
 	    	int todayCount = new VisitService().todayCount();
-	    	System.out.println("todayCount = " + todayCount);
+	    	//System.out.println("todayCount = " + todayCount);
 	    	
 	    	session.setAttribute("todayVisit", todayCount);
 	    	
