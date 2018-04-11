@@ -100,6 +100,7 @@ table tr td {
 			<!-- main contents -->
 			<div class="col-sm-8 text-left">
 				<!-- 컨텐츠를 넣으세요 -->
+				<i class="fa fa-comments-o" style="font-size:36px; float:left;"></i>
 				<div id="title">FAQ</div>
 				<%-- <div id="tb">
 					<!-- <button class="btn btn-info" id="b5">전체조회</button> -->
@@ -199,7 +200,7 @@ table tr td {
 				<hr>
 				<% } %>
 			</div>
-			<div class="col-sm-2 sidenav">
+			<div class="col-sm-2 sidenav" style="padding:0 0 5 0; background:white;">
 				<%@ include file="../../resources/include/add.jsp"%>
 			</div>
 		</div>

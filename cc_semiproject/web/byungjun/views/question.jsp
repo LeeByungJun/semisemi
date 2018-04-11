@@ -6,18 +6,6 @@
 <meta charset="UTF-8">
 <title>질문하기</title>
 <script src="/cs/resources/bootstrap/js/jquery-3.3.1.min.js"></script>
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<link
-	href="https://fonts.googleapis.com/css?family=Oswald:700|Patua+One|Roboto+Condensed:700"
-	rel="stylesheet">
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-	rel="stylesheet"> -->
 <%@ include file="../../resources/include/meta.jsp"%>
 <style type="text/css">
 
@@ -92,13 +80,16 @@ function fn( ){
 						<tr>
 							<th><p>저희 C&C사에 하고 싶은 말을 적어 보내주세요! 고객님의 한마디가 큰 힘이 됩니다</p></th>
 						</tr>
-						<tr><th><label for="exampleInputName2">Name</label> <input
+						<tr><th><label for="exampleInputEmail2">관리자이메일</label> <input
+												type="email" class="form-control"
+												placeholder="abcd123@example.com" value="pjlee9212@gmail.com" readonly></th></tr>
+						<tr><th><label for="exampleInputName2">고객명</label> <input
 												type="text" name="username" class="form-control" id="exampleInputName2"
 												placeholder="Jane Doe"></th></tr>
-						<tr><th><label for="exampleInputEmail2">Email</label> <input
+						<tr><th><label for="exampleInputEmail2">고객이메일</label> <input
 												type="email" name="email" class="form-control" id="exampleInputEmail2"
 												placeholder="abcd123@example.com"></th></tr>
-						<tr><th><label for="exampleInputText">Your Message</label>
+						<tr><th><label for="exampleInputText">하실 말씀</label>
 											<textarea class="form-control" id="contents" name="contents" placeholder="Description"></textarea></th></tr>
 						<tr>
 							<th class="_onFocus">

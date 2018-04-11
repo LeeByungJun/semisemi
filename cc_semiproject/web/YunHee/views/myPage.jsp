@@ -11,7 +11,7 @@
 <head>
 <meta charset= "UTF-8">
 <title>MyPage</title>
-<%@ include file="../include/meta.jsp"%>
+<%@ include file="../../resources/include/meta.jsp"%>
 <script type="text/javascript">
 function updateClient(){
 	var name = $('#name').val();
@@ -64,46 +64,7 @@ function updateClient(){
     	});
 	}
 }
-/* function pwdcheck() {
-	var userpwd = $('#userpwd').val();
-	var userpwd2 = $('#userpwd2').val();
-	
-	if (userpwd != userpwd2) {
-		alert("비밀번호가 일치하지 않습니다");
-		return false;
-	} else {
-		return true;
-	}
-} */
-/* $(function(){
-	$(#update).click({
-		var phone = $('#phone').val();
-		var address = $('#address').val();
-		var email = $('#email').val();
-		var name = $('#name').val();
-		var birthday = $('#birthday').val();
-	});
-	
-	$.ajax({
-		url : "/cs/mupdate",
-		data : {
-			name : name,
-			birthday : birthday,
-			phone : phone,
-			address : address,
-			email : email,
-			userpwd : $('#userpwd').val()
-			},
-		type : "post",
-		success : function(data) {
-			if(data != null){
-                console.log(data);
-             }else{
-                alert("회원정보 수정 실패");
-             }
-		}
-	});
-}); */
+
 </script>
 </head>
 <body>
@@ -118,8 +79,14 @@ function updateClient(){
 			</div>
 			<!-- main contents -->
 			<div class="col-sm-8 text-left">
-
-				<H2 align="center"><b>마이 페이지&nbsp;&nbsp;&nbsp;&nbsp;</b></H2>
+				<div align="center">
+				<table>
+					<tr>
+						<td><i class="fa fa-user" style="font-size:36px;"></i></td>
+						<td><H2><b>마이 페이지&nbsp;&nbsp;&nbsp;&nbsp;</b></H2></td>
+					</tr>
+				</table>
+				</div>
 				<br>
 				<form>
 					<input type="hidden" id="num" value="<%= member1.getMem_num() %>">

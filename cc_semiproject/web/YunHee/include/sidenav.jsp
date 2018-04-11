@@ -7,10 +7,10 @@
 					<a href="/cs/mypage?email=<%= member.getEmail() %>">마이 페이지</a>
 				</p>
 				<p>
-					<a href="/cs/YunHee/views/reservation.jsp">예약 및 이용내역</a>
+					<a href="/cs/reserview?num=<%= member.getMem_num() %>">예약 및 이용내역</a>
 				</p>
 				<p>
-					<a href="/cs/gview">회원 등급 보기</a>
+					<a href="/cs/gview">등급별 혜택보기</a>
 				</p>
 			
 			<!-- <div class="col-sm-2 sidenav">

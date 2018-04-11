@@ -79,11 +79,11 @@ public class mailSender extends HttpServlet {
 			
 			try {
 				msg.setSubject(username + "님 문의사항", "UTF-8");
-				Address fromAddr = new InternetAddress("pjlee9212@gmail.com"); // 보내는 사람의 메일주소
+				Address fromAddr = new InternetAddress(to_email); // 보내는 사람의 메일주소
 
 				msg.setFrom(fromAddr);
 
-				InternetAddress addressTo = new InternetAddress(to_email);
+				InternetAddress addressTo = new InternetAddress("pjlee9212@gmail.com");
 
 				msg.setRecipient(Message.RecipientType.TO, addressTo);
 

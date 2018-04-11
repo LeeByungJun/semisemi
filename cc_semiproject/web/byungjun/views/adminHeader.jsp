@@ -27,7 +27,7 @@
 					<!-- class="active" -->
 					<li><a href="/cs/boardmanage?page=1">게시글관리</a></li>
 					<li><a href="/cs/byungjun/views/statistics.jsp">통계</a></li>
-					<li><a href="/cs/byungjun/views/reserStatus.jsp">예약현황보기</a></li>
+					<li><a href="/cs/reserstatus">예약현황보기</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<% if(loginUser == null){ %>

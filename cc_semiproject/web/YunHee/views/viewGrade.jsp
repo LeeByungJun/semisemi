@@ -28,17 +28,17 @@
 					<table class="table" align="center" cellspacing="0" border="0">
 						<tr>
 							<th style="text-align:center;">회원등급</th>
-							<th><input style="text-align:center; border:none;" value="<%= list.get(0).getG_rank() %>"></th>
-							<th><input style="text-align:center; border:none;" value="<%= list.get(1).getG_rank() %>"></th>
-							<th><input style="text-align:center; border:none;" value="<%= list.get(2).getG_rank() %>"></th>
-							<th><input style="text-align:center; border:none;" value="<%= list.get(3).getG_rank() %>"></th>
+							<th><input style="text-align:center; border:none; color:gold;" value="<%= list.get(0).getG_rank() %>" readonly></th>
+							<th><input style="text-align:center; border:none; color:silver;" value="<%= list.get(1).getG_rank() %>" readonly></th>
+							<th><input style="text-align:center; border:none; color:brown;" value="<%= list.get(2).getG_rank() %>" readonly></th>
+							<th><input style="text-align:center; border:none;" value="<%= list.get(3).getG_rank() %>" readonly></th>
 						</tr>
 						<tr>
 							<td align="center">등급별 할인율</td>
-							<td><input style="text-align:center; border:none;" value="<%= list.get(0).getG_rate() %>%"></td>
-							<td><input style="text-align:center; border:none;" value="<%= list.get(1).getG_rate() %>%"></td>
-							<td><input style="text-align:center; border:none;" value="<%= list.get(2).getG_rate() %>%"></td>
-							<td><input style="text-align:center; border:none;" value="<%= list.get(3).getG_rate() %>%"></td>
+							<td><input style="text-align:center; border:none;" value="<%= list.get(0).getG_rate() %>%" readonly></td>
+							<td><input style="text-align:center; border:none;" value="<%= list.get(1).getG_rate() %>%" readonly></td>
+							<td><input style="text-align:center; border:none;" value="<%= list.get(2).getG_rate() %>%" readonly></td>
+							<td><input style="text-align:center; border:none;" value="<%= list.get(3).getG_rate() %>%" readonly></td>
 						</tr>
 						<!-- <tr>
 							<td align="center">제공 이벤트</td>
@@ -51,27 +51,27 @@
 					<h2>회원 등급 선정 기준</h2>
 					<table class="table">
 						<tr>
-							<th style="text-align:center;"><input style="text-align:center; border:none;" value="<%= list.get(0).getG_rank() %>"></th>
-							<th style="text-align:center;"><input style="text-align:center; border:none;" value="<%= list.get(1).getG_rank() %>"></th>
+							<th style="text-align:center;"><input style="text-align:center; border:none; color:gold;" value="<%= list.get(0).getG_rank() %>" readonly></th>
+							<th style="text-align:center;"><input style="text-align:center; border:none; color:silver;" value="<%= list.get(1).getG_rank() %>" readonly></th>
 						</tr>
 						<tr>
 							<td align="center">
-							<input style="text-align:center; width:400px; height:300; border:none; margin:8px;" value="<%= list.get(0).getG_comment() %>">
+							<input style="text-align:center; width:400px; height:300; border:none; margin:8px;" value='<%= list.get(0).getG_comment() %>'>
 							<br><br></td>
 							<td align="center">
-							<input style="text-align:center; width:400px; height:300; border:none; margin:8px;" value="<%= list.get(1).getG_comment() %>">
+							<input style="text-align:center; width:400px; height:300; border:none; margin:8px;" value='<%= list.get(1).getG_comment() %>'>
 							<br><br></td>
 						</tr>
 						<tr>
-							<th style="text-align:center;"><input style="text-align:center; border:none;" value="<%= list.get(2).getG_rank() %>"></th>
-							<th style="text-align:center;"><input style="text-align:center; border:none;" value="<%= list.get(3).getG_rank() %>"></th>
+							<th style="text-align:center;"><input style="text-align:center; border:none; color:brown;" value="<%= list.get(2).getG_rank() %>" readonly></th>
+							<th style="text-align:center;"><input style="text-align:center; border:none; color:black" value="<%= list.get(3).getG_rank() %>" readonly></th>
 						</tr>
 						<tr>
 							<td align="center">
-							<input style="text-align:center; width:400px; height:300; border:none; margin:8px;" value="<%= list.get(2).getG_comment() %>">
+							<input style="text-align:center; width:400px; height:300; border:none; margin:8px;" value='<%= list.get(2).getG_comment() %>'>
 							<br><br></td>
 							<td align="center">
-							<input style="text-align:center; width:400px; height:300; border:none; margin:8px;" value="<%= list.get(3).getG_comment() %>">
+							<input style="text-align:center; width:400px; height:300; border:none; margin:8px;" value='<%= list.get(3).getG_comment() %>'>
 							<br><br></td>
 						</tr>
 					</table>

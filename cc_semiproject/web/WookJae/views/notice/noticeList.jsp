@@ -37,9 +37,9 @@
 					<%@ include file="../../../resources/include/sidenav.jsp"%>
 					</div>
 					<!-- main contents -->
-					<div class="col-sm-8 text-left">					
+					<div class="col-sm-8 text-left"><!-- #9900ff -->					
 					<div class="container" style="width:100%; height:600%">					     
-					    <h1 style="color:#9900ff;"><b>Notice</b></h1>
+					    <i class="material-icons" style="font-size:45px; float:left;">drive_eta</i><h1 style="color:black; margin-top:3px;">Notice</h1>
 					    <!-- <form action="/nlist" method="post">  -->
 					    <% if(loginUser!=null&&loginUser.getEmail().equals("pjlee92@naver.com")){ %>
 						<table class="table table-striped" style="text-align:center; border:1px solid #dddddd">
@@ -145,7 +145,7 @@
 						
 						</div>					
 					</div>
-					<div class="col-sm-2 sidenav">
+					<div class="col-sm-2 sidenav" style="padding:0 0 5 0; background:white;">
 						<%@ include file="../../../resources/include/add.jsp" %>
 					</div>
 				</div>

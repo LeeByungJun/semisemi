@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="admin.reservation.model.vo.ReservationList,java.util.*" %>
+<%
+	ArrayList<ReservationList> list = (ArrayList<ReservationList>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,7 +45,18 @@
 					<legend id="gold">골드</legend>
 					<table border="1" cellspacing="0">
 						<tr><th class="size1">이름</th><th class="size2">이메일</th><th class="size1">차 이름</th><th class="size2">예약 시작일</th><th class="size2">예약 종료일</th><th class="size1">등급</th></tr>
-						<tr><td class="size1">낙타</td><td class="size2">camel@gmail.com</td><td class="size1">싼타페</td><td class="size2">2018/04/09</td><td class="size2">2018/04/12</td><td class="size1">골드</td></tr>
+						
+						<% for(int i=0;i<list.size();i++){ %>
+							<% if(list.get(i).getG_rank().equals("GOLD")){ %>
+							<tr>
+								<td class="size1"><%= list.get(i).getName() %></td>
+								<td class="size2"><%= list.get(i).getEmail() %></td>
+								<td class="size1"><%= list.get(i).getCarname() %></td>
+								<td class="size2"><%= list.get(i).getCarstartdate() %></td>
+								<td class="size2"><%= list.get(i).getCarenddate() %></td>
+								<td class="size1"><%= list.get(i).getG_rank() %></td>
+							</tr>
+						<% }} %>
 					</table>
 				</fieldset>
 				<br>
@@ -49,7 +64,18 @@
 					<legend id="silver">실버</legend>
 					<table border="1" cellspacing="0">
 						<tr><th class="size1">이름</th><th class="size2">이메일</th><th class="size1">차 이름</th><th class="size2">예약 시작일</th><th class="size2">예약 종료일</th><th class="size1">등급</th></tr>
-						<tr><td class="size1">릴라</td><td class="size2">rilla@naver.com</td><td class="size1">맥스크루즈</td><td class="size2">2018/04/05</td><td class="size2">2018/04/13</td><td class="size1">실버</td></tr>
+						<% for(int i=0;i<list.size();i++){ %>
+							<% if(list.get(i).getG_rank().equals("SILVER")){ %>
+							<tr>
+								<td class="size1"><%= list.get(i).getName() %></td>
+								<td class="size2"><%= list.get(i).getEmail() %></td>
+								<td class="size1"><%= list.get(i).getCarname() %></td>
+								<td class="size2"><%= list.get(i).getCarstartdate() %></td>
+								<td class="size2"><%= list.get(i).getCarenddate() %></td>
+								<td class="size1"><%= list.get(i).getG_rank() %></td>
+							</tr>
+						<% }} %>
+						
 					</table>
 				</fieldset>
 				<br>
@@ -57,7 +83,18 @@
 					<legend id="bronze">브론즈</legend>
 					<table border="1" cellspacing="0">
 						<tr><th class="size1">이름</th><th class="size2">이메일</th><th class="size1">차 이름</th><th class="size2">예약 시작일</th><th class="size2">예약 종료일</th><th class="size1">등급</th></tr>
-						<tr><td class="size1">주니</td><td class="size2">forlook@naver.com</td><td class="size1">벨로스터</td><td class="size2">2018/04/10</td><td class="size2">2018/04/19</td><td class="size1">브론즈</td></tr>
+						<% for(int i=0;i<list.size();i++){ %>
+							<% if(list.get(i).getG_rank().equals("BRONZE")){ %>
+							<tr>
+								<td class="size1"><%= list.get(i).getName() %></td>
+								<td class="size2"><%= list.get(i).getEmail() %></td>
+								<td class="size1"><%= list.get(i).getCarname() %></td>
+								<td class="size2"><%= list.get(i).getCarstartdate() %></td>
+								<td class="size2"><%= list.get(i).getCarenddate() %></td>
+								<td class="size1"><%= list.get(i).getG_rank() %></td>
+							</tr>
+						<% }} %>
+						
 					</table>
 				</fieldset>
 				<br>
@@ -65,7 +102,18 @@
 					<legend>일반</legend>
 					<table border="1" cellspacing="0">
 						<tr><th class="size1">이름</th><th class="size2">이메일</th><th class="size1">차 이름</th><th class="size2">예약 시작일</th><th class="size2">예약 종료일</th><th class="size1">등급</th></tr>
-						<tr><td class="size1">도비</td><td class="size2">doby92@daum.net</td><td class="size1">모닝</td><td class="size2">2018/04/04</td><td class="size2">2018/04/06</td><td class="size1">일반</td></tr>
+						<% for(int i=0;i<list.size();i++){ %>
+							<% if(list.get(i).getG_rank().equals("BASIC")){ %>
+							<tr>
+								<td class="size1"><%= list.get(i).getName() %></td>
+								<td class="size2"><%= list.get(i).getEmail() %></td>
+								<td class="size1"><%= list.get(i).getCarname() %></td>
+								<td class="size2"><%= list.get(i).getCarstartdate() %></td>
+								<td class="size2"><%= list.get(i).getCarenddate() %></td>
+								<td class="size1"><%= list.get(i).getG_rank() %></td>
+							</tr>
+						<% }} %>
+						
 					</table>
 				</fieldset>
 				<br><br><Br><br>

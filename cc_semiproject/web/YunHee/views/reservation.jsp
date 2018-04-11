@@ -1,9 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="member.reservation.model.vo.ReservationView" %>
+<% 
+	ReservationView rsview = (ReservationView)request.getAttribute("rsview");
+%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
 <title>Reservation</title>
 <%@ include file="../include/meta.jsp"%>
 </head>
@@ -25,31 +29,29 @@
 					<table class="table">
 						<tr align="center">
 							<th style="text-align:center;">예약번호</th>
-							<th style="text-align:center;">대여기간</th>
+							<th style="text-align:center;">대여일</th>
+							<th style="text-align:center;">반납일</th>
 							<th style="text-align:center;">대여지점</th>
 							<th style="text-align:center;">차명</th>
 							<th style="text-align:center;">대여금액</th>
-							<th style="text-align:center;">결제여부</th>
 							<th style="text-align:center;">보험 가입여부</th>
 						</tr>
+						<% if(rsview != null){ %>
 						<tr>
-							<td align="center">1</td>
-							<td align="center">7일</td>
-							<td align="center">테헤란로점</td>
-							<td align="center">소나타</td>
-							<td align="center">500,000원</td>
-							<td align="center">Y</td>
-							<td align="center">N</td>
+							<td align="center"><input style="text-align:center; border:none;" value="<%= rsview.getReser_no() %>"></td>
+							<td align="center"><input style="text-align:center; border:none;" value="<%= rsview.getReser_startday() %>"></td>
+							<td align="center"><input style="text-align:center; border:none;" value="<%= rsview.getReser_endday() %>"></td>
+							<td align="center"><input style="text-align:center; border:none;" value="<%= rsview.getReser_office() %>"></td>
+							<td align="center"><input style="text-align:center; border:none;" value="<%= rsview.getReser_car() %>"></td>
+							<td align="center"><input style="text-align:center; border:none;" value="<%= rsview.getReser_cash() %>"></td>
+							<td align="center"><input style="text-align:center; border:none;" value="<%= rsview.getReser_insurance() %>"></td>
 						</tr>
+						<% }else{ %>
 						<tr>
-							<td align="center">2</td>
-							<td align="center">1일</td>
-							<td align="center">강남점</td>
-							<td align="center">스타렉스</td>
-							<td align="center">100,000원</td>
-							<td align="center">N</td>
-							<td align="center">Y</td>
+							<td align="center" colspan="7">예약 내역 없음!!!</td>
+							
 						</tr>
+						<% } %>
 					</table>
 				</form>
 			</div>
