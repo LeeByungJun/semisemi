@@ -37,10 +37,11 @@
 				<!-- 컨텐츠를 넣으세요 -->
 				<h1 align="center" style="margin-left: 300px;">통계 페이지</h1>
 				<br>
-				<h4 align="center" style="margin-left: 300px;">일일 방문자 수</h4>
+				<h4 align="center" style="margin-left: 300px; color:#329632;">일일 방문자 수</h4>
 				<div id="areachart"
 					style="width: 70%; height: 300px; margin-left:270px;"></div>
-				<h4 align="center" style="margin-left: 300px;">일일 예약 횟수</h4>
+				<br><br>
+				<h4 align="center" style="margin-left: 300px; color:#CD1039;">일일 예약 횟수</h4>
 				<div id="areachart1" align="center"
 					style="width: 70%; height: 300px; margin-left:270px;"></div>
 				<script>
@@ -89,10 +90,10 @@
 										<% } %>
 									] 
 								],
-							type : 'line'
-							/* colors : {
-								'데이터' : '#F39C12' //C12
-							} */
+							type : 'line',
+							colors : {
+								'방문자 수' : '#329632' //C12
+							}
 						},
 					  axis : {
 							x : {
@@ -130,8 +131,9 @@
 							],
 							type : 'line',
 							colors : {
-								'데이터' : '#FF0000'
-							}
+								'x' : '#B0F7FF',
+								'예약 횟수': "#CD1039"
+							}/* 데이터 */
 						},
 						axis : {
 							x : {
@@ -146,7 +148,7 @@
 
 			</div>
 			<br>
-			오늘 예약횟수 : 
+			<%-- 오늘 예약횟수 : 
 			<% for(Visit v:totalReservationCount){ %>
 				<%= v.getVisitDate() %><br>
 				<%= v.getVisitCount() %><br>
@@ -157,7 +159,7 @@
 				<%= v.getVisitDate() %><br>
 				<%= v.getVisitCount() %>
 			<% } %>
-			<br><br>
+			<br><br> --%>
 			<%-- <div class="col-sm-2 sidenav">
 				<%@ include file="../../resources/include/add.jsp" %>
 			</div> --%>

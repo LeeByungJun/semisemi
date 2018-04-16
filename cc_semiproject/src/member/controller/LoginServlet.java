@@ -75,6 +75,13 @@ public class LoginServlet extends HttpServlet {
 			ArrayList<Visit> totalReservationCount = new ReservationService().totalReservation();
 			session.setAttribute("totalReservationCount", totalReservationCount);
 	    	
+			///////////////////////한진코드///////////
+			new MemberService().codeupdate(email);
+			
+			System.out.println("로그인"+email);
+			
+			///////////////////////////////////////
+
 			/*count++;
 			System.out.println("접속한 유저 수 : " + count);*/
 			/*response.sendRedirect("index.jsp");*/

@@ -93,6 +93,13 @@ public class NoticeService {
 		return result;
 	}
 
+	public ArrayList<Notice> noticeTop5() {
+		 Connection con = getConnection();
+	     ArrayList<Notice> list = new NoticeDao().noticeTop5(con);
+	     close(con);
+	     return list;
+	}
+
 
 	
 	

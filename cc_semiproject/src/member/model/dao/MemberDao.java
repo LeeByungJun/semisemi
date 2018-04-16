@@ -1,9 +1,6 @@
 package member.model.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 
 import member.model.vo.Member;
@@ -13,9 +10,9 @@ import static common.JDBCTemplate.*;
 
 public class MemberDao {
 	public MemberDao() {
-		
+
 	}
-	
+
 	public Member selectLogin(Connection conn, String email, String pwd) {
 		// TODO Auto-generated method stub
 		Member loginUser = null;
@@ -29,9 +26,9 @@ public class MemberDao {
 			pstmt.setString(1, email);
 			pstmt.setString(2, pwd);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				loginUser = new Member();
-				
+
 				loginUser.setMem_num(rs.getInt("mem_num"));
 				loginUser.setEmail(rs.getString("email"));
 				loginUser.setPassword(rs.getString("password"));
@@ -44,9 +41,9 @@ public class MemberDao {
 				loginUser.setG_Code(rs.getString("g_code"));
 				loginUser.setG_Rank(rs.getString("g_rank"));
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rs);
 			close(pstmt);
 		}
@@ -57,17 +54,17 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query = "update member set password = ? where email = ?";
-		
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, sb.toString());
 			pstmt.setString(2, to_email);
-			
+
 			result = pstmt.executeUpdate();
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(pstmt);
 		}
 		return result;
@@ -76,18 +73,14 @@ public class MemberDao {
 	public int insertMember(Connection conn, Member member) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		/*MEM_NUM	NUMBER(5,0)
-		EMAIL	VARCHAR2(50 BYTE)
-		PASSWORD	VARCHAR2(250 BYTE)
-		NAME	VARCHAR2(20 BYTE)
-		BIRTHDAY	VARCHAR2(15 BYTE)
-		PHONE	VARCHAR2(30 BYTE)
-		ADDRESS	VARCHAR2(300 BYTE)
-		COUNT	NUMBER(3,0)
-		CANSELL	CHAR(1 BYTE)
-		G_CODE	VARCHAR2(2 BYTE)*/
-		String query = "insert into member values((select max(mem_num)+1 from member),?,?,?,?,?,?,default,default,'G4')";
-		
+		/*
+		 * MEM_NUM NUMBER(5,0) EMAIL VARCHAR2(50 BYTE) PASSWORD VARCHAR2(250 BYTE) NAME
+		 * VARCHAR2(20 BYTE) BIRTHDAY VARCHAR2(15 BYTE) PHONE VARCHAR2(30 BYTE) ADDRESS
+		 * VARCHAR2(300 BYTE) COUNT NUMBER(3,0) CANSELL CHAR(1 BYTE) G_CODE VARCHAR2(2
+		 * BYTE)
+		 */
+		String query = "insert into member values((select max(mem_num)+1 from member),?,?,?,?,?,?,default,default,'G3')";
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, member.getEmail());
@@ -96,12 +89,12 @@ public class MemberDao {
 			pstmt.setString(4, member.getBirthday());
 			pstmt.setString(5, member.getPhone());
 			pstmt.setString(6, member.getAddress());
-			
+
 			result = pstmt.executeUpdate();
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(pstmt);
 		}
 		return result;
@@ -112,18 +105,18 @@ public class MemberDao {
 		ResultSet rs = null;
 		String userid = null;
 		String query = "select email from member where name = ? and birthday = ?";
-		
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, username);
 			pstmt.setString(2, userbirth);
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				userid = rs.getString(1);
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rs);
 			close(pstmt);
 		}
@@ -134,32 +127,32 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query = "update member set password = ? where email = ?";
-		
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, tempPwd);
 			pstmt.setString(2, to_email);
-			
+
 			result = pstmt.executeUpdate();
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(pstmt);
 		}
 		return result;
 	}
-	
-	//윤희 누나꺼 메소드 grade
+
+	// 윤희 누나꺼 메소드 grade
 	public int updatetMember(Connection con, Member member) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		
+
 		System.out.println(member.getPhone());
 		System.out.println(member.getAddress());
 		System.out.println(member.getPassword());
 		System.out.println(member.getMem_num());
-		
+
 		String query = "update member set phone = ?, address = ?, password = ? where mem_num = ?";
 		try {
 			pstmt = con.prepareStatement(query);
@@ -167,7 +160,7 @@ public class MemberDao {
 			pstmt.setString(2, member.getAddress());
 			pstmt.setString(3, member.getPassword());
 			pstmt.setInt(4, member.getMem_num());
-			
+
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -181,11 +174,11 @@ public class MemberDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = "delete from member where mem_num = ?";
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, m_num);
-			
+
 			result = pstmt.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -202,13 +195,13 @@ public class MemberDao {
 				+ "phone,address,count,cansell,m.g_code,g_rank from member m,grade g"
 				+ " where m.g_code = g.g_code and email = ?";
 		Member member = new Member();
-		
+
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, email);
-			rs=pstmt.executeQuery();
-			if(rs.next()) {
-				//member = new Member();
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				// member = new Member();
 				member.setMem_num(rs.getInt("mem_num"));
 				member.setEmail(email);
 				member.setPassword(rs.getString("password"));
@@ -222,29 +215,29 @@ public class MemberDao {
 				member.setG_Rank(rs.getString("g_rank"));
 				System.out.println("member : " + member.toString());
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rs);
 			close(pstmt);
 		}
-		
+
 		return member;
 	}
-	
-	//관리자 회원관리용 메소드
+
+	// 관리자 회원관리용 메소드
 	public ArrayList<MemberAdmin> selectAllMember(Connection conn) {
 		Statement stmt = null;
 		ResultSet rs = null;
 		ArrayList<MemberAdmin> all = new ArrayList<MemberAdmin>();
 		String query = "select mem_num,email,name,phone,address,count,cansell,g_rank"
 				+ " from member m,grade g where m.G_CODE = g.G_CODE order by g_rank";
-		
+
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(query);
-			while(rs.next()) {
-				MemberAdmin m = new MemberAdmin();			
+			while (rs.next()) {
+				MemberAdmin m = new MemberAdmin();
 				m.setMem_num(rs.getInt("mem_num"));
 				m.setEmail(rs.getString("email"));
 				m.setName(rs.getString("name"));
@@ -253,12 +246,12 @@ public class MemberDao {
 				m.setCount(rs.getInt("count"));
 				m.setCansell(rs.getString("cansell"));
 				m.setG_Rank(rs.getString("g_rank"));
-				
+
 				all.add(m);
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rs);
 			close(stmt);
 		}
@@ -271,12 +264,12 @@ public class MemberDao {
 		ArrayList<MemberAdmin> cansell = new ArrayList<MemberAdmin>();
 		String query = "select mem_num,email,name,phone,address,count,cansell,g_rank"
 				+ " from member m,grade g where m.G_CODE = g.G_CODE and cansell = 'Y'";
-		
+
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(query);
-			while(rs.next()) {
-				MemberAdmin m = new MemberAdmin();			
+			while (rs.next()) {
+				MemberAdmin m = new MemberAdmin();
 				m.setMem_num(rs.getInt("mem_num"));
 				m.setEmail(rs.getString("email"));
 				m.setName(rs.getString("name"));
@@ -285,12 +278,12 @@ public class MemberDao {
 				m.setCount(rs.getInt("count"));
 				m.setCansell(rs.getString("cansell"));
 				m.setG_Rank(rs.getString("g_rank"));
-				
+
 				cansell.add(m);
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rs);
 			close(stmt);
 		}
@@ -303,12 +296,12 @@ public class MemberDao {
 		ArrayList<MemberAdmin> count = new ArrayList<MemberAdmin>();
 		String query = "select mem_num,email,name,phone,address,count,cansell,g_rank"
 				+ " from member m,grade g where m.G_CODE = g.G_CODE and count >= 1 order by count desc";
-		
+
 		try {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(query);
-			while(rs.next()) {
-				MemberAdmin m = new MemberAdmin();			
+			while (rs.next()) {
+				MemberAdmin m = new MemberAdmin();
 				m.setMem_num(rs.getInt("mem_num"));
 				m.setEmail(rs.getString("email"));
 				m.setName(rs.getString("name"));
@@ -317,12 +310,12 @@ public class MemberDao {
 				m.setCount(rs.getInt("count"));
 				m.setCansell(rs.getString("cansell"));
 				m.setG_Rank(rs.getString("g_rank"));
-				
+
 				count.add(m);
 			}
-		}catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(rs);
 			close(stmt);
 		}
@@ -330,42 +323,73 @@ public class MemberDao {
 	}
 
 	public int adminDelMember(Connection conn, String email) {
-		//관리자 회원 삭제 처리용 메소드
+		// 관리자 회원 삭제 처리용 메소드
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query = "delete from member where email = ?";
-		
+
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, email);
-			
+
 			result = pstmt.executeUpdate();
-			
-		}catch(Exception e) {
+
+		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
+		} finally {
 			close(pstmt);
 		}
 		return result;
 	}
-	
-	//신고 카운트 증가용 메소드
-	 public int addMemberReportCount(Connection con, String addReporter) {
-	      int result=0;
-	      PreparedStatement pstmt = null;
-	      String query = "update member set count=count+1 where email=?";
-	      try {
-	         pstmt=con.prepareStatement(query);
-	         pstmt.setString(1, addReporter);
-	         result = pstmt.executeUpdate();
-	         System.out.println(result+"개의 신고횟수가 증가하였습니다.");
-	      }catch(Exception e){
-	         e.printStackTrace();
-	      }finally {
-	         close(pstmt);
-	      }
-	      
-	      return result;
-	   }
-	
+
+	// 신고 카운트 증가용 메소드
+	public int addMemberReportCount(Connection con, String addReporter) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "update member set count=count+1 where email=?";
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, addReporter);
+			result = pstmt.executeUpdate();
+			System.out.println(result + "개의 신고횟수가 증가하였습니다.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
+	// 한진 코드
+	public Member codeupdate(Connection conn, String email) {
+		Member g_rank = null;
+		int result = 0;
+
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String query = "update member set g_code = (case when (select count(mem_num) from RESERVATIONLIST where email = ?) = 3 then 'G2' when (select count(mem_num) from RESERVATIONLIST where email = ?) = 4 then 'G2' when (select count(mem_num) from RESERVATIONLIST where email = ?) = 5 then 'G2' when (select count(mem_num) from RESERVATIONLIST where email = ?) > 6 then 'G1' end) where email = ?";
+
+		try {
+
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, email);
+			pstmt.setString(2, email);
+			pstmt.setString(3, email);
+			pstmt.setString(4, email);
+			pstmt.setString(5, email);
+
+			result = pstmt.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+
+		}
+
+		return g_rank;
+	}
+
 }

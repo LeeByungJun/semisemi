@@ -215,6 +215,39 @@ public class NoticeDao {
 		return result;
 	}
 
+	public ArrayList<Notice> noticeTop5(Connection con) {
+		 ArrayList<Notice> list = new ArrayList<Notice>();
+	     PreparedStatement pstmt= null;
+	     ResultSet rset=null;
+	     
+	     //String query = "select * from (select rownum rnum, n_no, n_title, n_writer, n_contents, n_sysdate, readcount from newnotice order by readcount desc) where rnum>=1 and rnum<=5";
+	     String query = "select * from (select rownum rnum, n_no, n_title, n_writer, n_contents, n_sysdate, readcount from (select * from newnotice order by readcount desc)) where rnum>=1 and rnum<=5";
+	     
+	     try {
+	        pstmt=con.prepareStatement(query);
+	        rset=pstmt.executeQuery();
+	         
+	        while(rset.next()) {
+		         Notice n = new Notice();
+		         n.setN_no(rset.getInt("n_no"));
+		         n.setN_title(rset.getString("n_title"));
+		         n.setN_writer(rset.getString("n_writer"));
+		         n.setN_contents(rset.getString("n_contents"));
+		         n.setN_sysdate(rset.getDate("n_sysdate"));
+		         n.setReadCount(rset.getInt("readcount"));
+		         list.add(n);      
+		         System.out.println("list = "+list);
+	         }               
+	     }catch(Exception e) {
+	        e.printStackTrace();
+	     }finally {
+	        close(rset);
+	        close(pstmt);
+	     }
+	     return list;
+
+	}
+
 
 
 	

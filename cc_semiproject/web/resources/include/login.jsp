@@ -412,6 +412,7 @@
 			},
 			type : "post",
 			success : function(data) {
+				
 				if (data != "로그인에 실패하였습니다") {
 					var selectBox = $('#idSave');
 					if (selectBox[0].checked) {
@@ -428,6 +429,8 @@
 					} else {
 						location.href = "/cs/byungjun/views/adminMain.jsp";
 					}
+				}else{
+					alert(data);
 				}
 			}
 		});

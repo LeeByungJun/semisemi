@@ -345,7 +345,7 @@
 			<br><br><br>
 			
 			</div>
-				<div class="col-sm-2 sidenav">
+				<div class="col-sm-2 sidenav" style="background:white;">
 				<%@ include file="../../../resources/include/add.jsp"%>
 				</div>
 		</div>

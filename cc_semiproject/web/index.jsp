@@ -1,24 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="org.apache.log4j.*" %>
-<%! Logger logger = Logger.getLogger("order.jsp"); %>
+<%@ page import="visit.model.vo.Visit,java.util.*,notice.model.vo.Notice" %>
+<%-- <%@ page import="org.apache.log4j.*"%> --%>
+<%-- <%!Logger logger = Logger.getLogger("order.jsp");%> --%>
+<% 
+	ArrayList<Visit> totalReservationCount = (ArrayList<Visit>)request.getAttribute("totalReservationCount"); 
+	//ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>C&C 렌터카</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	
+<%@ include file="resources/include/meta.jsp"%>
+<!-- <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
 <!-- 차트용 스타일시트 -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css"/>
-
-<script
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css" />
+<!-- <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+
 <!-- <script type="text/javascript">
 	$(function() {
 
@@ -232,7 +237,7 @@ footer {
 	background-color: #555;
 	color: white;
 	padding: 15px;
-	margin-top: 120px;
+	margin-top: 0px;
 }
 
 #menu {
@@ -421,17 +426,90 @@ footer {
 .form-control {
 	border-radius: 0px;
 }
-#divMain{
+
+#divMain {
 	
 }
 </style>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
+<script>
+
+	$(function(){
+		<% if(totalReservationCount == null){ %>
+		location.href="/cs/makechart";
+		<% } %>
+		
+		$.ajax({      
+	         url : "/cs/notop5",
+	         type : "post",
+	         datatype : "json",
+	         success : function(data) {
+	            //alert("추가가 완료되었습니다.");
+	            
+	            var jsonStr = JSON.stringify(data);
+	            //1.Json객체 하나(data)를 문자열 형태로바꿈
+	            var json = JSON.parse(jsonStr);
+	            //2.변형된 문자열을 JavaScript가 사용할 수 있는 json객체로 parsing(파싱)
+	            var values = "";            
+	            
+	            for(var i in json.list){ //in실종
+	                values+="<tr><td>"+json.list[i].n_no+"</td><td><a href='/cs/ndetail?no="+json.list[i].n_no+"&page=1' style='text-decoration:none; color:black;'>"+json.list[i].n_title+"</td></tr>";   
+	            } 
+	            
+	            
+	            $('#nt5').append(values); /* #버리지마세용  appand (x) -> append(0)*/
+	         },
+	         error : function(a,b,c){
+	            alert(a +" "+b+" "+c);
+	         }
+	      }); 
+		<%-- <% if(list == null){ %>
+		location.href="/cs/notop5";
+		<% } %> --%>
+		<%-- date = new Array();
+		count = new Array();
+		
+		$.ajax({
+			url:"/cs/makechart",
+			dataType:"JSON",
+			success:function(nunu){
+				var jsonStr = JSON.stringify(nunu);
+				var json = JSON.parse(jsonStr);
+				
+				for(var i in json.list){
+					date[i] = json.list[i].visitdate;
+					count[i] = json.list[i].visitcount;
+					console.log("for문아");
+					console.log(date[i]);
+					console.log("멈추지마라");
+					
+				}
+				
+				
+				console.log("요기는 for문 밖");
+				console.log(date[1]);
+				
+				
+			},
+			error:function(a,b,c){
+				alert(a + ", " + b + ", " + c);
+			}
+		}); --%>
+		
+		
+	});
+	
+</script>
 </head>
 <body>
 	<!-- 차트용 스크립트 -->
-	<script src="https://d3js.org/d3.v3.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script>
-	 
-	<%@ include file="resources/include/header.jsp" %>
+	<!-- <script src="https://d3js.org/d3.v3.min.js"></script> -->
+	<!-- <script
+		src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script> -->
+
+	<%@ include file="resources/include/header.jsp"%>
 
 	<div class="row content" id="divMain">
 		<div class="col-sm-8 text-left" id="imageslide">
@@ -476,72 +554,64 @@ footer {
 			</div>
 		</div>
 	</div>
-	<div id="areachart" style="width:45%; height:300px; margin-top:150px; float:left;"></div>
-	<div id="areachart1" style="width:45%; height:300px; margin-top:150px; float:left;"></div>
-	<script>
-		var areachart = c3.generate({
-			bindto : "#areachart",
-			/* data : {
-				columns : [ 
-						[ '총 접속자 수', 300, 350, 300, 190, 50, 25 ],
-						[ '로그인한 유저 수', 130, 100, 140, 200, 150, 50 ] 
-				]
-				
-			} */
-			data: {
-				x: 'x',
-				columns: [
-					['x', '2018-04-03', '2018-04-04', '2018-04-05', '2018-04-06', '2018-04-07','2018-04-08'],
-					['방문자 수', 31, 48, 22, 77, 62, 11]
-				],
-				type:'line',
-				colors: {
-					'데이터': '#F39C12'
-				}
-			},
-			axis : {
-			x : {
-					type : 'timeseries',
-					tick: {
-							format: '%Y-%m-%d' /* %H:%M:%S */
-					}
-				}
-			}
-		});
-		
-		var areachart1 = c3.generate({
-			bindto : "#areachart1",
-			/* data : {
-				columns : [ 
-						[ '총 접속자 수', 300, 350, 300, 190, 50, 25 ],
-						[ '로그인한 유저 수', 130, 100, 140, 200, 150, 50 ] 
-				]
-				
-			} */
-			data: {
-				x: 'x',
-				columns: [
-					['x', '2018-04-03', '2018-04-04', '2018-04-05', '2018-04-06', '2018-04-07','2018-04-08'],
-					['예약 횟수', 7, 19, 21, 38, 12, 47]
-				],
-				type:'line',
-				colors: {
-					'데이터': '#F39C12'
-				}
-			},
-			axis : {
-			x : {
-					type : 'timeseries',
-					tick: {
-							format: '%Y-%m-%d' /* %H:%M:%S */
-					}
-				}
-			}
-		});
-	</script>
-
-	<%@ include file="resources/include/login.jsp" %>
-
-	<%@ include file="resources/include/footer.jsp" %>
+	<div style="width: 100%; height: 380px; margin-top: 120px;">
+		<table style="text-align: center; background: #787878; width: 100%;">
+			<tr>
+				<td style="width: 48%;">
+					<!-- 공지사항 top5가 들어갈 곳 -->
+					<fieldset>
+						<legend>공지사항 Top5</legend>
+						<table id="nt5" class="table" style="text-align:center; border-color: black;">
+							<tr><td>글 번호</td><td>제목</td></tr>
+						</table>
+					</fieldset>
+				</td>
+				<td style="width: 48%;">
+					<fieldset>
+						<legend>일일 예약 횟수</legend>
+						<div id="areachart1" align="center"
+							style="width: 100%; height: 300px;"></div>
+						<script>
+						/* 에이작스로 로딩될 시 작업해줘야할듯 */
+							var areachart1 = c3.generate({
+								bindto : "#areachart1",
+								data : {
+									x : 'x',
+									columns : [
+											[ 'x',
+												<%for (Visit v : totalReservationCount) {%>
+													<%="'" + v.getVisitDate() + "'"%>, 
+													/* new java.util.Date() */
+												<%}%>
+											],
+											[ '예약 횟수', 
+												<%for (int i = 0; i < totalReservationCount.size(); i++) {%>
+													<%=totalReservationCount.get(i).getVisitCount()%>,
+												<%}%>
+											] 
+									],
+									type : 'line',
+									colors : {
+										'x' : '#B0F7FF',
+										'예약 횟수': "#CD1039"
+									}/* 데이터 */
+								},
+								axis : {
+									x : {
+										type : 'timeseries',
+										tick : {
+											format : '%y-%m-%d' //%H:%M:%S
+										}
+									}
+								}
+							});
+						</script>
+					</fieldset> <!-- 최근 5일 간의 예약 이용 수 차트가 들어갈 곳 -->
+				</td>
+			</tr>
+		</table>
+	</div>
+	<%@ include file="resources/include/login.jsp"%>
+	<%@ include file="resources/include/footer.jsp"%>
 </body>
 </html>
