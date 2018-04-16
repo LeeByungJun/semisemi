@@ -4,6 +4,7 @@ import static common.JDBCTemplate.close;
 import static common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import member.reservation.model.dao.ReservationViewDao;
 import member.reservation.model.vo.ReservationView;
@@ -12,11 +13,10 @@ public class ReservationViewService {
 
 	public ReservationViewService() {}
 	
-	public ReservationView selectReservation(int mem_num) {
-		// TODO Auto-generated method stub
-		Connection conn = getConnection();
-		ReservationView rv = new ReservationViewDao().selectReservation(conn, mem_num);
-		close(conn);
-		return rv;
+	public ArrayList<ReservationView> selectList(int mem_num) {
+		Connection con = getConnection();
+		ArrayList<ReservationView> list = new ReservationViewDao().selectList(con, mem_num);
+		close(con);
+		return list;
 	}
 }

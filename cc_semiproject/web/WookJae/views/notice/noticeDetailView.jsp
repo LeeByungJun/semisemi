@@ -54,20 +54,20 @@
 			<!-- main contents -->
 			<div class="col-sm-8 text-left" align="center">
 			<!-- <h1 align="center" style="color:drakblue; font-family:'고딕'"><b>공지사항</b></h1> -->
-			<br>
-			<center><h2><b>Notice</b></h2></center>				
 			
-			<div id="bd1" align="center" style="width:450;">
+			<div id="bd1" align="center" style="margin-top:15px;">
 			
-			<% if((loginUser!=null)&&(loginUser.getEmail().equals("pjlee92@naver.com"))) { %>  <!-- 로그인한 유저가 관리자일때 글수정/삭제가능 -->	
-			<table id="t1" style="width:500; height:900; border:1px solid black;"> 
-				<tr>
-					<th rowspan="2" bgcolor="skyblue">제목<br>작성자</th> 
+			
+			<table class="table table-striped" style="text-align:center;">
+				<tr><td colspan="4"><h2><b>Notice</b></h2></td></tr> 
+				<tr><!-- width="550" border="1px solid green" -->
+					<td style="background:black; color:white;">제목</td> 
 					<td><%=notice.getN_title()%></td> <!-- notice객체의 파일명을 가져온다. -->
-					<th rowspan="2" bgcolor="skyblue">등록일<br>조회수</th>
+					<td style="background:black; color:white;">등록일</td>
 					<td><%=notice.getN_sysdate()%></td> <!-- 글 등록 날짜를 가져온다. -->
 				</tr>
 				<tr>
+					<td style="background:black; color:white;">작성자</td>
 					<td>
 					Administrator
 					<%-- <% if(notice.getN_original_filename()==null){ %>
@@ -78,58 +78,19 @@
 					</a>
 					<% } %> --%>
 					</td>
+					<td style="background:black; color:white;">조회수</td>
 					<td><%=notice.getReadCount()%></td> <!-- 조횟수를 가져온다. -->
 				</tr>
 				<tr  align="left">
 					<td colspan="4">
-					<textarea id="te1" rows="15" cols="90">	
-					<%=notice.getN_contents()%> 
-					</textarea>	
+					<textarea rows="13" cols="117"><%=notice.getN_contents()%></textarea>	
 					<!-- 글의 내용을 불러온다. -->
 					</td>
 				</tr>
 			</table>
-            <a href="/cs/nupdateready?no=<%=notice.getN_no()%>&page=<%=currentPage%>"
-            style="padding-left:8px; padding-right:8px; padding-top:4px; padding-bottom:4px; background-color:#9900ff; color:yellow; font-size:15; border:1px;"> <B>공지수정</B> </a> &nbsp;&nbsp; 
-			<button onclick = "movedeletepage();">공지삭제</button> &nbsp;
-			<button onclick = "history.go(-1); return false;">목록으로</button><br><br>
-						<!-- <button onclick="location.href='/cs/nlist?page=currentPage'">목록으로</button> -->
-			
-			<% }else { %>
-			
-			<table width="550" border="1px solid green"> 
-				<tr>
-					<th rowspan="2" bgcolor="skyblue">제목<br>작성자</th> 
-					<td><%=notice.getN_title()%></td> <!-- notice객체의 파일명을 가져온다. -->
-					<th rowspan="2" bgcolor="skyblue">등록일<br>조회수</th>
-					<td><%=notice.getN_sysdate()%></td> <!-- 글 등록 날짜를 가져온다. -->
-				</tr>
-				<tr>
-					<td>
-					Administrator
-					<%-- <% if(notice.getN_original_filename()==null){ %>
-					첨부파일 없음
-					<% }else{ %>
-					<a href="/cs/nfdown?ofile=<%=notice.getN_original_filename()%>&rfile=<%=notice.getN_rename_filename()%>">
-					<%=notice.getN_original_filename() %>
-					</a>
-					<% } %> --%>
-					</td>
-					<td><%=notice.getReadCount()%></td> <!-- 조횟수를 가져온다. -->
-				</tr>
-				<tr  align="left">
-					<td colspan="4">
-					<textarea rows="12" cols="111" style="text-align:left;">	
-					<%=notice.getN_contents()%> 
-					</textarea>	
-					<!-- 글의 내용을 불러온다. -->
-					</td>
-				</tr>
-			</table>
-			<br>
 			<!-- <button onclick="location.href='/cs/nlist?page=currentPage'">목록으로</button> -->
 			<button onclick = "history.go(-1); return false;">목록으로</button><br><br>
-			<% } %>
+
 			</div>
 
 			<br><br><br>

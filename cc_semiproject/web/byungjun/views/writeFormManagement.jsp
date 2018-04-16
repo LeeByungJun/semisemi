@@ -1,13 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="faq.model.vo.Faq,java.util.*"%>
+<%@ page import="faq.model.vo.Faq,java.util.*,notice.model.vo.Notice"%>
 <%
-	ArrayList<Faq> list = (ArrayList<Faq>) request.getAttribute("list");
-	int currentPage = ((Integer) request.getAttribute("currentPage")).intValue();
-	int maxPage = ((Integer) request.getAttribute("maxPage")).intValue();
-	int startPage = ((Integer) request.getAttribute("startPage")).intValue();
-	int endPage = ((Integer) request.getAttribute("endPage")).intValue();
-	int listCount = ((Integer) request.getAttribute("listCount")).intValue();
+	ArrayList<Faq> faqList = (ArrayList<Faq>) request.getAttribute("faqList");
+	int faqMaxPage = ((Integer) request.getAttribute("faqMaxPage")).intValue();
+	int faqStartPage = ((Integer) request.getAttribute("faqStartPage")).intValue();
+	int faqEndPage = ((Integer) request.getAttribute("faqEndPage")).intValue();
+	int faqListCount = ((Integer) request.getAttribute("faqListCount")).intValue();
+	
+	ArrayList<Notice> noticeList = (ArrayList<Notice>) request.getAttribute("noticeList");
+	int noticeMaxPage = ((Integer) request.getAttribute("noticeMaxPage")).intValue();
+	int noticeStartPage = ((Integer) request.getAttribute("noticeStartPage")).intValue();
+	int noticeEndPage = ((Integer) request.getAttribute("noticeEndPage")).intValue();
+	int noticeListCount = ((Integer) request.getAttribute("noticeListCount")).intValue();
+	
+	int fCurrentPage = ((Integer) request.getAttribute("fCurrentPage")).intValue();
+	int nCurrentPage = ((Integer) request.getAttribute("nCurrentPage")).intValue();
 %>
 <!DOCTYPE html>
 <html>
@@ -28,14 +36,14 @@
 	}
 	.title{
 		/* text-align:center; */
-		width:350px;
+		width:400px;
 	}
 	.no, .writer{
 		/* text-align:center; */
-		width:120px;
+		width:150px;
 	}
 	.date{
-		width:150px;
+		width:180px;
 	}
 	a{
 		text-decoration:none;
@@ -44,6 +52,9 @@
 <script type="text/javascript">
 	function fInsert(){
 		location.href="/cs/byungjun/views/faqInsertView.jsp";
+	}
+	function nInsert(){
+		location.href="/cs/byungjun/views/noticeInsertView.jsp";
 	}
 </script>
 </head>
@@ -60,65 +71,118 @@
 			<div class="col-sm-8 text-left">
 				<!-- 컨텐츠를 넣으세요 -->
 				<h1 align="center" style="margin-left:300px;">게시글관리</h1>
-				<fieldset align="center" style="margin-left:300px;">
+				<fieldset style="margin-left:170px;">
 					<legend>공지사항</legend>
-					<table border="1" cellspacing="0" align="center">
+					<table class="table table-striped" style="width:800px;">
 						<tr><th class="no">번호</th><th class="title">제목</th><th class="writer">글쓴이</th><th class="date">작성일</th></tr>
-						<tr><td class="no">1</td><td class="title"><a href="#">4월3일~4월5일 홈페이지 이용 중단</a></td><td class="writer">병준</td><td class="date">2018/04/01</td></tr>
+						<% for(int i=0;i<noticeList.size();i++){ %>
+							<tr>
+								<td class="no"><%= noticeList.get(i).getN_no() %></td>
+								<td class="title"><a href="nview?no=<%= noticeList.get(i).getN_no() %>"><%= noticeList.get(i).getN_title() %></a></td>
+								<td class="writer"><%= noticeList.get(i).getN_writer() %></td>
+								<td class="date"><%= noticeList.get(i).getN_sysdate() %></td>
+							</tr>
+						<% } %>
+						<tr>
+							<td colspan="4">
+							<% if(noticeStartPage > 0 && noticeEndPage > 0){ %>
+								<!-- 페이징 처리 -->
+								<div style="text-align:center;">
+									<% if(nCurrentPage <= 1){ %>
+										<< &nbsp;
+									<% }else{ %>
+										<a href="/cs/boardmanage?npage=1&fpage=<%= fCurrentPage %>"><<</a>&nbsp;
+									<% } %>
+									<% if(nCurrentPage > noticeStartPage){ %>
+										<a href="/cs/boardmanage?npage=<%= nCurrentPage-1 %>&fpage=<%= fCurrentPage %>"><</a>&nbsp;
+									<% }else{ %>
+										<&nbsp;
+									<% } %>
+									<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
+									<% for(int p = noticeStartPage; p<=noticeEndPage; p++){ 
+										if(p == nCurrentPage){%>
+											<font color="red" size="4"><b><%= p %></b></font>&nbsp;
+										<%}else{ %>
+											<a href="/cs/boardmanage?npage=<%= p %>&fpage=<%= fCurrentPage %>"><%= p %></a>&nbsp;
+									<% }} %>
+									
+									<% if(nCurrentPage != noticeEndPage){ %>
+										<a href="/cs/boardmanage?npage=<%= nCurrentPage+1 %>&fpage=<%= fCurrentPage %>">></a>&nbsp;
+									<% }else{ %>
+										>&nbsp;
+									<% } %>
+									
+									<% if(nCurrentPage >= noticeMaxPage){ %>
+										>>&nbsp;
+									<% }else{ %>
+										<a href="/cs/boardmanage?npage=<%= noticeMaxPage %>&fpage=<%= fCurrentPage %>">>></a>
+									<% } %>
+								</div>
+								<% } %>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="4">
+								<button onclick="nInsert();">글 추가</button>&nbsp;&nbsp;&nbsp;
+							</td>
+							
+							<!-- prompt로 글추가,삭제,수정 구현하기 -->
+						</tr>
+						<!-- <tr><td class="no">1</td><td class="title"><a href="#">4월3일~4월5일 홈페이지 이용 중단</a></td><td class="writer">병준</td><td class="date">2018/04/01</td></tr>
 						<tr>
 							<td colspan="4">
 								<a href="#">글 추가</a>&nbsp;&nbsp;&nbsp;
 								<a href="#">글 삭제</a>&nbsp;&nbsp;&nbsp;
 								<a href="#">글 수정</a>
 							</td>
-						</tr>
+						</tr> -->
 					</table>
 				</fieldset>
 				<br><br>
-				<fieldset align="center" style="margin-left:300px;">
+				<fieldset style="margin-left:170px;">
 					<legend>FAQ</legend>
-					<table border="1" cellspacing="0" align="center">
+					<table class="table table-striped" style="width:800px;">
 						<tr><th class="no">번호</th><th class="title">제목</th><th class="writer">카테고리</th></tr>
-						<% for(int i=0;i<list.size();i++){ %>
+						<% for(int i=0;i<faqList.size();i++){ %>
 							<tr>
-								<td class="no"><%= list.get(i).getF_no() %></td>
-								<td class="title"><a href="/cs/faqview?no=<%= list.get(i).getF_no() %>"><%= list.get(i).getF_title() %></a></td>
-								<td class="writer"><%= list.get(i).getF_category() %></td>
+								<td class="no"><%= faqList.get(i).getF_no() %></td>
+								<td class="title"><a href="/cs/faqview?no=<%= faqList.get(i).getF_no() %>"><%= faqList.get(i).getF_title() %></a></td>
+								<td class="writer"><%= faqList.get(i).getF_category() %></td>
 							</tr>
 						<% } %>
 						<tr>
 							<td colspan="3">
-							<% if(startPage > 0 && endPage > 0){ %>
+							<% if(faqStartPage > 0 && faqEndPage > 0){ %>
 								<!-- 페이징 처리 -->
 								<div style="text-align:center;">
-									<% if(currentPage <= 1){ %>
+									<% if(fCurrentPage <= 1){ %>
 										<< &nbsp;
 									<% }else{ %>
-										<a href="/cs/boardmanage?page=1"><<</a>&nbsp;
+										<a href="/cs/boardmanage?fpage=1&npage=<%= nCurrentPage %>"><<</a>&nbsp;
 									<% } %>
-									<% if(currentPage > startPage){ %>
-										<a href="/cs/boardmanage?page=<%= currentPage-1 %>"><</a>&nbsp;
+									<% if(fCurrentPage > faqStartPage){ %>
+										<a href="/cs/boardmanage?fpage=<%= fCurrentPage-1 %>&npage=<%= nCurrentPage %>"><</a>&nbsp;
 									<% }else{ %>
 										<&nbsp;
 									<% } %>
 									<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
-									<% for(int p = startPage; p<=endPage; p++){ 
-										if(p == currentPage){%>
+									<% for(int p = faqStartPage; p<=faqEndPage; p++){ 
+										if(p == fCurrentPage){%>
 											<font color="red" size="4"><b><%= p %></b></font>&nbsp;
 										<%}else{ %>
-											<a href="/cs/boardmanage?page=<%= p %>"><%= p %></a>&nbsp;
+											<a href="/cs/boardmanage?fpage=<%= p %>&npage=<%= nCurrentPage %>"><%= p %></a>&nbsp;
 									<% }} %>
 									
-									<% if(currentPage != endPage){ %>
-										<a href="/cs/boardmanage?page=<%= currentPage+1 %>">></a>&nbsp;
+									<% if(fCurrentPage != faqEndPage){ %>
+										<a href="/cs/boardmanage?fpage=<%= fCurrentPage+1 %>&npage=<%= nCurrentPage %>">></a>&nbsp;
 									<% }else{ %>
 										>&nbsp;
 									<% } %>
 									
-									<% if(currentPage >= maxPage){ %>
+									<% if(fCurrentPage >= faqMaxPage){ %>
 										>>&nbsp;
 									<% }else{ %>
-										<a href="/cs/boardmanage?page=<%= maxPage %>">>></a>
+										<a href="/cs/boardmanage?fpage=<%= faqMaxPage %>&npage=<%= nCurrentPage %>">>></a>
 									<% } %>
 								</div>
 								<% } %>

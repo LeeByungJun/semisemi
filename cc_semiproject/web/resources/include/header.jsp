@@ -15,6 +15,17 @@
   gtag('js', new Date());
 
   gtag('config', 'UA-116658073-1');
+  
+  function logoutFunc(){
+	  var bool = confirm('정말 로그아웃 하시겠습니까?');
+	  if(bool){
+		  //true
+		  location.href="/cs/logout";
+	  }else{
+		  //false
+		  alert('로그아웃을 취소하셨습니다!');
+	  }
+  }
 </script>
 
 <title>헤더</title>
@@ -34,10 +45,13 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-					<li><a href="/cs/HanJin/noMemberReservation.jsp">단기렌트</a></li>
+				<% if(loginUser == null){ %>
+					<li><a href="/cs/HanJin/views/noMemberReservation.jsp">비회원예약</a></li>
+				<% }else{ %>
+					<li><a href="/cs/HanJin/views/reservationView.jsp">회원예약</a></li>
+				<% } %>
 					<!-- class="active" -->
-					<li><a href="/cs/HanJin/longReservation.jsp">장기렌트</a></li>
-					<li><a href="/cs/DongGuk/views/p2pRent.jsp">P2P</a></li>
+					<li><a href="#">P2P</a></li>
 					<li><a href="/cs/nlist?page=1">고객센터</a></li>
 					<li><a href="#">커뮤니티</a></li>
 				</ul>
@@ -53,7 +67,7 @@
 					<% }else{ %>
 						<li><a><%= loginUser.getName() %>님 환영합니다</a></li>
 						<li>
-						<a href="/cs/logout" role="button"><span
+						<a href="javascript:void(0);" role="button" onclick="logoutFunc();"><span
 								class="glyphicon glyphicon-log-out"></span> Logout</a>					
 						</li>
 						<li><a href="/cs/mypage?email=<%= loginUser.getEmail() %>" role="button"><span

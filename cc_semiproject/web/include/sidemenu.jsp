@@ -2,14 +2,9 @@
     pageEncoding="UTF-8"%>
 
 <p>
-	<a href="#">공지사항</a>
+	<a href="/cs/rlist?page=1">고객후기(시승기)</a>
 </p>
 <p>
-	<a href="#">최신Car News</a>
+	<a href="#">자유게시판</a>
 </p>
-<p>
-	<a href="menuTmplpate.jsp">고객후기(시승기)</a>
-</p>
-<p>
-	<a href="#">불량고객신고</a>
-</p>
+

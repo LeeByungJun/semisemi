@@ -42,7 +42,7 @@
 				success:function(data){
 					alert(data);
 					if(data = '게시글 입력 성공!'){
-						location.href="/cs/boardmanage?page=1";
+						location.href="/cs/boardmanage?fpage=1";
 					}
 				}
 			});
@@ -61,9 +61,11 @@
 			<!-- main contents -->
 			<div class="col-sm-8 text-left">
 				<!-- 컨텐츠를 넣으세요 -->
-				<h1 align="center" style="margin-left:300px;">FAQ 게시글 입력하기</h1>
 				<form action="">
-					<table border="1" cellspacing="0" align="center" style="margin-left:330px; margin-top:50px; margin-bottom:50px;">
+					<table class="table table-striped" style="margin-top:50px; margin-bottom:50px; margin-left:200px;">
+						<tr>
+							<td colspan="2"><h2>FAQ 게시글 입력하기</h2></td>
+						</tr>
 						<tr>
 							<td>카테고리</td>
 							<td>
@@ -79,11 +81,11 @@
 						</tr>
 						<tr>
 							<td>제목</td>
-							<td><input type="text" id="title" style="width:70%;"></td>
+							<td><input type="text" id="title" style="width:90%;"></td>
 						</tr>
 						<tr>
 							<td>내용</td>
-							<td><textarea id="contents" cols="40" rows="10"></textarea></td>
+							<td><textarea id="contents" cols="94" rows="10"></textarea></td>
 						</tr>
 						<tr>
 							<td colspan="2">

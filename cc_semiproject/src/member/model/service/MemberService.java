@@ -134,4 +134,16 @@ public class MemberService {
 		close(conn);
 		return result;
 	}
+	
+	//신고카운트 증가
+	public int addMemberReportCount(String addReporter) {
+	      Connection conn = getConnection();
+	      int result = new MemberDao().addMemberReportCount(conn,addReporter);
+	      if(result>0) {
+	         commit(conn);
+	      }else {
+	         rollback(conn);
+	      }   
+	      return result;
+	}
 }

@@ -58,6 +58,7 @@ public class Notice implements java.io.Serializable{
 	}
 
 	public int getN_no() {
+		System.out.println("vo no : " + this.n_no);
 		return n_no;
 	}
 

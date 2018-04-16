@@ -65,12 +65,12 @@
 			<div class="col-sm-8 text-left">
 				<!-- 컨텐츠를 넣으세요 -->
 				<h1 align="center" style="margin-left:300px;">회원관리</h1>
-				<table border="1" cellspacing="0" id="tab1">
+				<table id="tab1" class="table table-striped">
 					<tr id="tr1">
 						<td class="td1">
 							<fieldset align="center" style="">
 								<legend>판매가능유저</legend>
-								<table align="center">
+								<table align="center" class="table table-striped">
 									<tr><th class="thth1">이메일</th><th class="thth2">이름</th><th class="thth1">전화번호</th><th class="thth2">등급</th></tr>
 										<% for(int i=0;i<cansell.size();i++){ %>
 										<tr>
@@ -95,7 +95,7 @@
 							<fieldset align="center" style="">
 								<legend>신고받은 횟수 많은 유저</legend>
 								<form action="" method="post">
-									<table align="center">
+									<table align="center" class="table table-striped">
 										<tr><th class="thth1">이메일</th><th class="thth2">이름</th><th class="thth1">전화번호</th><th class="thth2">신고받은 횟수</th></tr>
 										<% for(int i=0;i<count.size();i++){ %>
 										<tr>
@@ -131,7 +131,8 @@
 						<td class="td2" colspan="2">
 							<fieldset align="center" style="">
 								<legend>전체회원목록</legend>
-								<table align="center" id="tab2">
+								<div style="height:200px; overflow:auto;">
+								<table align="center" id="tab2" class="table table-striped">
 									<tr><th class="th1">이메일</th><th class="th1">이름</th><th class="th1">전화번호</th><th class="th1">등급</th></tr>
 									<% for(int i=0;i<all.size();i++){ %>
 										<tr>
@@ -150,6 +151,7 @@
 										</tr>
 									<% } %>
 								</table>
+								</div>
 						    </fieldset>
 						</td>
 					</tr>

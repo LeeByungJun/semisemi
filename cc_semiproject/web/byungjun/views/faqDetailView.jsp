@@ -33,7 +33,7 @@
 			type:'post',
 			success:function(data){
 				alert(data);
-				location.href="/cs/boardmanage?page=1";
+				location.href="/cs/boardmanage?fpage=1";
 			},
 			error:function(a,b,c){
 				console.log(a + ", " + b + ", " + c);
@@ -55,23 +55,22 @@
 			<!-- main contents -->
 			<div class="col-sm-8 text-left">
 				<!-- 컨텐츠를 넣으세요 -->
-				<h1 align="center" style="margin-left:300px;">FAQ 상세보기</h1>
-				<form action="">
-					<table border="1" cellspacing="0" align="center" style="margin-left:300px; margin-top:50px; margin-bottom:50px;">
+				<form action=""> <!-- style="margin-left:300px; margin-top:50px; margin-bottom:50px;" -->
+					<table class="table table-striped" style="margin-top:50px; margin-bottom:50px; margin-left:200px;">
 						<tr>
-							<td colspan="2"><h2><%= f.getF_no() %>번글</h2></td>
+							<td colspan="2"><h2><%= f.getF_no() %>번 FAQ 보기</h2></td>
 						</tr>
 						<tr>
 							<td>카테고리</td>
-							<td><input type="text" value="<%= f.getF_category() %>" style="width:70%;" readonly></td>
+							<td><input type="text" value="<%= f.getF_category() %>" style="width:90%; border:none;" readonly></td>
 						</tr>
 						<tr>
 							<td>제목</td>
-							<td><input type="text" id="title" value="<%= f.getF_title() %>" style="width:70%;"></td>
+							<td><input type="text" id="title" value="<%= f.getF_title() %>" style="width:90%;"></td>
 						</tr>
 						<tr>
 							<td>내용</td>
-							<td><textarea id="contents" cols="40" rows="10"><%= f.getF_contents() %></textarea></td>
+							<td><textarea id="contents" cols="94" rows="10"><%= f.getF_contents() %></textarea></td>
 						</tr>
 						<tr>
 							<td colspan="2">

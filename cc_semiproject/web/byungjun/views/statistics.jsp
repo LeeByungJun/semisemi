@@ -1,8 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*, visit.model.vo.Visit" %>
-<% int todayVisit = ((Integer)session.getAttribute("todayVisit")).intValue(); %>
-<% ArrayList<Visit> totalVisit = (ArrayList<Visit>)session.getAttribute("totalVisit"); %>
+<% 
+	int todayVisit = ((Integer)session.getAttribute("todayVisit")).intValue(); 
+	//int todayReservation = ((Integer)session.getAttribute("todayReservation")).intValue();
+
+	ArrayList<Visit> totalVisit = (ArrayList<Visit>)session.getAttribute("totalVisit"); 
+	ArrayList<Visit> totalReservationCount = (ArrayList<Visit>)session.getAttribute("totalReservationCount"); 
+%>
 
 <!DOCTYPE html>
 <html>
@@ -111,11 +116,18 @@
 						data : {
 							x : 'x',
 							columns : [
-									[ 'x', '2018-04-04',
-											'2018-04-05', '2018-04-06',
-											'2018-04-07', '2018-04-08',
-											'2018-04-09'],
-									[ '예약 횟수', 7, 19, 21, 38, 12, 47 ] ],
+									[ 'x', 
+										<% for(Visit v:totalReservationCount){ %>
+											<%= "'" + v.getVisitDate() + "'" %>, 
+											/* new java.util.Date() */
+										<% } %>
+									],
+									[ '예약 횟수', 
+										<% for(int i=0;i<totalReservationCount.size();i++){ %>
+											<%= totalReservationCount.get(i).getVisitCount() %>,
+										<% } %>	
+									] 
+							],
 							type : 'line',
 							colors : {
 								'데이터' : '#FF0000'
@@ -125,7 +137,7 @@
 							x : {
 								type : 'timeseries',
 								tick : {
-									format : '%Y-%m-%d' //%H:%M:%S
+									format : '%y-%m-%d' //%H:%M:%S
 								}
 							}
 						}
@@ -134,9 +146,17 @@
 
 			</div>
 			<br>
-			오늘 방문자 수 : <%= todayVisit %> 명<br>
-			누적 방문자 수 : <%= totalVisit.toString() %> 명
-			console.log(<%= totalVisit.toString() %>);
+			오늘 예약횟수 : 
+			<% for(Visit v:totalReservationCount){ %>
+				<%= v.getVisitDate() %><br>
+				<%= v.getVisitCount() %><br>
+			<% } %>
+			<br>
+			총 방문자수 :
+			<% for(Visit v:totalVisit){ %>
+				<%= v.getVisitDate() %><br>
+				<%= v.getVisitCount() %>
+			<% } %>
 			<br><br>
 			<%-- <div class="col-sm-2 sidenav">
 				<%@ include file="../../resources/include/add.jsp" %>

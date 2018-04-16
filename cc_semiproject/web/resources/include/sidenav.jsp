@@ -5,7 +5,7 @@
 					<a href="/cs/nlist?page=1">공지사항</a>
 				</p>
 				<p>
-					<a href="#">불량고객신고</a>
+					<a href="/cs/rlist?page=1">불량고객신고</a>
 				</p>
 				<p>
 					<a href="/cs/flist?page=1">FAQ</a>

@@ -73,7 +73,7 @@ function fn( ){
 			<div class="col-sm-8 text-left">
 				<!-- 컨텐츠를 넣으세요 -->
 				<form action="" name="form1" method="post" id="form1">
-					<table>
+					<table style="margin-bottom:50px;">
 						<tr>
 							<th id="title">Contact Us</th>
 						</tr>

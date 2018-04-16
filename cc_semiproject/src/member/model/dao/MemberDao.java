@@ -348,4 +348,24 @@ public class MemberDao {
 		}
 		return result;
 	}
+	
+	//신고 카운트 증가용 메소드
+	 public int addMemberReportCount(Connection con, String addReporter) {
+	      int result=0;
+	      PreparedStatement pstmt = null;
+	      String query = "update member set count=count+1 where email=?";
+	      try {
+	         pstmt=con.prepareStatement(query);
+	         pstmt.setString(1, addReporter);
+	         result = pstmt.executeUpdate();
+	         System.out.println(result+"개의 신고횟수가 증가하였습니다.");
+	      }catch(Exception e){
+	         e.printStackTrace();
+	      }finally {
+	         close(pstmt);
+	      }
+	      
+	      return result;
+	   }
+	
 }

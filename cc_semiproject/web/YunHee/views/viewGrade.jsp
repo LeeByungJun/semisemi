@@ -56,10 +56,12 @@
 						</tr>
 						<tr>
 							<td align="center">
-							<input style="text-align:center; width:400px; height:300; border:none; margin:8px;" value='<%= list.get(0).getG_comment() %>'>
+							<input style="text-align:center; width:400px; height:300; border:none; margin:5px;" value="<%= list.get(0).getG_comment() %>" readonly>
+							<input style="text-align:center; width:400px; height:300; border:none; margin:5px;" value="<%= list.get(0).getG_comment2() %>" readonly>
 							<br><br></td>
 							<td align="center">
-							<input style="text-align:center; width:400px; height:300; border:none; margin:8px;" value='<%= list.get(1).getG_comment() %>'>
+							<input style="text-align:center; width:400px; height:300; border:none; margin:5px;" value="<%= list.get(1).getG_comment() %>" readonly>
+							<input style="text-align:center; width:400px; height:300; border:none; margin:5px;" value="<%= list.get(1).getG_comment2() %>" readonly>
 							<br><br></td>
 						</tr>
 						<tr>
@@ -68,10 +70,12 @@
 						</tr>
 						<tr>
 							<td align="center">
-							<input style="text-align:center; width:400px; height:300; border:none; margin:8px;" value='<%= list.get(2).getG_comment() %>'>
+							<input style="text-align:center; width:400px; height:300; border:none; margin:5px;" value="<%= list.get(2).getG_comment() %>" readonly>
+							<input style="text-align:center; width:400px; height:300; border:none; margin:5px;" value="<%= list.get(2).getG_comment2() %>" readonly>
 							<br><br></td>
 							<td align="center">
-							<input style="text-align:center; width:400px; height:300; border:none; margin:8px;" value='<%= list.get(3).getG_comment() %>'>
+							<input style="text-align:center; width:400px; height:300; border:none; margin:5px;" value="<%= list.get(3).getG_comment() %>" readonly>
+							<input style="text-align:center; width:400px; height:300; border:none; margin:5px;" value="<%= list.get(3).getG_comment2() %>" readonly>
 							<br><br></td>
 						</tr>
 					</table>

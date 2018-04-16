@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import function.EncryptPassword;
 import member.model.service.MemberService;
 import member.model.vo.Member;
+import reservation.model.service.ReservationService;
 import visit.model.service.VisitService;
 import visit.model.vo.Visit;
 
@@ -68,6 +69,11 @@ public class LoginServlet extends HttpServlet {
 	    	//System.out.println("todayCount = " + todayCount);
 	    	
 	    	session.setAttribute("todayVisit", todayCount);
+	    	
+	    	//총 예약 횟수 구해서 statistic에 사용
+	    	//전체 예약 카운트 그룹 별로 뽑아와서 세션에 담기
+			ArrayList<Visit> totalReservationCount = new ReservationService().totalReservation();
+			session.setAttribute("totalReservationCount", totalReservationCount);
 	    	
 			/*count++;
 			System.out.println("접속한 유저 수 : " + count);*/

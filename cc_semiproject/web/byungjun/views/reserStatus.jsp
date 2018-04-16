@@ -43,7 +43,7 @@
 				<h1 style="margin-left: 100px;">등급별 예약 현황</h1>
 				<fieldset>
 					<legend id="gold">골드</legend>
-					<table border="1" cellspacing="0">
+					<table class="table table-striped">
 						<tr><th class="size1">이름</th><th class="size2">이메일</th><th class="size1">차 이름</th><th class="size2">예약 시작일</th><th class="size2">예약 종료일</th><th class="size1">등급</th></tr>
 						
 						<% for(int i=0;i<list.size();i++){ %>
@@ -62,7 +62,7 @@
 				<br>
 				<fieldset>
 					<legend id="silver">실버</legend>
-					<table border="1" cellspacing="0">
+					<table class="table table-striped">
 						<tr><th class="size1">이름</th><th class="size2">이메일</th><th class="size1">차 이름</th><th class="size2">예약 시작일</th><th class="size2">예약 종료일</th><th class="size1">등급</th></tr>
 						<% for(int i=0;i<list.size();i++){ %>
 							<% if(list.get(i).getG_rank().equals("SILVER")){ %>
@@ -81,7 +81,7 @@
 				<br>
 				<fieldset>
 					<legend id="bronze">브론즈</legend>
-					<table border="1" cellspacing="0">
+					<table class="table table-striped">
 						<tr><th class="size1">이름</th><th class="size2">이메일</th><th class="size1">차 이름</th><th class="size2">예약 시작일</th><th class="size2">예약 종료일</th><th class="size1">등급</th></tr>
 						<% for(int i=0;i<list.size();i++){ %>
 							<% if(list.get(i).getG_rank().equals("BRONZE")){ %>
@@ -100,7 +100,7 @@
 				<br>
 				<fieldset>
 					<legend>일반</legend>
-					<table border="1" cellspacing="0">
+					<table class="table table-striped">
 						<tr><th class="size1">이름</th><th class="size2">이메일</th><th class="size1">차 이름</th><th class="size2">예약 시작일</th><th class="size2">예약 종료일</th><th class="size1">등급</th></tr>
 						<% for(int i=0;i<list.size();i++){ %>
 							<% if(list.get(i).getG_rank().equals("BASIC")){ %>

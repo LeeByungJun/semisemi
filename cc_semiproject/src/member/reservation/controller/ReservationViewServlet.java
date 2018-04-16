@@ -1,6 +1,7 @@
 package member.reservation.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -36,10 +37,8 @@ public class ReservationViewServlet extends HttpServlet {
 		//String mem_num = request.getParameter("mem_num");
 		int mem_num = Integer.parseInt(request.getParameter("num"));
 		
-		ReservationView rsview = new ReservationViewService().selectReservation(mem_num);
-		
-		System.out.println("controller rsview : " + rsview.toString());
-		
+		//ReservationView rsview = new ReservationViewService().selectReservation(mem_num);
+		ArrayList<ReservationView> rsview= new ReservationViewService().selectList(mem_num);
 		RequestDispatcher view = null;
 		
 		if (rsview != null) {

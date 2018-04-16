@@ -28,18 +28,19 @@ function updateClient(){
 	var num = new RegExp("[0-9]+");
 	if(!ucase.test(userpwd1) || !lcase.test(userpwd1) || !num.test(userpwd1)){
 		//패스워드 체크
-		alert("비밀번호를 다시 확인해주세요.");
+		alert("대/소문자/숫자를 한 글자 이상씩 입력해주세요.");
 		
 	}else if(!ucase.test(userpwd2) || !lcase.test(userpwd2) || !num.test(userpwd2)){
-		alert("비밀번호를 다시 확인해주세요.");
+		alert("대/소문자/숫자를 한 글자 이상씩 입력해주세요.");
 		
 	}else if(userpwd1 != userpwd2){ 
 		alert("비밀번호가 일치하지 않습니다.");
-		
-	/* if (userpwd != userpwd2) {
-		alert("비밀번호가 일치하지 않습니다");
-        //return false; */
+	}else if(userpwd1.length < 8 || userpwd2.length < 8){
+		alert("비밀번호는 8자리 이상이어야 합니다.");
+	}else if(userpwd1 == "" || userpwd2 == ""){
+		alert("비밀번호를 입력해주세요.");
 	} else {
+		
 		$.ajax({
     		url : "/cs/mupdate.me",
     		data : {
@@ -117,7 +118,7 @@ function updateClient(){
 						</tr>
 						<tr>
 							<th style="text-align:right;">비밀번호&nbsp;&nbsp;&nbsp;</th>
-							<td><input type="password" name="userpwd" id="userpwd" value="<%= member1.getPassword() %>"></td>
+							<td><input type="password" name="userpwd" id="userpwd" value=""></td>
 						</tr>
 						<tr>
 							<th style="text-align:right;">비밀번호확인&nbsp;&nbsp;&nbsp;</th>
@@ -132,7 +133,7 @@ function updateClient(){
 					</table>
 				</form>
 			</div>
-			<div class="col-sm-2 sidenav">
+			<div class="col-sm-2 sidenav" style="background:white;">
 				<%@ include file="../../resources/include/add.jsp"%>
 			</div>
 		</div>
