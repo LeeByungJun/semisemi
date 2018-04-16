@@ -22,8 +22,7 @@
 	var insurance = "";
 	inselect = new Array();
 
-	$
-			.ajax({
+	$.ajax({
 				url : "/cs/inselect",
 				data : {
 					no : $('#carinsurance_no_1').val()
@@ -415,9 +414,9 @@
 				         merchant_uid : 'merchant_' + new Date().getTime(),
 				         name : '비회원차량렌트',/*상품명  */
 				         amount : data,/*금액  */
-				         buyer_email : 'iamport@siot.do',/* 사용자 메일 */
-				         buyer_name : '이병준', /* 사용자 메일 */
-				         buyer_tel : '010-2683-4346', /* 사용자 메일 */
+				         buyer_email : $('#emaillist').val(),/* 사용자 메일 */
+				         buyer_name : $('#namelist').val(), /* 사용자 메일 */
+				         buyer_tel : $('#tellist').val(), /* 사용자 메일 */
 				         buyer_addr : '서울특별시 강남구 삼성동', /* 비회원은 빼기  */
 				         buyer_postcode : '123-456' /*  메일 */
 				      }, function(rsp) {
