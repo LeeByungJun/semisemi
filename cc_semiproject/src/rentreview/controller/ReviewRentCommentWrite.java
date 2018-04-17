@@ -21,7 +21,7 @@ import rentreview.model.service.ReviewRentService;
  * Servlet implementation class RentReviewWriter
  */
 
-@WebServlet("/rcomment")
+@WebServlet("/rrcomment")
 public class ReviewRentCommentWrite extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,7 +42,7 @@ public class ReviewRentCommentWrite extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		RequestDispatcher view = null;
 		
-
+System.out.println("writer" + request.getParameter("writer"));
 		
 		ReviewRentComment rc= new ReviewRentComment();
 		rc.setRc_parent_num(Integer.parseInt(request.getParameter("rr_num")));
@@ -58,7 +58,7 @@ public class ReviewRentCommentWrite extends HttpServlet {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		if(result > 0) {
-			response.sendRedirect("/cs/rdetail?rr_num="+request.getParameter("rr_num"));
+			response.sendRedirect("/cs/rrdetail?rr_num="+request.getParameter("rr_num"));
 		}else {
 			response.sendRedirect("DongGuk/views/reviewWrite.jsp");
 		}

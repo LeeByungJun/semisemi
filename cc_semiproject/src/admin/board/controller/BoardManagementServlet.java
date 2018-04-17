@@ -72,6 +72,10 @@ public class BoardManagementServlet extends HttpServlet {
 		if (faqMaxPage < faqEndPage)
 			faqEndPage = faqMaxPage;
 		
+		//faq 카테고리 그룹 얻어오기
+		/*ArrayList<Faq> categoryList = fservice.categoryGroupBy();*/
+		//////////////////////
+		
 		//NOTICE - 욱재형 파트
 		NoticeService nservice = new NoticeService();
 		//notice 목록 갯수 조회
@@ -97,6 +101,7 @@ public class BoardManagementServlet extends HttpServlet {
 			request.setAttribute("faqStartPage", faqStartPage);
 			request.setAttribute("faqEndPage", faqEndPage);
 			request.setAttribute("faqListCount", faqListCount);
+			/*request.setAttribute("categoryList", categoryList);*/
 			
 			request.setAttribute("noticeList", noticeList);
 			request.setAttribute("nCurrentPage", nCurrentPage);

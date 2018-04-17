@@ -41,6 +41,7 @@ public class MakeReservationChartServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if(totalReservationCount.size() > 0) {
+			System.out.println("make chart : 성공");
 			view = request.getRequestDispatcher("index.jsp");
 			request.setAttribute("totalReservationCount", totalReservationCount);
 			view.forward(request, response);

@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="faq.model.vo.Faq,java.util.*" %>
+<%
+	ArrayList<Faq> categoryList = (ArrayList<Faq>)request.getAttribute("categoryList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,10 +76,9 @@
 								<input type="text" id="category" style="width:40%;">
 								<select id="sel1">
 									<option>카테고리선택</option>
-									<option>자주찾는질문</option>
-									<option>사이트이용</option>
-									<option>회원제도</option>
-									<option>장기대여</option>
+									<% for(int i=0;i<categoryList.size();i++){ %>
+										<option><%= categoryList.get(i).getF_category() %></option>
+									<% } %>
 								</select>
 							</td>
 						</tr>

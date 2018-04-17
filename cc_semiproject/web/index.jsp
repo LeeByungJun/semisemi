@@ -4,7 +4,12 @@
 <%-- <%@ page import="org.apache.log4j.*"%> --%>
 <%-- <%!Logger logger = Logger.getLogger("order.jsp");%> --%>
 <% 
-	ArrayList<Visit> totalReservationCount = (ArrayList<Visit>)request.getAttribute("totalReservationCount"); 
+	ArrayList<Visit> totalReservationCount = (ArrayList<Visit>)request.getAttribute("totalReservationCount");
+	/* if(totalReservationCount == null){
+		response.sendRedirect("/cs/makechart");
+	}else{
+		response.sendRedirect("/cs/index.jsp");
+	} */
 	//ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
 %>
 <!DOCTYPE html>
@@ -19,203 +24,10 @@
 <!-- 차트용 스타일시트 -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.css" />
-<!-- <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
-<!-- <script type="text/javascript">
-	$(function() {
-
-		var $formLogin = $('#login-form');
-		var $formLost = $('#lost-form');
-		var $formRegister = $('#register-form');
-		var $divForms = $('#div-forms');
-		var $modalAnimateTime = 300;
-		var $msgAnimateTime = 150;
-		var $msgShowTime = 2000;
-
-		$("form")
-				.submit(
-						function() {
-							switch (this.id) {
-							case "login-form":
-								var $lg_username = $('#login_username').val();
-								var $lg_password = $('#login_password').val();
-								if ($lg_username == "ERROR") {
-									msgChange($('#div-login-msg'),
-											$('#icon-login-msg'),
-											$('#text-login-msg'), "error",
-											"glyphicon-remove", "Login error");
-									return false;
-								} else {
-									msgChange($('#div-login-msg'),
-											$('#icon-login-msg'),
-											$('#text-login-msg'), "success",
-											"glyphicon-ok", "Login OK");
-									//alert("로그인 성공!");
-									//$('#login-modal').modal("hide");
-								}
-								return true;
-								break;
-							case "lost-form":
-								var $ls_email = $('#lost_email').val();
-								if ($ls_email == "ERROR") {
-									msgChange($('#div-lost-msg'),
-											$('#icon-lost-msg'),
-											$('#text-lost-msg'), "error",
-											"glyphicon-remove", "Send error");
-								} else {
-									msgChange($('#div-lost-msg'),
-											$('#icon-lost-msg'),
-											$('#text-lost-msg'), "success",
-											"glyphicon-ok", "Send OK");
-								}
-								return false;
-								break;
-							case "register-form":
-								var $rg_username = $('#register_username')
-										.val();
-								var $rg_email = $('#register_email').val();
-								var $rg_password = $('#register_password')
-										.val();
-								if ($rg_username == "ERROR") {
-									msgChange($('#div-register-msg'),
-											$('#icon-register-msg'),
-											$('#text-register-msg'), "error",
-											"glyphicon-remove",
-											"Register error");
-								} else {
-									msgChange($('#div-register-msg'),
-											$('#icon-register-msg'),
-											$('#text-register-msg'), "success",
-											"glyphicon-ok", "Register OK");
-								}
-								return false;
-								break;
-							default:
-								return false;
-							}
-							return false;
-						});
-
-		$('#login_register_btn').click(function() {
-			modalAnimate($formLogin, $formRegister)
-		});
-		$('#register_login_btn').click(function() {
-			modalAnimate($formRegister, $formLogin);
-		});
-		$('#login_lost_btn').click(function() {
-			modalAnimate($formLogin, $formLost);
-		});
-		$('#lost_login_btn').click(function() {
-			modalAnimate($formLost, $formLogin);
-		});
-		$('#lost_register_btn').click(function() {
-			modalAnimate($formLost, $formRegister);
-		});
-		$('#register_lost_btn').click(function() {
-			modalAnimate($formRegister, $formLost);
-		});
-
-		function modalAnimate($oldForm, $newForm) {
-			var $oldH = $oldForm.height();
-			var $newH = $newForm.height();
-			$divForms.css("height", $oldH);
-			$oldForm.fadeToggle($modalAnimateTime, function() {
-				$divForms.animate({
-					height : $newH
-				}, $modalAnimateTime, function() {
-					$newForm.fadeToggle($modalAnimateTime);
-				});
-			});
-		}
-
-		function msgFade($msgId, $msgText) {
-			$msgId.fadeOut($msgAnimateTime, function() {
-				$(this).text($msgText).fadeIn($msgAnimateTime);
-			});
-		}
-
-		function msgChange($divTag, $iconTag, $textTag, $divClass, $iconClass,
-				$msgText) {
-			var $msgOld = $divTag.text();
-			msgFade($textTag, $msgText);
-			$divTag.addClass($divClass);
-			$iconTag.removeClass("glyphicon-chevron-right");
-			$iconTag.addClass($iconClass + " " + $divClass);
-			setTimeout(function() {
-				msgFade($textTag, $msgOld);
-				$divTag.removeClass($divClass);
-				$iconTag.addClass("glyphicon-chevron-right");
-				$iconTag.removeClass($iconClass + " " + $divClass);
-			}, $msgShowTime);
-		}
-
-		/*
-		 * 회원가입 비밀번호 체크 부분
-		 */
-
-		$("input[type=password]").keyup(function() {
-			var ucase = new RegExp("[A-Z]+");
-			var lcase = new RegExp("[a-z]+");
-			var num = new RegExp("[0-9]+");
-
-			if ($("#password1").val().length >= 8) {
-				$("#8char").removeClass("glyphicon-remove");
-				$("#8char").addClass("glyphicon-ok");
-				$("#8char").css("color", "#00A41E");
-			} else {
-				$("#8char").removeClass("glyphicon-ok");
-				$("#8char").addClass("glyphicon-remove");
-				$("#8char").css("color", "#FF0004");
-			}
-
-			if (ucase.test($("#password1").val())) {
-				$("#ucase").removeClass("glyphicon-remove");
-				$("#ucase").addClass("glyphicon-ok");
-				$("#ucase").css("color", "#00A41E");
-			} else {
-				$("#ucase").removeClass("glyphicon-ok");
-				$("#ucase").addClass("glyphicon-remove");
-				$("#ucase").css("color", "#FF0004");
-			}
-
-			if (lcase.test($("#password1").val())) {
-				$("#lcase").removeClass("glyphicon-remove");
-				$("#lcase").addClass("glyphicon-ok");
-				$("#lcase").css("color", "#00A41E");
-			} else {
-				$("#lcase").removeClass("glyphicon-ok");
-				$("#lcase").addClass("glyphicon-remove");
-				$("#lcase").css("color", "#FF0004");
-			}
-
-			if (num.test($("#password1").val())) {
-				$("#num").removeClass("glyphicon-remove");
-				$("#num").addClass("glyphicon-ok");
-				$("#num").css("color", "#00A41E");
-			} else {
-				$("#num").removeClass("glyphicon-ok");
-				$("#num").addClass("glyphicon-remove");
-				$("#num").css("color", "#FF0004");
-			}
-
-			if ($("#password1").val() == $("#password2").val()) {
-				$("#pwmatch").removeClass("glyphicon-remove");
-				$("#pwmatch").addClass("glyphicon-ok");
-				$("#pwmatch").css("color", "#00A41E");
-			} else {
-				$("#pwmatch").removeClass("glyphicon-ok");
-				$("#pwmatch").addClass("glyphicon-remove");
-				$("#pwmatch").css("color", "#FF0004");
-			}
-		});
-	});
-</script> -->
 <style>
 /* Remove the navbar's default margin-bottom and rounded borders */
-.navbar {
+/* .navbar {
 	margin-bottom: 0;
 	border-radius: 0;
 }
@@ -425,7 +237,7 @@ footer {
 
 .form-control {
 	border-radius: 0px;
-}
+} */
 
 #divMain {
 	
@@ -438,7 +250,7 @@ footer {
 
 	$(function(){
 		<% if(totalReservationCount == null){ %>
-		location.href="/cs/makechart";
+			location.href="/cs/makechart";
 		<% } %>
 		
 		$.ajax({      
@@ -504,13 +316,16 @@ footer {
 </script>
 </head>
 <body>
+<%@ include file="resources/include/header.jsp"%>
 	<!-- 차트용 스크립트 -->
 	<!-- <script src="https://d3js.org/d3.v3.min.js"></script> -->
 	<!-- <script
 		src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.4.11/c3.min.js"></script> -->
-
-	<%@ include file="resources/include/header.jsp"%>
-
+<% if(totalReservationCount != null){ %>
+	<!-- <script type="text/javascript">
+		alert("null이 아니라능");
+	</script> -->
+	
 	<div class="row content" id="divMain">
 		<div class="col-sm-8 text-left" id="imageslide">
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -555,7 +370,7 @@ footer {
 		</div>
 	</div>
 	<div style="width: 100%; height: 380px; margin-top: 120px;">
-		<table style="text-align: center; background: #787878; width: 100%;">
+		<table style="text-align: center; background: #d2d2d2; width: 100%;">
 			<tr>
 				<td style="width: 48%;">
 					<!-- 공지사항 top5가 들어갈 곳 -->
@@ -611,6 +426,12 @@ footer {
 			</tr>
 		</table>
 	</div>
+	<% }else{ %>
+		<script type="text/javascript">
+			/* alert("차트만들고시포요"); */
+			location.href="/cs/makechart";
+		</script>
+	<% } %>
 	<%@ include file="resources/include/login.jsp"%>
 	<%@ include file="resources/include/footer.jsp"%>
 </body>

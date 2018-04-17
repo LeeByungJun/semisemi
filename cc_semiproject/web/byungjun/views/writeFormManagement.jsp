@@ -3,6 +3,7 @@
 <%@ page import="faq.model.vo.Faq,java.util.*,notice.model.vo.Notice"%>
 <%
 	ArrayList<Faq> faqList = (ArrayList<Faq>) request.getAttribute("faqList");
+	/* ArrayList<Faq> categoryList = (ArrayList<Faq>)request.getAttribute("categoryList"); */
 	int faqMaxPage = ((Integer) request.getAttribute("faqMaxPage")).intValue();
 	int faqStartPage = ((Integer) request.getAttribute("faqStartPage")).intValue();
 	int faqEndPage = ((Integer) request.getAttribute("faqEndPage")).intValue();
@@ -51,7 +52,7 @@
 </style>
 <script type="text/javascript">
 	function fInsert(){
-		location.href="/cs/byungjun/views/faqInsertView.jsp";
+		location.href="/cs/fcategorylist";
 	}
 	function nInsert(){
 		location.href="/cs/byungjun/views/noticeInsertView.jsp";

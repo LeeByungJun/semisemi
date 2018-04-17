@@ -65,15 +65,13 @@
 					dataType : "json",
 					success : function(data){
 						
-						<%-- var jsonStr = JSON.stringify(data);
+						/* var jsonStr = JSON.stringify(data);
 						//json객체 하나(data)를 문자열 형태로 바꿈 
 						
 						var json = JSON.parse(jsonStr);
 						//문자열을 다시 자바 스크립트가 사용할 수 있는 
-						//json객체로 parseing(파싱)함
+						//json객체로 parseing(파싱)함 */
 												
-						<% if(json.useremail){ %> --%>
-						<%-- <% } %> --%>
 						var values = "<tr>";
 						values+="<td style='background-color:#464244; color:white;' align='center'> CommentNo : <br>"+data.useremail+"</td><td colspan='5' align='center' width='1000'><textarea rows='1' cols='90'>"+data.replycontents+"</textarea></td></tr>";
 						$('#ta1').append(values);	
@@ -81,7 +79,7 @@
  						<%-- <td><input type='button' id='d<%=r.getReportcommentno()%>' onclick='deletecomment(this);' value='삭제'>&nbsp;<input type='button' id='u<%=r.getReportcommentno()%>' onclick='alertcomment(this);' value='수정'></td> --%>					
 					
 					},
-					error:function(){
+					error:function(a,b,c){
 						console.log(a+b+c);
 					} 
 				});	//댓글 신규등록

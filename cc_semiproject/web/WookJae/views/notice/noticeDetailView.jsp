@@ -83,7 +83,7 @@
 				</tr>
 				<tr  align="left">
 					<td colspan="4">
-					<textarea rows="13" cols="117"><%=notice.getN_contents()%></textarea>	
+					<textarea rows="13" cols="117" readonly><%=notice.getN_contents()%></textarea>	
 					<!-- 글의 내용을 불러온다. -->
 					</td>
 				</tr>

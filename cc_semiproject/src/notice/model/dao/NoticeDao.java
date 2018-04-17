@@ -93,9 +93,6 @@ public class NoticeDao {
 	public int insertNotice(Connection con, Notice notice) {
 		int result=0;
 		PreparedStatement pstmt = null;
-		System.out.println(notice.getN_title());
-		System.out.println(notice.getN_writer());
-		System.out.println(notice.getN_contents());
 		
 		/*
 		notice.setN_title(mrequest.getParameter("title"));
@@ -235,8 +232,7 @@ public class NoticeDao {
 		         n.setN_contents(rset.getString("n_contents"));
 		         n.setN_sysdate(rset.getDate("n_sysdate"));
 		         n.setReadCount(rset.getInt("readcount"));
-		         list.add(n);      
-		         System.out.println("list = "+list);
+		         list.add(n);
 	         }               
 	     }catch(Exception e) {
 	        e.printStackTrace();

@@ -333,8 +333,9 @@
     function html5Upload() {	
     	var tempFile,
     		sUploadURL;
+
+    	sUploadURL= location.href.replace(/\/[^\/]*$/, '')+'/file_uploader_html5.jsp'; 	//upload URL
     	
-    	sUploadURL= 'file_uploader_html5.php'; 	//upload URL
     	
     	//파일을 하나씩 보내고, 결과를 받음.
     	for(var j=0, k=0; j < nImageInfoCnt; j++) {
@@ -351,6 +352,7 @@
 	}
     
     function callAjaxForHTML5 (tempFile, sUploadURL){
+ 
     	var oAjax = jindo.$Ajax(sUploadURL, {
 			type: 'xhr',
 			method : "post",
@@ -367,7 +369,12 @@
 				}
 			},
 			timeout : 3,
-			onerror :  jindo.$Fn(onAjaxError, this).bind()
+			onerror :  function(res,res2,res3){ // 요청이 완료되면 실행될 콜백 함수
+				
+				console.log(res);
+				console.log(res2);
+				console.log(res3);
+			}
 		});
 		oAjax.header("contentType","multipart/form-data");
 		oAjax.header("file-name",encodeURIComponent(tempFile.name));
@@ -478,8 +485,10 @@
  	 */
  	function callFileUploader (){
  		oFileUploader = new jindo.FileUploader(jindo.$("uploadInputBox"),{
- 			sUrl  : location.href.replace(/\/[^\/]*$/, '') + '/file_uploader.php',	//샘플 URL입니다.
- 	        sCallback : location.href.replace(/\/[^\/]*$/, '') + '/callback.html',	//업로드 이후에 iframe이 redirect될 콜백페이지의 주소
+// 			sUrl  : location.href.replace(/\/[^\/]*$/, '') + '/file_uploader.php',	//샘플 URL입니다.
+// 			sCallback : location.href.replace(/\/[^\/]*$/, '') + '/callback.html',	//업로드 이후에 iframe이 redirect될 콜백페이지의 주소
+ 			sUrl : location.href.replace(/\/[^\/]*$/, '') + '/file_uploader.jsp',								//파일업로드를 처리하는 페이지
+ 			sCallback : '/SE2/sample/photo_uploader/callback.html',		//업로드 이후에 iframe이 redirect될 콜백페이지의 주소
  	    	sFiletype : "*.jpg;*.png;*.bmp;*.gif",						//허용할 파일의 형식. ex) "*", "*.*", "*.jpg", 구분자(;)	
  	    	sMsgNotAllowedExt : 'JPG, GIF, PNG, BMP 확장자만 가능합니다',	//허용할 파일의 형식이 아닌경우에 띄워주는 경고창의 문구
  	    	bAutoUpload : false,									 	//파일이 선택됨과 동시에 자동으로 업로드를 수행할지 여부 (upload 메소드 수행)

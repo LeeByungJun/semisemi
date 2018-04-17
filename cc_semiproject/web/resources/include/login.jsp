@@ -341,7 +341,7 @@
 					success : function(data) {
 						alert(data);
 						if (data == '회원가입 성공') {
-							$('#login-modal').modal("hide");
+							//$('#login-modal').modal("hide");
 							location.href = "/cs/index.jsp";
 						}
 					}
@@ -423,7 +423,8 @@
 					
 					alert("로그인 성공!");
 					
-					$('#login-modal').modal("hide");
+					/* $('#login-modal').modal("hide"); */
+					
 					if (data != "pjlee92@naver.com") {
 						location.href = "/cs/index.jsp";
 					} else {

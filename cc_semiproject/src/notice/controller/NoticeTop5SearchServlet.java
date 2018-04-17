@@ -37,11 +37,7 @@ public class NoticeTop5SearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Notice> list = new NoticeService().noticeTop5();
-	      
-	      System.out.println("Top5의 목록 추출");
-	      System.out.println(list.toString());
-	      
-	      
+	            
 	      //2.제이슨방식
 	      JSONObject noticeType = new JSONObject();
 	      //JSONObject는 값을 담을 수 있을 뿐만아니라 JSONArray도 담을 수 있다.
@@ -61,9 +57,6 @@ public class NoticeTop5SearchServlet extends HttpServlet {
 	         arr.add(j);
 	      };
 	      noticeType.put("list", arr);
-
-	      System.out.println("JSON에 담은 값 출력");
-	      System.out.println(arr.toJSONString());
 
 	      response.setContentType("application/json; charset=utf-8");
 	      PrintWriter out = response.getWriter();

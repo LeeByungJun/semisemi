@@ -19,9 +19,10 @@
 			<!-- main contents -->
 			<div class="col-sm-8 text-left">
 				<!-- 컨텐츠를 넣으세요 -->
-				<h1 align="center" style="margin-left:300px;">이 곳은 관리자 페이지 입니다.</h1>
-				<h3 align="center" style="margin-left:300px;">관리하십쇼!!!</h3>
-				<img src="../resources/gif/huhu.gif" width="300" height="300" style="margin-left:390px;">
+				<br>
+				<h1 align="center" style="margin-left:400px; width:500px;">이 곳은 관리자 페이지 입니다.</h1>
+				<h3 align="center" style="margin-left:400px; width:500px; color:red;">일하세요</h3>
+				<img src="../resources/gif/huhu.gif" width="300" height="300" style="margin-left:500px;">
 			</div>
 			<%-- <div class="col-sm-2 sidenav">
 				<%@ include file="../../resources/include/add.jsp" %>

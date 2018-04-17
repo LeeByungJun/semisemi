@@ -1,14 +1,19 @@
 
-#review {margin-bottom:100px;}
-#review ul.review {overflow:hidden; list-style:none; padding:0;}
-#review ul.review li {padding:0 5px;}
 #review ul.review li .thumb {position:relative;}
 #review ul.review li .thumb a {display:block;}
+#review ul.review li .thumb a img {height:250px;}
 #review ul.review li .thumb .rLine {position: absolute; bottom: 0; width: 100%; text-align: right; border-bottom: 3px solid #ED1B35;}
 #review ul.review li .thumb .rLine img {width:40px; height:40px; margin-bottom:-3px;}
-#review ul.review li h3 {font-size:16px; margin-top:16px;}
-#review ul.review li h3:hover {color:#2C76C0;}
-#review ul.review li p {color:#c0c0c0; margin-top:12px; word-break: break-all; font-size:12px;}
+#review ul.review li h4 a {
+    margin: 28px 0 12px 0;
+    display: block;
+    color: #c7081b;
+    font-size: 20px;
+    font-weight: 800;
+    font-family: 'Open Sans', sans-serif, Arial;
+    letter-spacing: -0.5px;
+    text-decoration: none;
+}
 
 #review .write-area table {width:100%;}
 .btn-area {overflow:hidden;}
@@ -16,7 +21,6 @@
 .btn-area a.right {width:150px; line-height:50px; height:50px; background:#ED1B35; color:#fff; float:right; text-align:center; text-decoration:none;}
 p { font-size: 0.9em; }
 
-#contentWrap {display:table-cell;}
 #scroll {
 	position:absolute;
 	width:100%;

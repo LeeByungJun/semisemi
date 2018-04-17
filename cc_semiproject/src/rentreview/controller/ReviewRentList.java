@@ -13,7 +13,7 @@ import rentreview.model.service.ReviewRentService;
 import rentreview.model.vo.ReviewRent;
 
 
-@WebServlet("/rvlist")
+@WebServlet("/rrlist")
 public class ReviewRentList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,8 +33,20 @@ public class ReviewRentList extends HttpServlet {
 		
 		//페이지 기본값 지정 
 		int currentPage=1;
+		int category=0;
+		String keyword = null;
 		//전달된 페이지 값 추출 
-		String keyword = request.getParameter("keyword");
+		
+		
+		if(request.getParameter("category")!=null) {
+			category = Integer.parseInt(request.getParameter("category"));
+		}
+		System.out.print("categorycategorycategorycategory"+category);
+
+		if(request.getParameter("keyword")!=null){ //뷰어로부터 가져온 page값이 null이 아니면
+			keyword = request.getParameter("keyword");
+		}
+		
 		if(request.getParameter("page")!=null){ //뷰어로부터 가져온 page값이 null이 아니면
 			currentPage = Integer.parseInt(request.getParameter("page"));
 		}
@@ -42,19 +54,18 @@ public class ReviewRentList extends HttpServlet {
 		//게시판 한 페이지당 출력할 목록갯수 지정 
 		int limit = 10; //10개로 지정
 		
-		ReviewRentService nservice = new ReviewRentService();
+		ReviewRentService rservice = new ReviewRentService();
 		//전체 목록 갯수 조회 
-		int listCount = nservice.getListCount();
+		int listCount = rservice.getListCount();
 		//System.out.println("전체목록 갯수 출력 > "+listCount);
 		
 		//현재 페이지에 출력할 목록 조회 
 		ArrayList<ReviewRent> list = null;
 		
-		if(keyword!=null) {
-			list = nservice.selectSearchTitle(currentPage,limit,keyword);
-			
+		if(keyword!=null&&category!=0) {
+			list = rservice.selectSearchTitle(currentPage,limit,keyword,category);
 		}else {
-			list = nservice.selectList(currentPage,limit);
+			list = rservice.selectList(currentPage,limit);
 		}
 		//System.out.println("현재 목록 : "+list);
 		

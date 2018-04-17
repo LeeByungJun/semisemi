@@ -126,6 +126,8 @@ public class ReviewRentDao {
 			while(rset.next()) {				
 
 				ReviewRent rr = new ReviewRent();
+				
+
 				rr.setRr_num(rset.getInt("rr_num"));
 				rr.setRr_subject(rset.getString("rr_subject"));
 				rr.setRr_writer(rset.getString("rr_writer"));
@@ -148,14 +150,21 @@ public class ReviewRentDao {
 
 
 	}
-	public ArrayList<ReviewRent> selectSearchTitle(Connection con, int currentPage, int limit, String keyword) {
+	public ArrayList<ReviewRent> selectSearchTitle(Connection con, int currentPage, int limit, String keyword, int category) {
 		ArrayList<ReviewRent> list = new ArrayList<ReviewRent>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
+		String query = null;
 
-
-
-		String query = "select * from RentReview where ROWNUM >= ? AND ROWNUM <= ? and rr_subject like ? order by rr_num asc";
+		
+		if(category==1) {
+			query = "select * from RentReview where ROWNUM >= ? AND ROWNUM <= ? and rr_subject like ? order by rr_num asc";
+		}else if(category==2) {
+			query = "select * from RentReview where ROWNUM >= ? AND ROWNUM <= ? and rr_writer like ? order by rr_num asc";
+		}
+		
+		
+		
 		
 		int startRow = (currentPage-1) * limit;
 		int endRow = currentPage * limit;
@@ -242,7 +251,7 @@ public class ReviewRentDao {
 
 			pstmt = con.prepareStatement(query);
 
-			pstmt.setString(1, "12313"); 
+			pstmt.setString(1, rc.getRc_writer()); 
 			pstmt.setString(2, rc.getRc_content()); 
 			pstmt.setInt(3, rc.getRc_parent_num()); 
 			
@@ -299,7 +308,7 @@ public class ReviewRentDao {
 		return result;
 	}
 	
-	public int updateReviewRent(Connection con, ReviewRent ReviewRent) {
+	public int updateReviewRent(Connection con, ReviewRent ReviewRent, int rr_num) {
 		
 		int result = 0;
 		
@@ -321,14 +330,15 @@ public class ReviewRentDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, ReviewRent.getRr_subject());
+			System.out.print("asdsdsdsdsd" + ReviewRent.getRr_subject());
 			pstmt.setString(2, ReviewRent.getRr_content());
 			
 			if(ReviewRent.getRr_original_filename() != null) {
 				pstmt.setString(3, ReviewRent.getRr_original_filename());
 				pstmt.setString(4, ReviewRent.getRr_rename_filename());
-				pstmt.setInt(5, ReviewRent.getRr_num());				
+				pstmt.setInt(5, rr_num);				
 			} else {
-				pstmt.setInt(3, ReviewRent.getRr_num());
+				pstmt.setInt(3, rr_num);
 			}
 			result = pstmt.executeUpdate();	
 		} catch (Exception e) {
@@ -345,7 +355,7 @@ public class ReviewRentDao {
 		
 		PreparedStatement pstmt = null;
 		
-		String query = "delete from RentReview where rr_num = ?";
+		String query = "delete from RentReview where rr_num = ? ";
 		
 		try {
 			pstmt = con.prepareStatement(query);

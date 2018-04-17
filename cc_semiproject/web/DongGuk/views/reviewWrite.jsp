@@ -21,6 +21,14 @@
 	<!-- header -->
 	<%@ include file="../../resources/include/header.jsp"%>
 
+	
+	<%if(loginUser==null){%>
+		<script>
+			alert("잘못된 요청입니다");
+			location.href="/cs/rrlist";
+		</script>
+	<%}%>
+
 	<!-- sidenav -->
 	
 	<div class="container-fluid text-center">
@@ -50,7 +58,8 @@
 					<div class="write-area">
 
 					
-						<form action="/cs/rwrite" method="POST" name="insertForm" enctype="multipart/form-data">
+						<form action="/cs/rrwrite" method="POST" name="insertForm" enctype="multipart/form-data">
+							
 							<div class="table table-responsive">
 							
 								<table class="table table-striped">
@@ -58,10 +67,7 @@
 							 		<td>제목</td>
 							 		<td><input type="text"  class="form-control" name="subject"></td>
 							 	</tr>
-							 	<tr>
-							 		<td>작성자</td>
-							 		<td><input type="text"  class="form-control" name="writer"></td>
-							 	</tr>
+
 							 	<tr>
 							 		<td>글내용</td>
 							 		<td><textarea name="content" id="content" rows="10" cols="100"></textarea></td>
@@ -94,11 +100,6 @@
 										<td>첨부파일</td>
 										<td><input type="file"  class="form-control" name="upfile"></td>
 									</tr>
-									
-									<tr>
-										<td>작성일</td>
-										<td><input type="text"  class="form-control" name="sysdate"></td>
-									</tr>
 							</table>
 
 							
@@ -106,7 +107,7 @@
 						</form> 
 
 						<div class="btn-area">
-							<a href="/cs/rlist" class="left">목록으로</a>
+							<a href="/cs/rrlist" class="left">목록으로</a>
 							<a href="#" class="submit">저장하기</a>
 						</div>
 					</div>

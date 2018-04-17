@@ -53,9 +53,7 @@
 					<tr style="margin-right:100px; margin-left:100px;">
 						<td align="center" style="background-color:#464244; color:white; width:200px;"><%=loginUser.getName()%>(<%=loginUser.getEmail()%>)</td>
 						<td colspan="4" style="padding-left:20px; padding-top:10px; padding-bottom:10px; padding-right:20px;">
-						<textarea rows="1" cols="60" id="text1">
-							<%=rec.getReportcommentcontents() %>
-						</textarea>
+						<textarea rows="1" cols="60" id="text1"><%=rec.getReportcommentcontents() %></textarea>
 						<input type="hidden" id="hide1" value="<%=rec.getUserEmail()%>"><!-- 유저의 이메일자료를 넘기는 것 -->	
 						<input type="hidden" id="hide2" value="<%=rec.getReportno()%>"><!-- 수정할 게시글페이지의 번호를 넘기는 것  -->	
 						<input type="hidden" id="hide3" value="<%=rec.getReportcommentno()%>"><!-- 댓글 고유번호를 넘기는 것 -->	
@@ -75,11 +73,11 @@
 					</tr> 
 				</table>
 				<br>
-				<div style="align:center;">
+				<!-- <div style="align:center;">
 				<img src="/cs/images/트와이스.jpg" style="width:700px; height:300px;">	
 				<img src="/cs/images/카카오.gif" style="width:200px; height:180px;"><br>
 				</div>
-				<br><br><br>
+				<br><br><br> -->
 			</div>
 			
 			

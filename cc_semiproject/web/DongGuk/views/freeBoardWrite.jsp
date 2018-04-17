@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../include/meta.jsp"%>
+<%@ include file="../../resources/include/meta.jsp"%>
 <link href="../sub.css" rel="stylesheet" type="text/css">
 
 <script type="text/javascript" src="../editor/js/service/HuskyEZCreator.js" charset="utf-8"></script> <!-- editor add -->
@@ -19,7 +19,15 @@
 	String id = request.getParameter("id");
 %>
 	<!-- header -->
-	<%@ include file="../include/header.jsp"%>
+	<%@ include file="../../resources/include/header.jsp"%>
+
+	
+	<%if(loginUser==null){%>
+		<script>
+			alert("잘못된 요청입니다");
+			location.href="/cs/fblist";
+		</script>
+	<%}%>
 
 	<!-- sidenav -->
 	
@@ -44,98 +52,81 @@
 				
 			</div>
 			<div class="col-sm-10 text-left" id="contentWrap1">
-				<h1>자유게시판</h1>
+				<h1>자유게시판 글 작성</h1>
 				<hr>
 				<div class="content" id="review">
 					<div class="write-area">
-			<form action="/cs/rwrite" method="POST" name="insertForm" enctype="multipart/form-data">
-			<div class="table table-responsive">
-			
-			<table class="table table-striped">
-		 	<tr>
-		 		<td>제목</td>
-		 		<td><input type="text"  class="form-control" name="subject"></td>
-		 	</tr>
-		 	<tr>
-		 		<td>작성자</td>
-		 		<td><input type="text"  class="form-control" name="writer"></td>
-		 	</tr>
-		 	<tr>
-		 		<td>글내용</td>
-		 		<td><textarea name="ir1" id="ir1" rows="10" cols="100">123</textarea></td>
 
-				
-				<script type="text/javascript">
-				var oEditors = [];
-				
-				nhn.husky.EZCreator.createInIFrame({
-				   oAppRef: oEditors,
-				   elPlaceHolder: "ir1",
-				   sSkinURI: "../editor/SmartEditor2Skin.html?ver=201804112",   
-				   htParams : {
-				      bUseToolbar : true,            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
-				      bUseVerticalResizer : true,      // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
-				      bUseModeChanger : true,         // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
-				      //aAdditionalFontList : aAdditionalFontSet,      // 추가 글꼴 목록
-				      fOnBeforeUnload : function(){
-				         //alert("완료!");
-				      }
-				   }, //boolean
-				   fOnAppLoad : function(){
-				      //예제 코드
-				      //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
-				   }
-				});
-				</script>
-		 		<!-- <td><textarea rows="10" cols="50" name="content" class="form-control"></textarea></td> -->
-		 	</tr>
-		 	<tr>
-		 		<td>첨부파일</td>
-		 		<td><input type="text"  class="form-control" name="email"></td>
-		 	</tr>
-		 	
-		 	<tr>
-		 		<td>작성일</td>
-		 		<td><input type="text"  class="form-control" name="writedate"></td>
-		 	</tr>
-		 	
-		 	
-		  	<tr>	
-		 		<td colspan="2"  class="text-center">
-		 		
-		 			<input type="hidden" name="num"  <%-- value="<%= num %>" --%>>
-			 		<input type="hidden" name="ref"  <%-- value="<%= ref %>" --%>>
-			 		<input type="hidden" name="re_step"  <%-- value="<%= re_step %>" --%>>
-			 		<input type="hidden" name="re_level"  <%-- value="<%= re_level %>" --%>>
-		 		
-		 			<input type="submit" value="답글쓰기완료" class="btn btn-success">
-		 			<input type="reset" value="취소" class="btn btn-warning">
-		 			<input type="button"  class="btn btn-primary" onclick="location.href='RentCarMain.jsp?center=BoardList.jsp'" value="전체글보기">
-		 		</td>
-		 	</tr>
-		 	
-		  </table>
-		
-	
-			</div>
-			</form> 
 					
-					<div class="btn-area">
-						<a href="reviewRent.jsp" class="left">뒤로가기</a>
-						<a href="#" class="right submit">저장하기</a>
+						<form action="/cs/fbwrite" method="POST" name="insertForm">
+							
+							<div class="table table-responsive">
+							
+								<table class="table table-striped">
+							 	<tr>
+							 		<td>제목</td>
+							 		<td><input type="text"  class="form-control" name="fb_subject"></td>
+							 	</tr>
+
+							 	<tr>
+							 		<td>글내용</td>
+							 		<td><textarea name="fb_content" id="content" rows="10" cols="100"></textarea></td>
+							
+									
+									<script type="text/javascript">
+										var oEditors = [];
+										
+										nhn.husky.EZCreator.createInIFrame({
+										   oAppRef: oEditors,
+										   elPlaceHolder: "content",
+										   sSkinURI: "../editor/SmartEditor2Skin.html?ver=201804112",   
+										   htParams : {
+										      bUseToolbar : true,            // 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+										      bUseVerticalResizer : true,      // 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+										      bUseModeChanger : true,         // 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+										      //aAdditionalFontList : aAdditionalFontSet,      // 추가 글꼴 목록
+										      fOnBeforeUnload : function(){
+										         //alert("완료!");
+										      }
+										   }, //boolean
+										   fOnAppLoad : function(){
+										      //예제 코드
+										      //oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+										   }
+										});
+										</script>
+									</tr>
+									<!-- <tr>
+										<td>첨부파일</td>
+										<td><input type="file"  class="form-control" name="upfile"></td>
+									</tr> -->
+							</table>
+							
+							</div>
+						</form> 
+
+						<div class="btn-area">
+							<a href="/cs/fblist" class="left">목록으로</a>
+							<a href="#" class="submit">저장하기</a>
+						</div>
 					</div>
+					
+
 					<script>
 						$(document).ready(function(){
 							$(".btn-area a.submit").on("click",function(){
+								
+								oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+								
 								var form = document.insertForm;
-								if( !form.subject.value ){ 
+								if( !form.fb_subject.value ){ 
 									alert( "제목을 입력해주세요" );
-									form.subject.focus();
+									form.fb_subject.focus();
 									return; 
 								}
-								if( !form.content.value ){ 
+								if( !form.fb_content.value ){ 
 									alert( "내용을 입력해주세요" );
-									form.content.focus();
+									form.fb_content.focus();
 									return; 
 								}
 								form.submit();
@@ -145,12 +136,8 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	
-	
-	
-		</div>
-		</div>	
-	
-	<%@include file="/include/footer.jsp"%>
+	<%@include file="../../resources/include/footer.jsp"%>
 </body>
 </html>

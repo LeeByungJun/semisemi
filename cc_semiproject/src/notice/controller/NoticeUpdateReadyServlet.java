@@ -39,7 +39,6 @@ public class NoticeUpdateReadyServlet extends HttpServlet {
 		
 		Notice notice = new NoticeService().selectNotice(no);
 		//해당게시판의 번호를 selectNotice()의 인자값으로 전달하여 해당되는 게시판의 객체를 리턴받음
-		System.out.println("선택된 공지글 : "+notice.toString());
 
 		
 		response.setContentType("text/html; charset=utf-8");

@@ -17,7 +17,7 @@ import rentreview.model.vo.ReviewRentComment;
 /**
  * Servlet implementation class ReviewRentDetail
  */
-@WebServlet("/rvdetail")
+@WebServlet("/rrdetail")
 public class ReviewRentDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -90,7 +90,7 @@ public class ReviewRentDetail extends HttpServlet {
 		if(review!=null) { /* 게시글의 조회가 된다면 */ 
 			//view페이지로 이동할때 response.sendRedirect() 넘기는 데이터가 없이 바로 불러올때 
 			//request.getRequestDispatcher() 넘기는 데이터의 값이 있을때 사용
-			view = request.getRequestDispatcher("DongGuk/views/reviewRentView.jsp");
+			view = request.getRequestDispatcher("DongGuk/views/reviewRentDetail.jsp");
 			request.setAttribute("review", review);
 			
 			request.setAttribute("comment_list", comment_list); //공지사항의 전체 조회를 하는jsp페이지 호출

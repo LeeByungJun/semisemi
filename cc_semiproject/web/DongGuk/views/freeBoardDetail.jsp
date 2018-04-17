@@ -53,18 +53,15 @@
 			</div>
 			<div class="col-sm-10 text-left" id="contentWrap1">
 				<h1>시승기</h1>
-				<hr>
 				<div class="content" id="review">
 					<div class="write-area">
 						<div class="wrapper">
 							<div id="pageTitle">
-								<h2>출고 후기</h2>
 							</div>
 							<div class="content">
 								<div class="review_detail">
 									<button onclick="history.back();" class="top">이전 목록</button>
 									<h2>
-										김OO 사장님 <br>
 										<strong><%=review.getRr_subject()%></strong>
 									</h2>
 									<div class="detail_content">
@@ -95,7 +92,7 @@
 						<% } %>
 					</ul>
 					<div id="add-comment">
-	                    <form action="/cs/rcomment" method="post" class="form-horizontal" id="commentForm" role="form">
+	                    <form action="/cs/rrcomment" method="post" class="form-horizontal" id="commentForm" role="form">
 	                    	<input type="hidden" name="rr_num" value="<%=review.getRr_num()%>">
 	                        <div class="form-group">
 	                            <label for="email" class="col-sm-2 control-label">Comment</label>
@@ -111,8 +108,8 @@
 	                    </form>
 	                </div>
 					<div class="btn-area">
-						<a href="reviewDelete.jsp?id=<%=review.getRr_num()%>" class="left">삭제</a>
-						<a href="reviewWrite.jsp?id=<%=review.getRr_num()%>" class="right submit">수정</a>
+						<a href="/cs/rrdelete?id=<%=review.getRr_num()%>" class="left">삭제</a>
+						<a href="/cs/DongGuk/views/reviewUpdate.jsp?id=<%=review.getRr_num()%>" class="right submit">수정</a>
 					</div>
 				</div>
 			</div>

@@ -60,9 +60,9 @@ public class ReviewRentService {
 		return list;
 	}
 	
-	public ArrayList<ReviewRent> selectSearchTitle(int currentPage, int limit, String keyword) {
+	public ArrayList<ReviewRent> selectSearchTitle(int currentPage, int limit, String keyword, int category) {
 		Connection con = getConnection();
-		ArrayList<ReviewRent> list = new ReviewRentDao().selectSearchTitle(con, currentPage, limit, keyword);
+		ArrayList<ReviewRent> list = new ReviewRentDao().selectSearchTitle(con, currentPage, limit, keyword, category);
 		close(con);
 		return list;
 	}
@@ -86,7 +86,7 @@ public class ReviewRentService {
 		} else {
 			rollback(con);
 		}
-		
+		close(con);
 		return result;
 	}
 	
@@ -98,14 +98,14 @@ public class ReviewRentService {
 		} else {
 			rollback(con);
 		}
-		
+		close(con);
 		return result;
 	}
 	
-	public int updateReviewRent(ReviewRent ReviewRent) {
+	public int updateReviewRent(ReviewRent ReviewRent, int rr_num) {
 		
 		Connection con = getConnection();
-		int result = new ReviewRentDao().updateReviewRent(con, ReviewRent);
+		int result = new ReviewRentDao().updateReviewRent(con, ReviewRent, rr_num);
 		if(result > 0) {
 			commit(con);
 		} else {

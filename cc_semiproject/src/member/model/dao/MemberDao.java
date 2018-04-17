@@ -392,4 +392,21 @@ public class MemberDao {
 		return g_rank;
 	}
 
+	public int cansellUpdate(Connection conn, String email) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "update member set cansell = 'Y' where email = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, email);
+			result = pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

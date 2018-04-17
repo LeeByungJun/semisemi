@@ -6,17 +6,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 
+import javax.mail.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
+import member.model.vo.Member;
 import rentreview.model.vo.ReviewRent;
 import rentreview.model.service.ReviewRentService;
 
@@ -24,7 +26,7 @@ import rentreview.model.service.ReviewRentService;
  * Servlet implementation class RentReviewWriter
  */
 
-@WebServlet("/rvwrite")
+@WebServlet("/rrwrite")
 public class ReviewRentWrite extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -46,8 +48,7 @@ public class ReviewRentWrite extends HttpServlet {
 		RequestDispatcher view = null;
 		
 		String root = request.getSession().getServletContext().getRealPath("/");
-		System.out.println("root : "+root);
-		
+
 
 		String savePath = root + "DongGuk/images";
 		
@@ -58,16 +59,20 @@ public class ReviewRentWrite extends HttpServlet {
 				request, savePath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
 		
-
 		
 		ReviewRent rr= new ReviewRent();
+		
+		HttpSession session = request.getSession();
+		session.getAttribute("loginUser");
+		
+		Member loginUser = (Member)session.getAttribute("loginUser");
+
 		rr.setRr_subject(mrequest.getParameter("subject"));
-		rr.setRr_writer(mrequest.getParameter("writer"));
+		rr.setRr_writer(loginUser.getName());
 		rr.setRr_content(mrequest.getParameter("content"));
 		
 		String originFileName = mrequest.getFilesystemName("upfile");
-		
-		System.out.println("originFileName1 : "+originFileName);
+
 		
 		
 		if (originFileName != null) {
@@ -75,6 +80,7 @@ public class ReviewRentWrite extends HttpServlet {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
 			String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
 					+ originFileName.substring(originFileName.lastIndexOf(".") + 1);
+			
 
 			// 파일명 바꾸기하려면 File 객체의 renameTo() 사용함
 			File originFile = new File(savePath + "\\" + originFileName);
@@ -103,20 +109,10 @@ public class ReviewRentWrite extends HttpServlet {
 			}
 			
 			
-			System.out.println("originFileName2 : "+originFileName);
 			rr.setRr_original_filename(originFileName);
 			rr.setRr_rename_filename(renameFileName);
 		} 
 		
-		if(originFileName != null) {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-			String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis()))
-					+ "." + originFileName.substring(originFileName.lastIndexOf(".") + 1);
-			
-			java.io.File originFile = new File(savePath + "\\" + originFileName);
-			File renameFile = new File(savePath + "\\" + renameFileName);
-			
-		}
 		
 		int result = new ReviewRentService().insertReviewRent(rr);
 		
@@ -126,7 +122,7 @@ public class ReviewRentWrite extends HttpServlet {
 		
 		response.setContentType("text/html; charset=UTF-8");
 		if(result > 0) {
-			response.sendRedirect("/cs/rlist");
+			response.sendRedirect("/cs/rrlist");
 		}else {
 			response.sendRedirect("DongGuk/views/reviewWrite.jsp");
 		}

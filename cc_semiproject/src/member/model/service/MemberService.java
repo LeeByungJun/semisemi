@@ -149,4 +149,17 @@ public class MemberService {
 		Member g_rank = new MemberDao().codeupdate(conn, email);
 		close(conn);
 	}
+
+	public int cansellUpdate(String email) {
+		//cansell update 용 메소드
+		Connection conn = getConnection();
+		int result = new MemberDao().cansellUpdate(conn,email);
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }
