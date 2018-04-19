@@ -337,7 +337,7 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header" align="center">
-					<img class="img-circle" id="img_logo" src="../images/C&C Logo.jpg">
+					<img class="img-circle" id="img_logo" src="/cs/images/C&C Logo.jpg">
 					<!-- src="http://bootsnipp.com/img/logo.jpg" -->
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">

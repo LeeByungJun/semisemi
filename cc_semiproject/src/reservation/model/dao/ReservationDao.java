@@ -32,7 +32,7 @@ public class ReservationDao {
 					+ "(select car_serial_number from cartype where carname=?),"
 					+ "(select carinsurance_no from carinsurance where carinsurance_name=?),"
 					+ "?,?,?,?,?,?,?,?,sysdate,?,((select carprice from cartype where carname=?)"
-					+ "+(select carinsurance_price from carinsurance where carinsurance_name=?))*(to_date(?)-to_date(?)))"; 
+					+ "+(select carinsurance_price from carinsurance where carinsurance_name=?))*(to_date(?)-to_date(?)+1))"; 
 			
 		
 			try {
@@ -192,7 +192,7 @@ public class ReservationDao {
 				+ ")+(select carinsurance_price from carinsurance where carinsurance_name=?"
 				+ ")-((select carprice from cartype where carname=?"
 				+ ")+(select carinsurance_price from carinsurance where carinsurance_name=?)"
-				+ ")*(select g_rate from grade where g_code=?)*0.01)*(to_date(?)-to_date(?)))";
+				+ ")*(select g_rate from grade where g_code=?)*0.01)*(to_date(?)-to_date(?)+1))";
 		 
 			try {
 			pstmt=con.prepareStatement(query);	

@@ -50,7 +50,6 @@
 			$('#login_username').val(uemail);
 		}
 		
-
 		var $formLogin = $('#login-form');
 		var $formLost = $('#lost-form');
 		var $formRegister = $('#register-form');

@@ -274,7 +274,7 @@ footer {
 	            $('#nt5').append(values); /* #버리지마세용  appand (x) -> append(0)*/
 	         },
 	         error : function(a,b,c){
-	            alert(a +" "+b+" "+c);
+	            /* alert(a +" "+b+" "+c); */
 	         }
 	      }); 
 		<%-- <% if(list == null){ %>
@@ -387,7 +387,6 @@ footer {
 						<div id="areachart1" align="center"
 							style="width: 100%; height: 300px;"></div>
 						<script>
-						/* 에이작스로 로딩될 시 작업해줘야할듯 */
 							var areachart1 = c3.generate({
 								bindto : "#areachart1",
 								data : {

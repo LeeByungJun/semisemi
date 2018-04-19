@@ -17,7 +17,7 @@ public class ReviewRentDao {
 
 	
 	//전체 목록 갯수 조회 select문 
-	public int getListCount(Connection con) {
+	public int getListTotal(Connection con) {
 		int listCount=0;
 		Statement stmt = null;
 		ResultSet rset = null;
@@ -26,6 +26,7 @@ public class ReviewRentDao {
 			stmt=con.createStatement();
 			rset=stmt.executeQuery(qurey);
 			
+
 			if(rset.next()) {
 				listCount=rset.getInt(1);
 			}
@@ -43,7 +44,7 @@ public class ReviewRentDao {
 		int listCount=0;
 		Statement stmt = null;
 		ResultSet rset = null;
-		String qurey = "select count(*) from ReviewComment";
+		String qurey = "select count(*) from ReviewComment where rc_parent_num = "+rr_num;
 		try {
 			stmt=con.createStatement();
 			rset=stmt.executeQuery(qurey);

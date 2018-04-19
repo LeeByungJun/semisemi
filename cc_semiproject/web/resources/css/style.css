@@ -726,9 +726,9 @@ header.affix .bottom-header .navbar-default .navbar-brand .logo .secondary_text 
 	color: #fff;
 }
 
-.pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus {
-	background-color: #c7081b;
-	color: #FFF;
+.pagination>li.active>a, .pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus {
+	background-color: #c7081b!important;
+	color: #FFF!important;
 }
 
 .pagination > li:first-child > a:hover, .pagination > li:last-child > a:hover {
@@ -968,7 +968,6 @@ h3.recent_posts {
 .side-content .form-group {
 	margin-top: 29px;
 }
-
 .side-content .list {
 	max-width: 100%;
 	padding-right: 0;
@@ -993,11 +992,7 @@ h3.recent_posts {
 	list-style: none;
 }
 
-.side-content .list ul li:last-child a {
-	font-size: 14px;
-	font-weight: 700;
-	color: #c7081b;
-}
+
 
 .side-content .list ul li:last-child a:hover {
 	text-decoration: none;
@@ -1016,10 +1011,40 @@ h3.recent_posts {
 	list-style: none;
 	line-height: 32px;
 }
-
 .side-content .left_inventory form {
 	margin-top: 20px;
 }
+
+
+.choose-list ul {
+	padding: 0;
+	margin: 0;
+}
+
+.choose-list ul li a{
+	list-style: none;
+	font-size: 14px;
+	color: #2d2d2d;
+	line-height: 33px;
+	font-weight: 400;
+}
+
+.choose-list ul li:before {
+	width: 16px;
+	height: 16px;
+	background: #c7081b;
+	font-family: FontAwesome;
+	content: "\f105";
+	margin-right: 10px;
+	display: inline-block;
+	color: #FFF;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 16px;
+	font-size: 12px;
+	-moz-padding-start: 1px;
+}
+
 
 .inner-page.full-width-sidebar.row > .col-lg-9 {
 	margin-bottom: 0;

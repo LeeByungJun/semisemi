@@ -38,10 +38,6 @@ public class ReviewRentDetail extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("rr_num"));
 
 
-
-		
-		
-		
 		//페이지 기본값 지정 
 		int currentPage=1;
 		//전달된 페이지 값 추출 
@@ -51,6 +47,7 @@ public class ReviewRentDetail extends HttpServlet {
 		
 		//게시판 한 페이지당 출력할 목록갯수 지정 
 		int limit = 10; //10개로 지정
+		int pageBlock = 5; //10개로 지정
 		
 		ReviewRentService nservice = new ReviewRentService();
 		//전체 목록 갯수 조회 
@@ -65,9 +62,10 @@ public class ReviewRentDetail extends HttpServlet {
 		int maxPage = (int)((double)listCount / limit + 0.9);
 		//현재 페이지 그룹(10개페이지를 한그룹처리)에 보여줄 시작 페이지수
 		//현재 페이지가 13페이지이면 그룹은 11 ~ 20페이지가 보여지게함
-		int startPage = (((int)((double)currentPage / limit + 0.9))
-				- 1) * limit + 1;
-		int endPage = startPage + limit - 1;
+		int startPage = (((int)((double)currentPage / pageBlock + 0.9))
+				- 1) * pageBlock + 1;
+		
+		int endPage = startPage + pageBlock - 1;
 		
 		if(maxPage < endPage)		
 			endPage = maxPage;

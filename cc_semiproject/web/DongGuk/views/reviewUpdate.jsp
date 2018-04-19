@@ -5,8 +5,8 @@
 <%@ page import="rentreview.model.vo.ReviewRent"%>
 <%
 	int id = Integer.parseInt(request.getParameter("id"));
-	ReviewRentService rservice  = new ReviewRentService();
-	ReviewRent review = rservice.selectReviewRent(id);
+	ReviewRentService rnservice  = new ReviewRentService();
+	ReviewRent review = rnservice.selectReviewRent(id);
 %>
 
 <!DOCTYPE html>
@@ -14,6 +14,8 @@
 <head>
 <%@ include file="../../resources/include/meta.jsp"%>
 <link href="/cs/DongGuk/sub.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/cs/resources/css/style.css">
+
 <script type="text/javascript" src="../editor/js/service/HuskyEZCreator.js" charset="utf-8"></script> <!-- editor add -->
 
 
@@ -49,7 +51,11 @@
 	
 			        <div class="row inner-page"> 
 			            <!--FAQ LEFT-->
-						<div class="col-md-9 padding-left-none padding-right-30 md-padding-right-30 xs-padding-right-none xs-padding-bottom-40">
+			            <div class="col-md-3 padding-right-15 md-padding-right-15 padding-left-none sm-padding-left-none xs-padding-left-none xs-margin-top-30">
+		        			<%@ include file="../views/sideContent.jsp"%>
+		        		</div>
+		        	
+						<div class="col-md-9 padding-right-none padding-left-30 md-padding-left-30 xs-padding-right-none xs-padding-bottom-40">
 
 							<div class="write-area">
 
@@ -142,35 +148,6 @@
 							</script>
 
 		            	</div>
-		        		<div class="col-md-3 padding-left-15 md-padding-left-15 padding-right-none sm-padding-left-none xs-padding-left-none xs-margin-top-30">
-							<div class="right_faq">
-								<div class="side-widget side-content">
-									<div class="recent_posts_container padding-bottom-50">
-										
-			                                <h3 class="recent_posts">RECENT POSTS</h3>
-			                                <div class="side-blog"><img src="/cs/images/blog-thumb-1.jpg" class="alignleft" alt=""> <strong>Most recent post</strong>
-			                                    <p>Lorem ipsum dolor sit amet, id melius accusam mea ...</p>
-			                                </div>
-			                                <div class="side-blog"><img src="/cs/images/blog-thumb-2.jpg" class="alignleft" alt=""> <strong>Second most recent post</strong>
-			                                    <p>Oblique copiosae dissentiunt ea vim, ius ea ...</p>
-			                                </div>
-			                                <div class="side-blog"><img src="/cs/images/blog-thumb-3.jpg" class="alignleft" alt=""> <strong>Third most recent post</strong>
-			                                    <p>Eos ad errem virtute convenire, ex sea hinc ...</p>
-			                                </div>
-			                                <div class="side-blog"><img src="/cs/images/blog-thumb-4.jpg" class="alignleft" alt=""> <strong>Fourth most recent post</strong>
-			                                    <p>Ea vis gloriatur efficiantur intellegebat, id ...</p>
-			                                </div>
-			                                <div class="side-blog"><img src="/cs/images/blog-thumb-5.jpg" class="alignleft" alt=""> <strong>Fifth most recent post</strong>
-			                                    <p>Sea ea semper eripuit inermis, nec ut elit ...</p>
-			                                </div>
-			                                
-			                        	
-		                            </div>
-		                    	</div>
-		                    </div>
-		        			<img src="https://tpc.googlesyndication.com/daca_images/simgad/619241601095039295" style="width:100%;">
-		        		</div>
-		        	
 		        	</div>
 
 				</div>
@@ -178,6 +155,6 @@
 		</div>  
 	</div>                
 	<%@ include file="../../resources/include/login.jsp" %>
-	<%@include file="../../resources/include/footer.jsp"%>
+	<%@include file="../include/footer.jsp"%>
 </body>
 </html>

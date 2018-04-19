@@ -127,11 +127,12 @@
 				<ul class="nav navbar-nav">
 				<% if(loginUser == null){ %>
 					<li><a href="/cs/HanJin/views/noMemberReservation.jsp">비회원예약</a></li>
+					<li><a href="#">P2P</a></li>
 				<% }else{ %>
 					<li><a href="/cs/HanJin/views/reservationView.jsp">회원예약</a></li>
+					<li><a href="/cs/p2plist?page=1">P2P</a></li>
 				<% } %>
 					<!-- class="active" -->
-					<li><a href="#">P2P</a></li>
 					<li><a href="/cs/nlist?page=1">고객센터</a></li>
 					<li><a href="/cs/rrlist">커뮤니티</a></li>
 				</ul>

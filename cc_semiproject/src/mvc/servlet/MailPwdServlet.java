@@ -37,7 +37,6 @@ public class MailPwdServlet extends HttpServlet {
 	 */
 	public MailPwdServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

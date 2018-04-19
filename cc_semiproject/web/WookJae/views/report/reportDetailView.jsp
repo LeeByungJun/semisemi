@@ -73,7 +73,7 @@
 						//json객체로 parseing(파싱)함 */
 												
 						var values = "<tr>";
-						values+="<td style='background-color:#464244; color:white;' align='center'> CommentNo : <br>"+data.useremail+"</td><td colspan='5' align='center' width='1000'><textarea rows='1' cols='90'>"+data.replycontents+"</textarea></td></tr>";
+						values+="<td style='background-color:#464244; color:white;' align='center'>("+data.useremail+")</td><td colspan='5' align='center' width='1000'><textarea rows='1' cols='90'>"+data.replycontents+"</textarea></td></tr>";
 						$('#ta1').append(values);	
 						
  						<%-- <td><input type='button' id='d<%=r.getReportcommentno()%>' onclick='deletecomment(this);' value='삭제'>&nbsp;<input type='button' id='u<%=r.getReportcommentno()%>' onclick='alertcomment(this);' value='수정'></td> --%>					
@@ -214,9 +214,9 @@
 
 				<table border="1" style="width:850px;"> 
 						<tr style="margin-right:100px; margin-left:100px;">
-						<td align="center" style="background-color:#464244; width:200px; height:30px; color:white;">(<%=loginUser.getEmail()%>)</td>
+						<td align="center" style="background-color:#464244; width:200px; height:30px; color:white;"><%=loginUser.getName()%>(<%=loginUser.getEmail()%>)</td>
 						<td colspan="4" style="padding-left:20px; padding-top:10px; padding-bottom:10px; padding-right:20px;">
-						<textarea rows="1" cols="60" id="text1"> </textarea>
+						<textarea rows="1" cols="60" id="text1"></textarea>
 						<input type="hidden" id="hide1" value="<%=loginUser.getEmail()%>"><!-- 로그인한 유저의 이메일자료를 넘기는 것 -->	
 						<input type="hidden" id="hide2" value="<%=report.getR_no()%>"><!-- 게시글의 번호를 넘기는 것 -->	
 						</td>

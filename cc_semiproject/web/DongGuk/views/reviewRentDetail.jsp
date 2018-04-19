@@ -3,16 +3,14 @@
 <%@ page import="rentreview.model.vo.ReviewRent,rentreview.model.service.ReviewRentService, member.model.vo.Member, rentreview.model.vo.ReviewRentComment, java.util.*"%>	
 
 <% 
-	Member m = (Member)session.getAttribute("loginUser");
-	ReviewRentService rservice = new ReviewRentService();
-	ArrayList<ReviewRent> list = rservice.selectList(1,5);
 
+	
+	String id = request.getParameter("rr_num");
 
 	ReviewRent review = (ReviewRent)request.getAttribute("review");	
 	ArrayList<ReviewRentComment> comment_list = (ArrayList<ReviewRentComment>)request.getAttribute("comment_list");
 
 
-	int listSize = ((Integer)request.getAttribute("listSize")).intValue();
 	int listCount = ((Integer)request.getAttribute("listCount")).intValue();
 	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
@@ -27,6 +25,7 @@
 <head>
 <%@ include file="../../resources/include/meta.jsp"%>
 <link href="/cs/DongGuk/sub.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/cs/resources/css/style.css">
 
 
 </head>
@@ -47,9 +46,8 @@
 			            </div>
 			            <div class="col-lg-4 col-md-4 col-sm-6 ">
 			                <ul class="breadcrumb">
-			                    <li><a href="#">Home</a></li>
-			                    <li><a href="#">Portfolio</a></li>
-			                    <li>3 Column</li>
+			                    <li><a href="/cs">Home</a></li>
+			                    <li><a href="/cs/rrlist">렌트후기</a></li>
 			                </ul>
 			            </div>
 			        </div>
@@ -61,7 +59,11 @@
 	
 			        <div class="row inner-page"> 
 			            <!--FAQ LEFT-->
-						<div class="col-md-9 padding-left-none padding-right-30 md-padding-right-30 xs-padding-right-none xs-padding-bottom-40">
+			            <div class="col-md-3 padding-right-15 md-padding-right-15 padding-left-none sm-padding-left-none xs-padding-left-none xs-margin-top-30">
+		        			<%@ include file="../views/sideContent.jsp"%>
+		        		</div>
+		        	
+						<div class="col-md-9 padding-right-none padding-left-30 md-padding-left-30 xs-padding-right-none xs-padding-bottom-40">
 
 							<div class="blog-content">
 			                    <div class="blog-title">
@@ -80,10 +82,10 @@
 
 
 			                        <div class="comments margin-top-30 margin-bottom-40">
-			                            <h3 class="padding-top-40 padding-bottom-30"><%=listSize%> COMMENTS</h3>
+			                            <h3 class="padding-top-40 padding-bottom-30"><%=listCount%> COMMENTS</h3>
 			                            <ol class="comment-list">
 			                            
-				                            <%if(listSize > 0) {%>
+				                            <%if(comment_list != null) {%>
 												<%for(ReviewRentComment rc : comment_list){ %>
 					                                <li>
 					                                    <div class="comment-profile clearfix margin-top-30">
@@ -103,11 +105,42 @@
 												<% } %>
 											<% } %>
 			                            </ol>
+
 			                        </div>
+			                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pagiation-page">
+
+										<ol class="pagination margin-top-20 margin-bottom-none">
+										<% if(startPage > 1){ %>
+											<li><a href="/cs/rrdetail?rr_num=<%=id%>&page=1"><i class="fa fa-angle-double-left"></i></a></li>
+										<% } %>
+										<% if(currentPage > 1){ %>
+											<li><a href="/cs/rrdetail?rr_num=<%=id%>&page=<%= (currentPage - 1) %>"><i class="fa fa-angle-left"></i></a></li>
+										<% } %>
+						
+										<!-- 현재 페이지가 포함된 그룹의 페이지 숫자 출력 -->
+										<% for(int p = startPage; p <= endPage; p++){ %>
+											<% if(p == currentPage){%>
+												<li class="active"><a href="#"><%= p %></a></li>
+											<% }else{ %>
+												<li><a href="/cs/rrdetail?rr_num=<%=id%>&page=<%= p %>"><%= p %></a></li>
+											<% } %>
+										<% } %>
+										
+										
+										<% if(currentPage < maxPage){ %>
+											<li><a href="/cs/rrdetail?rr_num=<%=id%>&page=<%= currentPage + 1 %>"><i class="fa fa-angle-right"></i></a></li>
+										<% } %>
+										
+										<% if(endPage < maxPage){ %>
+											<li><a href="/cs/rrdetail?rr_num=<%=id%>&page=<%= maxPage %>"><i class="fa fa-angle-double-right"></i></a></li>
+										<% } %>
+										</ol>
+										
+						
+						            </div>
 			                        <div class="leave-comments clearfix xs-margin-bottom-40">
 			                            <h3 class="margin-bottom-20">댓글</h3>
 			                            <form action="/cs/rrcomment" method="post" class="form-horizontal" name="commentForm" role="form">
-			                                <input type="hidden" name="writer" value="<%= m.getName() %>">
 			                                <input type="hidden" name="rr_num" value="<%=review.getRr_num()%>">
 			                                <textarea class="form-control margin-bottom-none" placeholder="내용을 입력하세요" rows="7" name="content"></textarea>
 			                                <input type="submit" id="submitComment" class="pull-left margin-top-10">
@@ -126,48 +159,7 @@
 								<a href="/cs/DongGuk/views/reviewUpdate.jsp?id=<%=review.getRr_num()%>" class="right submit">수정</a>
 							</div>
 		            	</div>
-		        		<div class="col-md-3 padding-left-15 md-padding-left-15 padding-right-none sm-padding-left-none xs-padding-left-none xs-margin-top-30">
-							<div class="right_faq">
-								<div class="side-widget side-content">
-									<div class="recent_posts_container padding-bottom-50">
-										
-			                                <h3 class="recent_posts">최근리뷰 게시글</h3>
-			                                
-			                                <%for(ReviewRent recent : list){ %>
-			                                <div class="side-blog">
-			                                	<img src="/cs/DongGuk/images/<%=recent.getRr_original_filename()%>" class="alignleft" alt="" style="width:50px; height:50px;">
-			                                	<strong>
-			                                	<%
-													String getSubject = recent.getRr_subject();
-													if(getSubject.length() > 10){
-														out.print(getSubject.substring(0,10));
-													}else{
-														out.print(getSubject);
-													}
-			      
-			                                	%>
-			                                	</strong>
-			                                    <p>
-													<%
-														String getContent = recent.getRr_content().replaceAll("<(/)?([a-zA-Z]*)(\\s[a-zA-Z]*=[^>]*)?(\\s)*(/)?>","");
-														if(getContent.length() > 40){
-															out.print(getContent.substring(0,40));
-														}else{
-															out.print(getContent);
-														}
-													
-													%>
-												</p>
-			                                </div>
-			                                <% } %>
-			                                
-			                        	
-		                            </div>
-		                    	</div>
-		                    </div>
-		        			<img src="https://tpc.googlesyndication.com/daca_images/simgad/619241601095039295" style="width:100%;">
-		        		</div>
-		        	
+
 		        	</div>
 
 				</div>
@@ -175,7 +167,7 @@
 		</div>  
 	</div>                
 	<%@ include file="../../resources/include/login.jsp" %>
-	<%@include file="../../resources/include/footer.jsp"%>
+	<%@include file="../include/footer.jsp"%>
 </body>
 </html>
 

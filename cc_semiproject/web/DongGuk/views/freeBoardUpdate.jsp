@@ -10,6 +10,7 @@
 <head>
 <%@ include file="../../resources/include/meta.jsp"%>
 <link href="../sub.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/cs/resources/css/style.css">
 
 <script type="text/javascript" src="../editor/js/service/HuskyEZCreator.js" charset="utf-8"></script> <!-- editor add -->
 
@@ -35,30 +36,34 @@
 
 	<!-- sidenav -->
 	
-	<div class="container-fluid text-center">
-		<div class="row content" style="display:table; width:100%;">
-			<div class="col-sm-2 sidenav">
-				<div id="scroll">
-					<%@include file="/include/sidemenu.jsp"%>
-				</div>
-				<script type="text/javascript"> 
-					function scroll_follow(id){
-					  $(window).scroll(function( )  //스크롤이 움직일때마다 이벤트 발생
-					  { 
-					      var position = $(window).scrollTop(); // 현재 스크롤바의 위치값을 반환합니다.
-					      $( id ).stop().animate({top:position+"px"}, 1); //해당 오브젝트 위치값 재설정
-					   });
-					}
-				 	scroll_follow( "#scroll" );
-
-				</script> 
-				
-				
+<div class="row content" style="display:table; width:100%;">
+	<section id="secondary-banner" class="dynamic-image-10"><!--for other images just change the class name of this section block like, class="dynamic-image-2" and add css for the changed class-->
+	    <div class="container">
+	        <div class="row">
+	            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+	                <h2>자동차 팁</h2>
+	                <h4>C&amp;C에서 드리는 자동차 관련 팁</h4>
+	            </div>
+	            <div class="col-lg-4 col-md-4 col-sm-6 ">
+	                <ul class="breadcrumb">
+	                    <li><a href="/cs">Home</a></li>
+	                    <li><a href="/cs/fblist">자동차 팁</a></li>
+	                </ul>
+	            </div>
+	        </div>
+	    </div>
+	</section>
+	<div class="container" id="review">
+	
+		<div class="row inner-page"> 
+			            <!--FAQ LEFT-->
+			<div class="col-md-3 padding-right-15 md-padding-right-15 padding-left-none sm-padding-left-none xs-padding-left-none xs-margin-top-30">
+			<%@ include file="../views/sideContent.jsp"%>
 			</div>
-			<div class="col-sm-10 text-left" id="contentWrap1">
-				<h1>수정</h1>
-				<hr>
+			
+			<div class="col-sm-9 text-left" id="contentWrap1">
 				<div class="fb_content" id="free">
+					
 					<div class="write-area">
 					
 						<form action="/cs/fbupdate" method="POST" name="updateForm">
@@ -73,10 +78,11 @@
 
 							 	<tr>
 							 		<td>글내용</td>
-							 		<td>
-							 		<textarea name="fb_content" id="content" rows="10" cols="100">
-							 			<%=free.getFb_content()%>
-							 		</textarea></td>
+							 		<td><textarea name="fb_content" id="content" rows="30" style="width:100%;">
+							 		<%=free.getFb_content()%>
+							 		</textarea>
+							 		</td>
+							 			
 							
 									
 									<script type="text/javascript">
@@ -110,7 +116,7 @@
 
 						<div class="btn-area">
 							<a href="/cs/fblist" class="left">목록으로</a>
-							<a href="#" class="submit">저장하기</a>
+							<a href="#" class="right submit">저장하기</a>
 						</div>
 					</div>
 					

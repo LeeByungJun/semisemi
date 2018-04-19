@@ -32,7 +32,7 @@
 							<th style="text-align: center; width: 60px;">예약번호</th>
 							<th style="text-align: center; width: 80px;">대여일</th>
 							<th style="text-align: center; width: 80px;">반납일</th>
-							<th style="text-align: center; width: 100px;">대여지점</th>
+							<!-- <th style="text-align: center; width: 100px;">대여지점</th> -->
 							<th style="text-align: center; width: 100px;">차명</th>
 							<th style="text-align: center; width: 80px;">대여금액</th>
 							<th style="text-align: center; width: 100px;">보험 가입여부</th>
@@ -48,8 +48,8 @@
 							<input type="text" style="text-align:center; border:none; width:80px;" value="<%= rsview.get(i).getReser_startday() %>" readonly></td>
 							<td align="center">
 							<input type="text" style="text-align:center; border:none; width:80px;" value="<%= rsview.get(i).getReser_endday() %>" readonly></td>
-							<td align="center">
-							<input type="text" style="text-align:center; border:none; width:100px;" value="<%= rsview.get(i).getReser_office() %>" readonly></td>
+							<%-- <td align="center">
+							<input type="text" style="text-align:center; border:none; width:100px;" value="<%= rsview.get(i).getReser_office() %>" readonly></td> --%>
 							<td align="center">
 							<input type="text" style="text-align:center; border:none; width:100px;" value="<%= rsview.get(i).getReser_car() %>" readonly></td>
 							<td align="center">

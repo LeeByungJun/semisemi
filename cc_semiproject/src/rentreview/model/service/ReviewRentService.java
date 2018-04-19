@@ -21,9 +21,9 @@ public class ReviewRentService {
 	}
 	
 	//전체 목록 갯수 조회 
-	public int getListCount() {
+	public int getListTotal() {
 		Connection con = getConnection();	
-		int result = new ReviewRentDao().getListCount(con);
+		int result = new ReviewRentDao().getListTotal(con);
 		if(result>0) {
 			commit(con);
 		}else {
@@ -81,6 +81,8 @@ public class ReviewRentService {
 	public int insertReviewRentComment(ReviewRentComment ReviewRentComment) {
 		Connection con = getConnection();
 		int result = new ReviewRentDao().insertReviewRentComment(con, ReviewRentComment);
+		
+		System.out.print("insert reveiw rent comment");
 		if(result > 0) {
 			commit(con);
 		} else {

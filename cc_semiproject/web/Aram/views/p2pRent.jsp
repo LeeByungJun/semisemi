@@ -103,7 +103,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 </head>
 <body>
-	<%@include file="../../include/header.jsp"%>
+	<%@include file="../../../resources/include/header.jsp"%>
 
 	<div class="container-fluid text-center">
 		<div class="row content"> 

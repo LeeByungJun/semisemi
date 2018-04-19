@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
@@ -12,8 +13,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-
+import member.model.vo.Member;
 import rentreview.model.vo.ReviewRentComment;
 import rentreview.model.service.ReviewRentService;
 
@@ -42,11 +44,22 @@ public class ReviewRentCommentWrite extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		RequestDispatcher view = null;
 		
-System.out.println("writer" + request.getParameter("writer"));
+		HttpSession session = request.getSession();
+		
+		response.setContentType("text/html; charset=UTF-8");
+		
+		
+		session.getAttribute("loginUser");
+		
+		Member loginUser = null;
+		
+		if((Member)session.getAttribute("loginUser")!=null) {
+			loginUser = (Member)session.getAttribute("loginUser");
+		}
 		
 		ReviewRentComment rc= new ReviewRentComment();
 		rc.setRc_parent_num(Integer.parseInt(request.getParameter("rr_num")));
-		rc.setRc_writer(request.getParameter("writer"));
+		rc.setRc_writer(loginUser.getName());
 		rc.setRc_content(request.getParameter("content"));
 		
 		
@@ -56,7 +69,7 @@ System.out.println("writer" + request.getParameter("writer"));
 		
 		
 		
-		response.setContentType("text/html; charset=UTF-8");
+		
 		if(result > 0) {
 			response.sendRedirect("/cs/rrdetail?rr_num="+request.getParameter("rr_num"));
 		}else {
